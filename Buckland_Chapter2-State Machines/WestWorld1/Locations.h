@@ -10,11 +10,4 @@ enum location_type
   saloon
 };
 
-
-
-
-
-
-
-
 #endif

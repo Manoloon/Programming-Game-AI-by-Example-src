@@ -2,17 +2,18 @@
 #include "Miner.h"
 #include "misc/ConsoleUtils.h"
 #include "EntityNames.h"
+#include <memory>
 
 
 int main()
 {
   //create a miner
-  Miner miner(ent_Miner_Bob);
+  std::unique_ptr<Miner> miner = std::make_unique<Miner>(ent_Miner_Bob);
 
   //simply run the miner through a few Update calls
   for (int i=0; i<20; ++i)
   { 
-    miner.Update();
+    miner->Update();
 
     Sleep(800);
   }
