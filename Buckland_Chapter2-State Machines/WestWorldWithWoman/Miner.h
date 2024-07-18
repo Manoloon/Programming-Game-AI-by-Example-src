@@ -17,6 +17,7 @@
 #include "MinerOwnedStates.h"
 #include "StateMachine.h"
 
+template <class entity_type>
 class State;
 
 //the amount of gold a miner must have before he feels comfortable
