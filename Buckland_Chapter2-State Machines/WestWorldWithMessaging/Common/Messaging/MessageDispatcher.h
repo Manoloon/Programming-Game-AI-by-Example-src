@@ -13,9 +13,9 @@
 //------------------------------------------------------------------------
 #include <set>
 #include <string>
+#include <variant>
 
-
-#include "Messaging/Telegram.h"
+#include "Telegram.h"
 
 
 class BaseGameEntity;
@@ -59,7 +59,7 @@ public:
                    int         sender,
                    int         receiver,
                    int         msg,
-                   void*       ExtraInfo);
+                   std::variant<int,float,double>        ExtraInfo);
 
   //send out any delayed messages. This method is called each time through   
   //the main game loop.

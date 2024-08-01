@@ -1,0 +1,1 @@
+add_library(Misc STATIC Cgdi.cpp FrameCounter.cpp iniFileLoaderBase.cpp)

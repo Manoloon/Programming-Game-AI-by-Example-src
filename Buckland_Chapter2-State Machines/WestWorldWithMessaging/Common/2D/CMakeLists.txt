@@ -1,0 +1,1 @@
+add_library(2D STATIC Vector2d.cpp)

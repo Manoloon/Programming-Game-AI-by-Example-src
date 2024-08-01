@@ -1,8 +1,7 @@
 #include "MessageDispatcher.h"
-#include "Game/BaseGameEntity.h"
-#include "misc/FrameCounter.h"
-#include "game/EntityManager.h"
-#include "Debug/DebugConsole.h"
+#include "../Game/BaseGameEntity.h"
+#include "../Misc/FrameCounter.h"
+#include "../Game/EntityManager.h"
 
 using std::set;
 
@@ -45,7 +44,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
                                     int          sender,
                                     int          receiver,
                                     int          msg,
-                                    void*        AdditionalInfo = NULL)
+                                    std::variant<int,float,double>         AdditionalInfo = 0)
 {
 
   //get a pointer to the receiver

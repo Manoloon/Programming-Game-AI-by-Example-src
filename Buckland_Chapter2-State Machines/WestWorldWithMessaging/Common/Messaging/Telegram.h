@@ -12,8 +12,8 @@
 //
 //------------------------------------------------------------------------
 #include <iostream>
+#include <variant>
 #include <math.h>
-
 
 struct Telegram
 {
@@ -33,7 +33,7 @@ struct Telegram
   double       DispatchTime;
 
   //any additional information that may accompany the message
-  void*        ExtraInfo;
+  std::variant<int,float,double>       ExtraInfo;
 
 
   Telegram():DispatchTime(-1),
@@ -47,7 +47,7 @@ struct Telegram
            int    sender,
            int    receiver,
            int    msg,
-           void*  info = NULL): DispatchTime(time),
+           std::variant<int,float,double>  info): DispatchTime(time),
                                Sender(sender),
                                Receiver(receiver),
                                Msg(msg),
@@ -95,11 +95,11 @@ inline std::ostream& operator<<(std::ostream& os, const Telegram& t)
 
 //handy helper function for dereferencing the ExtraInfo field of the Telegram 
 //to the required type.
-template <class T>
-inline T DereferenceToType(void* p)
-{
-  return *(T*)(p);
-}
+// template <class T>
+// inline T DereferenceToType(void* p)
+// {
+//   return *(T*)(p);
+// }
 
 
 #endif

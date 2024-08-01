@@ -55,12 +55,11 @@ public:
   static MessageDispatcher* Instance();
 
   //send a message to another agent. Receiving agent is referenced by ID.
-  template<typename T>
   void DispatchMessage(double  delay,
                        int    sender,
                        int    receiver,
                        int    msg,
-                       T  ExtraInfo);
+                       std::variant<int,float,double>   ExtraInfo);
 
   //send out any delayed messages. This method is called each time through   
   //the main game loop.

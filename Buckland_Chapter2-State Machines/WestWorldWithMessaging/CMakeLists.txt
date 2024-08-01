@@ -6,6 +6,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Define the main source directory for clarity
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/")
 
+# Add the subdirectories containing the libraries
+add_subdirectory(Common/Messaging)
+add_subdirectory(Common/Time)
+add_subdirectory(Common/Game)
+add_subdirectory(Common/Misc)
+add_subdirectory(Common/2D)
+
 # List of source files
 set(SOURCES
     ${SOURCE_DIR}/main.cpp
@@ -23,8 +30,17 @@ add_executable(WestWorldWithMessaging ${SOURCES})
 
 # Add include directories associated with the target
 target_include_directories(WestWorldWithMessaging PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/Common/misc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Common/Misc"
     "${CMAKE_CURRENT_SOURCE_DIR}/Common/FSM"
     "${CMAKE_CURRENT_SOURCE_DIR}/Common/Messaging"
     "${CMAKE_CURRENT_SOURCE_DIR}/Common/Time"
+)
+
+# Link the static libraries to the executable
+target_link_libraries(WestWorldWithMessaging PRIVATE
+    Messaging
+    Time
+    Game 
+    Misc
+    2D
 )
