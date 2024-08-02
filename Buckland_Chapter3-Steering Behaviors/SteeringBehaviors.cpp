@@ -1,15 +1,15 @@
 #include "SteeringBehaviors.h"
 #include "Vehicle.h"
-#include "2d/Wall2D.h"
-#include "2d/Transformations.h"
-#include "misc/utils.h"
-#include "misc/Cgdi.h"
+#include "../2d/Wall2D.h"
+#include "../2d/Transformations.h"
+#include "../misc/utils.h"
+#include "../misc/Cgdi.h"
 #include "GameWorld.h"
-#include "2d/geometry.h"
-#include "BaseGameEntity.h"
-#include "misc/CellSpacePartition.h"
-#include "misc/Stream_Utility_Functions.h"
-#include "EntityFunctionTemplates.h"
+#include "../2d/geometry.h"
+#include "../Game/BaseGameEntity.h"
+#include "../misc/CellSpacePartition.h"
+#include "../misc/Stream_Utility_Functions.h"
+#include "../Game/EntityFunctionTemplates.h"
 
 #include <cassert>
 
@@ -744,7 +744,7 @@ Vector2D SteeringBehavior::Arrive(Vector2D     TargetPos,
     double speed =  dist / ((double)deceleration * DecelerationTweaker);     
 
     //make sure the velocity does not exceed the max
-    speed = min(speed, m_pVehicle->MaxSpeed());
+    speed = std::min(speed, m_pVehicle->MaxSpeed());
 
     //from here proceed just like Seek except we don't need to normalize 
     //the ToTarget vector because we have already gone to the trouble

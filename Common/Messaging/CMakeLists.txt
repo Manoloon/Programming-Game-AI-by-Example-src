@@ -1,0 +1,1 @@
+add_library(Messaging STATIC MessageDispatcher.cpp)

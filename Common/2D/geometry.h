@@ -9,9 +9,9 @@
 //Author: Mat Buckland (fup@ai-junkie.com)
 //
 //------------------------------------------------------------------------
-#include "misc/utils.h"
-#include "2d/Vector2D.h"
-#include "2d/C2DMatrix.h"
+#include "../Misc/utils.h"
+#include "../2d/Vector2D.h"
+#include "../2d/C2DMatrix.h"
 #include "Transformations.h"
 
 #include <math.h>
@@ -22,10 +22,10 @@
 
 //given a plane and a ray this function determins how far along the ray 
 //an interestion occurs. Returns negative if the ray is parallel
-inline double DistanceToRayPlaneIntersection(Vector2D RayOrigin,
-                                             Vector2D RayHeading,
-                                             Vector2D PlanePoint,  //any point on the plane
-                                             Vector2D PlaneNormal)
+inline double DistanceToRayPlaneIntersection(const Vector2D& RayOrigin,
+                                             const Vector2D& RayHeading,
+                                             const Vector2D& PlanePoint,  //any point on the plane
+                                             const Vector2D& PlaneNormal)
 {
   
   double d     = - PlaneNormal.Dot(PlanePoint);
@@ -579,9 +579,9 @@ inline bool   LineSegmentCircleIntersection(Vector2D A,
 //
 //  returns false if no intersection point is found
 //-----------------------------------------------------------------------------
-inline bool GetLineSegmentCircleClosestIntersectionPoint(Vector2D A,
-                                                         Vector2D B,
-                                                         Vector2D pos,
+inline bool GetLineSegmentCircleClosestIntersectionPoint(const Vector2D& A,
+                                                         const Vector2D& B,
+                                                         const Vector2D& pos,
                                                          double    radius,
                                                          Vector2D& IntersectionPoint)
 {
@@ -620,7 +620,7 @@ inline bool GetLineSegmentCircleClosestIntersectionPoint(Vector2D A,
 
         ipFound = true;
 
-        IntersectionPoint = A+ toBNorm*ip;
+        IntersectionPoint = A + toBNorm * ip;
      }
    }
 

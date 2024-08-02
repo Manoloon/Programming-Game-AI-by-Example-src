@@ -2,15 +2,15 @@
 #include "Vehicle.h"
 #include "constants.h"
 #include "Obstacle.h"
-#include "2d/Geometry.h"
-#include "2d/Wall2D.h"
-#include "2d/Transformations.h"
+#include "../2d/Geometry.h"
+#include "../2d/Wall2D.h"
+#include "../2d/Transformations.h"
 #include "SteeringBehaviors.h"
-#include "time/PrecisionTimer.h"
-#include "misc/Smoother.h"
+#include "../time/PrecisionTimer.h"
+#include "../misc/Smoother.h"
 #include "ParamLoader.h"
-#include "misc/WindowUtils.h"
-#include "misc/Stream_Utility_Functions.h"
+#include "../misc/WindowUtils.h"
+#include "../misc/Stream_Utility_Functions.h"
 
 
 #include "resource.h"
@@ -424,7 +424,7 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
 
           if (!m_Vehicles[0]->Steering()->isSpacePartitioningOn())
           {
-            SendMessage(hwnd, WM_COMMAND, IDR_PARTITIONING, NULL);
+            SendMessageW(hwnd, WM_COMMAND, IDR_PARTITIONING, 0);
           }
         }
         else

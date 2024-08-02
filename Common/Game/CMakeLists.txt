@@ -1,0 +1,1 @@
+add_library(Game STATIC BaseGameEntity.cpp EntityManager.cpp)

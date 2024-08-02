@@ -9,8 +9,8 @@
 //  Desc:   class to parse a parameter file for the steering behavior project
 //-----------------------------------------------------------------------------
 #include "constants.h"
-#include "misc/iniFileLoaderBase.h"
-#include "misc/utils.h"
+#include "../misc/iniFileLoaderBase.h"
+#include "../misc/utils.h"
 
 
 
@@ -20,8 +20,8 @@
 class ParamLoader : public iniFileLoaderBase
 {
 private:
-  
-    ParamLoader():iniFileLoaderBase("params.ini")
+    const wchar_t* params = L"params.ini";
+    ParamLoader():iniFileLoaderBase(params)
   {
     NumAgents               = GetNextParameterInt();
     NumObstacles            = GetNextParameterInt();

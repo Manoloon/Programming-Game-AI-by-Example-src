@@ -1,7 +1,7 @@
 #include "Path.h"
-#include "misc/utils.h"
-#include "misc/Cgdi.h"
-#include "2d/transformations.h"
+#include "../misc/utils.h"
+#include "../misc/Cgdi.h"
+#include "../2d/transformations.h"
 
 std::list<Vector2D> Path::CreateRandomPath(int   NumWaypoints,
                                            double MinX,
@@ -14,7 +14,7 @@ std::list<Vector2D> Path::CreateRandomPath(int   NumWaypoints,
     double midX = (MaxX+MinX)/2.0;
     double midY = (MaxY+MinY)/2.0;
 
-    double smaller = min(midX, midY);
+    double smaller = std::min(midX, midY);
 
     double spacing = TwoPi/(double)NumWaypoints;
 

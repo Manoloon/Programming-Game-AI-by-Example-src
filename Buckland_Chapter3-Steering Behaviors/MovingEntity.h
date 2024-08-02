@@ -13,7 +13,7 @@
 //------------------------------------------------------------------------
 #include <cassert>
 
-#include "2D/Vector2D.h"
+#include "../2D/Vector2D.h"
 #include "BaseGameEntity.h"
 
 
@@ -22,6 +22,8 @@ class MovingEntity : public BaseGameEntity
 {
 protected:
   
+  Vector2D    m_vPos;
+
   Vector2D    m_vVelocity;
   
   //a normalized vector pointing in the direction the entity is heading. 
@@ -103,7 +105,7 @@ public:
 //
 //  returns true when the heading is facing in the desired direction
 //-----------------------------------------------------------------------------
-inline bool MovingEntity::RotateHeadingToFacePosition(Vector2D target)
+inline bool MovingEntity::RotateHeadingToFacePosition(const Vector2D target)
 {
   Vector2D toTarget = Vec2DNormalize(target - m_vPos);
 

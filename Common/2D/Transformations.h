@@ -139,9 +139,9 @@ inline Vector2D VectorToWorldSpace(const Vector2D &vec,
 //
 //------------------------------------------------------------------------
 inline Vector2D PointToLocalSpace(const Vector2D &point,
-                             Vector2D &AgentHeading,
-                             Vector2D &AgentSide,
-                              Vector2D &AgentPosition)
+                             const Vector2D &AgentHeading,
+                             const Vector2D &AgentSide,
+                             const Vector2D &AgentPosition)
 {
 
 	//make a copy of the point

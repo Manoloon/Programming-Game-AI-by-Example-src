@@ -4,20 +4,20 @@
 #include <time.h>
 
 #include "constants.h"
-#include "misc/utils.h"
-#include "time/PrecisionTimer.h"
+#include "../misc/utils.h"
+#include "../time/PrecisionTimer.h"
 #include "GameWorld.h"
-#include "misc/Cgdi.h"
+#include "../misc/Cgdi.h"
 #include "ParamLoader.h"
 #include "resource.h"
-#include "misc/WindowUtils.h"
+#include "../misc/WindowUtils.h"
 
 //--------------------------------- Globals ------------------------------
 //
 //------------------------------------------------------------------------
 
-char* g_szApplicationName = "Steering Behaviors - Another Big Shoal";
-char*	g_szWindowClassName = "MyWindowClass";
+wchar_t g_szApplicationName[] = L"Steering Behaviors - Another Big Shoal";
+wchar_t g_szWindowClassName[] = L"MyWindowClass";
 
 GameWorld* g_GameWorld;
 
@@ -111,7 +111,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
         {
            case VK_ESCAPE:
             {             
-              SendMessage(hwnd, WM_DESTROY, NULL, NULL);
+              SendMessageW(hwnd, WM_DESTROY, 0, 0);
             }
           
             break;
@@ -150,8 +150,8 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
                 cxClient,
                 cyClient,
                 NULL,
-                NULL,
-                NULL,
+                0,
+                0,
                 WHITENESS);
 
          
@@ -211,7 +211,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
   HWND						hWnd;
     
   //our window class structure
-  WNDCLASSEX     winclass;
+  WNDCLASSEXW     winclass;
 		 
   // first fill in the window class stucture
   winclass.cbSize        = sizeof(WNDCLASSEX);
@@ -222,22 +222,22 @@ int WINAPI WinMain (HINSTANCE hInstance,
   winclass.hInstance     = hInstance;
   winclass.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
   winclass.hCursor       = LoadCursor(NULL, IDC_ARROW);
-  winclass.hbrBackground = NULL;
-  winclass.lpszMenuName  = MAKEINTRESOURCE(IDR_MENU1);
+  winclass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+  winclass.lpszMenuName  = NULL; //MAKEINTRESOURCE(IDR_MENU1);
   winclass.lpszClassName = g_szWindowClassName;
   winclass.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
 
   //register the window class
-  if (!RegisterClassEx(&winclass))
+  if (!RegisterClassExW(&winclass))
   {
-    MessageBox(NULL, "Registration Failed!", "Error", 0);
+    MessageBoxW(NULL, L"Registration Failed!", L"Error", 0);
 
     //exit the application
     return 0;
   }
 
   //create the window and assign its ID to hwnd    
-  hWnd = CreateWindowEx (NULL,                 // extended style
+  hWnd = CreateWindowExW (0,                 // extended style
                          g_szWindowClassName,  // window class name
                          g_szApplicationName,  // window caption
                          WS_OVERLAPPED | WS_VISIBLE | WS_CAPTION | WS_SYSMENU,
@@ -253,7 +253,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
   //make sure the window creation has gone OK
   if(!hWnd)
   {
-    MessageBox(NULL, "CreateWindowEx Failed!", "Error!", 0);
+    MessageBoxW(NULL, L"CreateWindowEx Failed!", L"Error!", 0);
   }
 
      
@@ -309,7 +309,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
   delete g_GameWorld;
 
-  UnregisterClass( g_szWindowClassName, winclass.hInstance );
+  UnregisterClassW( g_szWindowClassName, winclass.hInstance );
 
   return msg.wParam;
 }
