@@ -132,6 +132,10 @@ void FileInitialize (HWND hwnd,
   //  {
   //    szFilter[i] = filter.at(i);
   //  }
+
+  wchar_t* szFile = new wchar_t[MAX_PATH];
+  szFile[0] = '\0'; // Initialize with an empty string
+
     // Convert defaultFileExtension to a wide string
     int extSizeNeeded = MultiByteToWideChar(CP_UTF8, 0, defaultFileExtension.c_str(), -1, NULL, 0);
     std::wstring wDefaultFileExtension(extSizeNeeded, 0);
@@ -144,13 +148,13 @@ void FileInitialize (HWND hwnd,
      ofn.lpstrCustomFilter = NULL ;
      ofn.nMaxCustFilter    = 0 ;
      ofn.nFilterIndex      = 1 ;
-     ofn.lpstrFile         = NULL ;          // Set in Open and Close functions
+     ofn.lpstrFile         = szFile ;          // Set in Open and Close functions
      ofn.nMaxFile          = MAX_PATH ;
      ofn.lpstrFileTitle    = NULL ;          // Set in Open and Close functions
      ofn.nMaxFileTitle     = MAX_PATH ;
      ofn.lpstrInitialDir   = NULL ;
      ofn.lpstrTitle        = NULL ;
-     ofn.Flags             = 0 ;             // Set in Open and Close functions
+     ofn.Flags             = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST ;             // Set in Open and Close functions
      ofn.nFileOffset       = 0 ;
      ofn.nFileExtension    = 0 ;
      ofn.lpstrDefExt       = wDefaultFileExtension.c_str();
@@ -163,12 +167,12 @@ void FileInitialize (HWND hwnd,
 
 
 BOOL FileOpenDlg (HWND               hwnd,
-                  PTSTR              pstrFileName,
-                  PTSTR              pstrTitleName,
+                  PWSTR              pstrFileName,
+                  PWSTR              pstrTitleName,
                   const std::string& defaultFileTypeDescription,
                   const std::string& defaultFileExtension)
 {
-     OPENFILENAME ofn;
+     OPENFILENAMEW ofn;
 
      FileInitialize(hwnd, ofn, defaultFileTypeDescription, defaultFileExtension);
   
@@ -177,23 +181,23 @@ BOOL FileOpenDlg (HWND               hwnd,
      ofn.lpstrFileTitle    = pstrTitleName ;
      ofn.Flags             = OFN_HIDEREADONLY | OFN_CREATEPROMPT ;
      
-     return GetOpenFileName (&ofn) ;
+     return GetOpenFileNameW (&ofn) ;
 }
 
 BOOL FileSaveDlg (HWND               hwnd,
-                  PTSTR              pstrFileName,
-                  PTSTR              pstrTitleName,
+                  PWSTR              pstrFileName,
+                  PWSTR              pstrTitleName,
                   const std::string& defaultFileTypeDescription,
                   const std::string& defaultFileExtension)
 {
-     OPENFILENAME ofn; FileInitialize(hwnd, ofn, defaultFileTypeDescription, defaultFileExtension);
+     OPENFILENAMEW ofn; FileInitialize(hwnd, ofn, defaultFileTypeDescription, defaultFileExtension);
 
      ofn.hwndOwner         = hwnd ;
      ofn.lpstrFile         = pstrFileName ;
      ofn.lpstrFileTitle    = pstrTitleName ;
      ofn.Flags             = OFN_OVERWRITEPROMPT ;
      
-     return GetSaveFileName (&ofn) ;
+     return GetSaveFileNameW (&ofn) ;
 }
 
 //-------------------------- ResizeWindow -------------------------------------
@@ -218,7 +222,7 @@ void ResizeWindow(HWND hwnd, int cx, int cy)
   AdjustWindowRectEx(&DesiredSize,
                      WS_OVERLAPPED | WS_VISIBLE | WS_CAPTION | WS_SYSMENU,
                      bMenu,
-                     NULL);
+                     0);
 
   //resize the window to fit
   SetWindowPos(hwnd,
