@@ -60,14 +60,24 @@ bool CheckBufferLength(char* buff, int MaxLength, int& BufferLength)
   return true;
 }
 
-void ErrorBox(std::string& msg)
+void ErrorBox(const std::string& msg)
 {
-  MessageBox(NULL, msg.c_str(), "Error", MB_OK);
+  // Convert std::string to std::wstring
+  int size_needed = MultiByteToWideChar(CP_UTF8, 0, msg.c_str(), -1, NULL, 0);
+  std::wstring wmsg(size_needed, 0);
+  MultiByteToWideChar(CP_UTF8, 0, msg.c_str(), -1, &wmsg[0], size_needed);
+  MessageBoxW(NULL, wmsg.c_str(), L"Error", MB_OK);
 }
 
-void ErrorBox(char* msg)
+void ErrorBox(const char* msg)
 {
-  MessageBox(NULL, msg, "Error", MB_OK);
+  // Convert char* to std::wstring
+    int size_needed = MultiByteToWideChar(CP_UTF8, 0, msg, -1, NULL, 0);
+    std::wstring wmsg(size_needed, 0);
+    MultiByteToWideChar(CP_UTF8, 0, msg, -1, &wmsg[0], size_needed);
+
+    // Display the message box
+    MessageBoxW(NULL, wmsg.c_str(), L"Error", MB_OK);
 }
 
 //gets the coordinates of the cursor relative to an active window 
@@ -101,27 +111,39 @@ Vector2D GetClientCursorPosition(HWND hwnd)
 //  client to use the file dialog common control
 //-----------------------------------------------------------------------------
 void FileInitialize (HWND hwnd,
-                     OPENFILENAME& ofn,
+                     OPENFILENAMEW& ofn,
                      const std::string& defaultFileTypeDescription,
                      const std::string& defaultFileExtension)
 {
   std::string filter = defaultFileTypeDescription + '\0' + "*." + defaultFileExtension + '\0' +
                        "All Files (*.*)" + '\0' + "*.*" + '\0' + '\0';
   
-   static TCHAR szFilter[255];
+  // Convert the filter string to a wide string
+  int filterSizeNeeded = MultiByteToWideChar(CP_UTF8, 0, filter.c_str(), -1, NULL, 0);
+  std::wstring wFilter(filterSizeNeeded, 0);
+  MultiByteToWideChar(CP_UTF8, 0, filter.c_str(), -1, &wFilter[0], filterSizeNeeded);
 
-   for (unsigned int i=0; i<filter.size(); ++i)
-   {
-     szFilter[i] = filter.at(i);
-   }
-     
-     ofn.lStructSize       = sizeof (OPENFILENAME) ;
+  // Remove the additional null terminator at the end added by MultiByteToWideChar
+  wFilter.pop_back();
+
+  //static TCHAR szFilter[255];
+
+  //  for (unsigned int i=0; i<filter.size(); ++i)
+  //  {
+  //    szFilter[i] = filter.at(i);
+  //  }
+    // Convert defaultFileExtension to a wide string
+    int extSizeNeeded = MultiByteToWideChar(CP_UTF8, 0, defaultFileExtension.c_str(), -1, NULL, 0);
+    std::wstring wDefaultFileExtension(extSizeNeeded, 0);
+    MultiByteToWideChar(CP_UTF8, 0, defaultFileExtension.c_str(), -1, &wDefaultFileExtension[0], extSizeNeeded);
+    //
+     ofn.lStructSize       = sizeof (OPENFILENAMEW) ;
      ofn.hwndOwner         = hwnd ;
      ofn.hInstance         = NULL ;
-     ofn.lpstrFilter       = szFilter ;
+     ofn.lpstrFilter       = wFilter.c_str();
      ofn.lpstrCustomFilter = NULL ;
      ofn.nMaxCustFilter    = 0 ;
-     ofn.nFilterIndex      = 0 ;
+     ofn.nFilterIndex      = 1 ;
      ofn.lpstrFile         = NULL ;          // Set in Open and Close functions
      ofn.nMaxFile          = MAX_PATH ;
      ofn.lpstrFileTitle    = NULL ;          // Set in Open and Close functions
@@ -131,7 +153,7 @@ void FileInitialize (HWND hwnd,
      ofn.Flags             = 0 ;             // Set in Open and Close functions
      ofn.nFileOffset       = 0 ;
      ofn.nFileExtension    = 0 ;
-     ofn.lpstrDefExt       = defaultFileExtension.c_str() ;
+     ofn.lpstrDefExt       = wDefaultFileExtension.c_str();
      ofn.lCustData         = 0L ;
      ofn.lpfnHook          = NULL ;
      ofn.lpTemplateName    = NULL ;
