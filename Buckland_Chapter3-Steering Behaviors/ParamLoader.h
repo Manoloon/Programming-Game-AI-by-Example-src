@@ -9,73 +9,20 @@
 //  Desc:   class to parse a parameter file for the steering behavior project
 //-----------------------------------------------------------------------------
 #include "constants.h"
+#include <stdexcept>
+#include <string>
 #include "../misc/iniFileLoaderBase.h"
 #include "../misc/utils.h"
 
-
-
 #define Prm (*ParamLoader::Instance())
-
 
 class ParamLoader : public iniFileLoaderBase
 {
 private:
-    const wchar_t* params = L"params.ini";
-    ParamLoader():iniFileLoaderBase(params)
-  {
-    NumAgents               = GetNextParameterInt();
-    NumObstacles            = GetNextParameterInt();
-    MinObstacleRadius       = GetNextParameterFloat();
-    MaxObstacleRadius       = GetNextParameterFloat();
-
-    NumCellsX               = GetNextParameterInt();
-    NumCellsY               = GetNextParameterInt();
-
-    NumSamplesForSmoothing  = GetNextParameterInt();
-
-    SteeringForceTweaker    = GetNextParameterFloat();
-    MaxSteeringForce        = GetNextParameterFloat() * SteeringForceTweaker;
-    MaxSpeed                = GetNextParameterFloat();
-    VehicleMass             = GetNextParameterFloat();
-    VehicleScale            = GetNextParameterFloat();
-
-    SeparationWeight        = GetNextParameterFloat() * SteeringForceTweaker;
-    AlignmentWeight         = GetNextParameterFloat() * SteeringForceTweaker;
-    CohesionWeight          = GetNextParameterFloat() * SteeringForceTweaker;
-    ObstacleAvoidanceWeight = GetNextParameterFloat() * SteeringForceTweaker;
-    WallAvoidanceWeight     = GetNextParameterFloat() * SteeringForceTweaker;
-    WanderWeight            = GetNextParameterFloat() * SteeringForceTweaker;
-    SeekWeight              = GetNextParameterFloat() * SteeringForceTweaker;
-    FleeWeight              = GetNextParameterFloat() * SteeringForceTweaker;
-    ArriveWeight            = GetNextParameterFloat() * SteeringForceTweaker;
-    PursuitWeight           = GetNextParameterFloat() * SteeringForceTweaker;
-    OffsetPursuitWeight     = GetNextParameterFloat() * SteeringForceTweaker;
-    InterposeWeight         = GetNextParameterFloat() * SteeringForceTweaker;
-    HideWeight              = GetNextParameterFloat() * SteeringForceTweaker;
-    EvadeWeight             = GetNextParameterFloat() * SteeringForceTweaker;
-    FollowPathWeight        = GetNextParameterFloat() * SteeringForceTweaker;
-
-    ViewDistance            = GetNextParameterFloat();
-    MinDetectionBoxLength   = GetNextParameterFloat();
-    WallDetectionFeelerLength=GetNextParameterFloat();
-
-    prWallAvoidance         = GetNextParameterFloat();
-    prObstacleAvoidance     = GetNextParameterFloat();  
-    prSeparation            = GetNextParameterFloat();
-    prAlignment             = GetNextParameterFloat();
-    prCohesion              = GetNextParameterFloat();
-    prWander                = GetNextParameterFloat();
-    prSeek                  = GetNextParameterFloat();
-    prFlee                  = GetNextParameterFloat();
-    prEvade                 = GetNextParameterFloat();
-    prHide                  = GetNextParameterFloat();
-    prArrive                = GetNextParameterFloat();
-
-    MaxTurnRatePerSecond    = Pi;
-  }
+    static const wchar_t* const params;// = L"params.ini"; 
 
 public:
-
+  ParamLoader();
   static ParamLoader* Instance();
 
   int	NumAgents;
@@ -144,9 +91,5 @@ public:
   double prArrive;
   
 };
-
-
-
-
 
 #endif
