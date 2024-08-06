@@ -1,6 +1,7 @@
 #pragma warning (disable:4786)
 
 #include <windows.h>
+#include <memory>
 #include <time.h>
 
 #include "constants.h"
@@ -119,7 +120,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
           case 'R':
             {
                delete g_GameWorld;
-           
+          
                g_GameWorld = new GameWorld(cxClient, cyClient);
             }
 
@@ -303,9 +304,6 @@ int WINAPI WinMain (HINSTANCE hInstance,
     }
    					
   }//end while
-
-
-
 
   delete g_GameWorld;
 
