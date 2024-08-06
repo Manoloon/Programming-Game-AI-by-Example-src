@@ -17,6 +17,7 @@
 
 #include <fstream>
 #include <string>
+#include <stdexcept>
 #include <cassert>
 
 
@@ -27,8 +28,7 @@ private:
 
   //the file the parameters are stored in
   std::ifstream file;
-
-  std::string   CurrentLine;
+  std::string CurrentLine;
 
   void        GetParameterValueAsString(std::string& line);
 
@@ -44,24 +44,30 @@ public:
 
   //helper methods. They convert the next parameter value found into the 
   //relevant type
-  double      GetNextParameterDouble(){if (m_bGoodFile) return atof(GetNextParameter().c_str());throw std::runtime_error("bad file");}
-  float       GetNextParameterFloat(){if (m_bGoodFile) return (float)atof(GetNextParameter().c_str());throw std::runtime_error("bad file");}
-  int         GetNextParameterInt(){if (m_bGoodFile) return atoi(GetNextParameter().c_str());throw std::runtime_error("bad file");}
-  bool        GetNextParameterBool(){return (bool)(atoi(GetNextParameter().c_str()));throw std::runtime_error("bad file");}
+  double      GetNextParameterDouble(){return atof(GetNextParameter().c_str());}
+  float       GetNextParameterFloat(){return (float)atof(GetNextParameter().c_str());}
+  int         GetNextParameterInt(){return atoi(GetNextParameter().c_str());}
+  bool        GetNextParameterBool(){return (bool)(atoi(GetNextParameter().c_str()));}
 
-  double      GetNextTokenAsDouble(){if (m_bGoodFile) return atof(GetNextToken().c_str()); throw std::runtime_error("bad file");}
-  float       GetNextTokenAsFloat(){if (m_bGoodFile) return (float)atof(GetNextToken().c_str()); throw std::runtime_error("bad file");}
-  int         GetNextTokenAsInt(){if (m_bGoodFile) return atoi(GetNextToken().c_str()); throw std::runtime_error("bad file");}
-  std::string GetNextTokenAsString(){if (m_bGoodFile) return GetNextToken(); throw std::runtime_error("bad file");}
+  double      GetNextTokenAsDouble(){return atof(GetNextToken().c_str());}
+  float       GetNextTokenAsFloat(){return (float)atof(GetNextToken().c_str());}
+  int         GetNextTokenAsInt(){return atoi(GetNextToken().c_str());}
+  std::string GetNextTokenAsString(){return GetNextToken();}
 
   bool        eof()const{if (m_bGoodFile) return file.eof(); throw std::runtime_error("bad file");}
   bool        FileIsGood()const{return m_bGoodFile;}
 
-  iniFileLoaderBase(const wchar_t* filename):CurrentLine(""), m_bGoodFile(true)
+  iniFileLoaderBase(const wchar_t* filename): CurrentLine(""), m_bGoodFile(true)
   {
     file.open(filename);
 
     if (!file){m_bGoodFile = false;}
+  }
+
+  ~iniFileLoaderBase()
+  {
+    if(file.is_open())
+      file.close();
   }
 
 };
