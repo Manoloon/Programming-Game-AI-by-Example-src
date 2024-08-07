@@ -90,6 +90,8 @@ public:
   double prHide;
   double prArrive;
   
+  bool   CreateWalls;
+  bool   CreateObstacles;
 };
 
 #endif

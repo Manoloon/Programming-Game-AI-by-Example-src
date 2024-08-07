@@ -92,8 +92,14 @@ GameWorld::GameWorld(int cx, int cy):
 #endif
  
   //create any obstacles or walls
-  //CreateObstacles();
-  //CreateWalls();
+  if(Prm.CreateObstacles)
+  {
+    CreateObstacles();
+  }
+  if(Prm.CreateWalls)
+  {
+    CreateWalls();
+  }
 }
 
 

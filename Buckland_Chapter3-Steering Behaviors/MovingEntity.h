@@ -21,8 +21,6 @@
 class MovingEntity : public BaseGameEntity
 {
 protected:
-  
-  Vector2D    m_vPos;
 
   Vector2D    m_vVelocity;
   
