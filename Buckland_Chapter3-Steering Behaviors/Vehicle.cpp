@@ -86,7 +86,7 @@ void Vehicle::Update(double time_elapsed)
   m_vVelocity.Truncate(m_dMaxSpeed);
 
   //update the position
-  m_vPos += m_vVelocity * time_elapsed;
+  m_vPosition += m_vVelocity * time_elapsed;
 
   //update the heading if the vehicle has a non zero velocity
   if (m_vVelocity.LengthSq() > 0.00000001)
@@ -99,7 +99,7 @@ void Vehicle::Update(double time_elapsed)
   //EnforceNonPenetrationConstraint(this, World()->Agents());
 
   //treat the screen as a toroid
-  WrapAround(m_vPos, m_pWorld->cxClient(), m_pWorld->cyClient());
+  WrapAround(m_vPosition, m_pWorld->cxClient(), m_pWorld->cyClient());
 
   //update the vehicle's current cell if space partitioning is turned on
   if (Steering()->isSpacePartitioningOn())

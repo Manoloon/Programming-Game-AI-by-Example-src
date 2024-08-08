@@ -10,7 +10,7 @@
 //  Author: Mat Buckland 2002 (fup@ai-junkie.com)
 //
 //------------------------------------------------------------------------
-#include "MovingEntity.h"
+#include "../Game/MovingEntity.h"
 #include "../2d/Vector2D.h"
 #include "../misc/Smoother.h"
 

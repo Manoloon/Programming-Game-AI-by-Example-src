@@ -50,7 +50,6 @@ private:
   //the next valid ID
   void SetID(int val);
 
-
 protected:
   
   //its location in the environment
@@ -64,6 +63,22 @@ protected:
   
   BaseGameEntity(int ID);
 
+  BaseGameEntity():m_ID(m_iNextValidID),
+                   m_dBoundingRadius(0.0),
+                   m_vPosition(Vector2D()),
+                   m_vScale(Vector2D(1.0,1.0)),
+                   m_iType(default_entity_type),
+                   m_bTag(false)
+  {}
+  
+  BaseGameEntity(int entity_type, Vector2D pos, double r):m_vPosition(pos),
+                                        m_dBoundingRadius(r),
+                                        m_ID(m_iNextValidID),
+                                        m_vScale(Vector2D(1.0,1.0)),
+                                        m_iType(entity_type),
+                                        m_bTag(false)
+                                        
+  {}
 public:
 
   virtual ~BaseGameEntity(){}

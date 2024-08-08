@@ -10,7 +10,7 @@
 //
 //------------------------------------------------------------------------
 #include "../2d/Vector2D.h"
-#include "BaseGameEntity.h"
+#include "../Game/BaseGameEntity.h"
 #include "../misc/Cgdi.h"
 
 

@@ -15,9 +15,6 @@
 #include <stdexcept>
 #include "../2d/Vector2D.h"
 
-
-
-
 class Path
 {
 private:

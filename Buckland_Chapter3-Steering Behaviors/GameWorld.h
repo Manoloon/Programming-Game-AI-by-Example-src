@@ -18,7 +18,7 @@
 #include "../2d/Vector2D.h"
 #include "../time/PrecisionTimer.h"
 #include "../misc/CellSpacePartition.h"
-#include "BaseGameEntity.h"
+#include "../Game/BaseGameEntity.h"
 #include "../Game/EntityFunctionTemplates.h"
 #include "vehicle.h"
 
