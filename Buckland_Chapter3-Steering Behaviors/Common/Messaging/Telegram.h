@@ -17,6 +17,10 @@
 
 struct Telegram
 {
+  //messages can be dispatched immediately or delayed for a specified amount
+  //of time. If a delay is necessary this field is stamped with the time 
+  //the message should be dispatched.
+  double       DispatchTime;
   //the entity that sent this telegram
   int          Sender;
 
@@ -27,10 +31,7 @@ struct Telegram
   //"MessageTypes.h"
   int          Msg;
 
-  //messages can be dispatched immediately or delayed for a specified amount
-  //of time. If a delay is necessary this field is stamped with the time 
-  //the message should be dispatched.
-  double       DispatchTime;
+
 
   //any additional information that may accompany the message
   std::variant<int,float,double>       ExtraInfo;

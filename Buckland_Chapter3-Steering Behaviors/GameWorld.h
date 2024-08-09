@@ -1,6 +1,6 @@
 #ifndef GameWorld_H
 #define GameWorld_H
-#pragma warning (disable:4786)
+//#pragma warning (disable:4786)
 //------------------------------------------------------------------------
 //
 //  Name:   GameWorld.h

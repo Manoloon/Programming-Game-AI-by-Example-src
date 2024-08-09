@@ -13,12 +13,10 @@
 //
 //------------------------------------------------------------------------
 #pragma comment(lib,"winmm.lib") //if you don't use MSVC make sure this library is included in your project
-#include "mmsystem.h" 
 
+#include <windows.h>
+#include <mmsystem.h> 
 #include "misc/utils.h"
-
-
-
 
 class Regulator
 {
@@ -36,7 +34,7 @@ public:
   
   Regulator(double NumUpdatesPerSecondRqd)
   {
-    m_dwNextUpdateTime = (DWORD)(timeGetTime()+RandFloat()*1000);
+    m_dwNextUpdateTime = (DWORD)(timeGetTime() + RandFloat() * 1000);
 
     if (NumUpdatesPerSecondRqd > 0)
     {

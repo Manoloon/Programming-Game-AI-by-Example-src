@@ -206,17 +206,17 @@ public:
 
   void TextAtPos(int x, int y, const std::string &s)
   {
-    TextOut(m_hdc, x, y, s.c_str(), s.size());
+    TextOutA(m_hdc, x, y, s.c_str(), s.size());
   }
 
   void TextAtPos(double x, double y, const std::string &s)
   {
-    TextOut(m_hdc, (int)x, (int)y, s.c_str(), s.size());
+    TextOutA(m_hdc, (int)x, (int)y, s.c_str(), s.size());
   }
 
   void TextAtPos(Vector2D pos, const std::string &s)
   {
-    TextOut(m_hdc, (int)pos.x, (int)pos.y, s.c_str(), s.size());
+    TextOutA(m_hdc, (int)pos.x, (int)pos.y, s.c_str(), s.size());
   }
 
   void TransparentText(){SetBkMode(m_hdc, TRANSPARENT);}

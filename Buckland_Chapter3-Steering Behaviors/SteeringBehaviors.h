@@ -1,6 +1,5 @@
 #ifndef STEERINGBEHAVIORS_H
 #define STEERINGBEHAVIORS_H
-#pragma warning (disable:4786)
 //------------------------------------------------------------------------
 //
 //  Name:   SteeringBehaviors.h

@@ -27,7 +27,7 @@ private:
   //would be something like Vector2D(0,0)
   T             m_ZeroValue;
   
-  int           m_iNextUpdateSlot;
+unsigned int           m_iNextUpdateSlot;
 
 public:
 
@@ -52,8 +52,7 @@ public:
     T sum = m_ZeroValue;
 
     typename std::vector<T>::iterator it = m_History.begin();
-
-    for (it; it != m_History.end(); ++it)
+    for (; it != m_History.end(); ++it)
     {
       sum += *it;
     }

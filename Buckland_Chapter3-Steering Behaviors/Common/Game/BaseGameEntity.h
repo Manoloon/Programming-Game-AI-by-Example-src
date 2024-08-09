@@ -1,6 +1,5 @@
- #ifndef BASE_GAME_ENTITY_H
+#ifndef BASE_GAME_ENTITY_H
 #define BASE_GAME_ENTITY_H
-#pragma warning (disable:4786)
 //------------------------------------------------------------------------
 //
 //  Name: BaseGameEntity.h
@@ -17,7 +16,6 @@
 #include "../2D/Vector2D.h"
 #include "../2D/Geometry.h"
 #include "../Misc/utils.h"
-
 
 
 struct Telegram;
@@ -115,13 +113,12 @@ public:
   void         Tag(){m_bTag = true;}
   void         UnTag(){m_bTag = false;}
 
-  Vector2D     Scale()const{return m_vScale;}
-  void         SetScale(Vector2D val){m_dBoundingRadius *= MaxOf(val.x, val.y)/MaxOf(m_vScale.x, m_vScale.y); m_vScale = val;}
-  void         SetScale(double val){m_dBoundingRadius *= (val/MaxOf(m_vScale.x, m_vScale.y)); m_vScale = Vector2D(val, val);} 
-
   int          EntityType()const{return m_iType;}
   void         SetEntityType(int new_type){m_iType = new_type;}
 
+  Vector2D     Scale()const{return m_vScale;}
+  void         SetScale(Vector2D val){m_dBoundingRadius *= MaxOf(val.x, val.y)/MaxOf(m_vScale.x, m_vScale.y); m_vScale = val;}
+  void         SetScale(double val){m_dBoundingRadius *= (val/MaxOf(m_vScale.x, m_vScale.y)); m_vScale = Vector2D(val, val);} 
 };
       
 #endif

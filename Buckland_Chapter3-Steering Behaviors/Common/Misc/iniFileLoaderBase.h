@@ -1,6 +1,5 @@
 #ifndef INIFILELOADERBASE
 #define INIFILELOADERBASE
-#pragma warning(disable:4800)
 //------------------------------------------------------------------------
 //
 //  Name: IniFileLoaderBase.h

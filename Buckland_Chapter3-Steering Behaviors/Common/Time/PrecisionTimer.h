@@ -16,35 +16,29 @@
 #include <windows.h>
 #include <cassert>
 
-
 class PrecisionTimer
 {
 
 private:
-
-  LONGLONG  m_CurrentTime,
-            m_LastTime,
-            m_LastTimeInTimeElapsed,
-            m_NextTime,
-            m_StartTime,
-            m_FrameTime,
-            m_PerfCountFreq;
-
-  double    m_TimeElapsed,
-            m_LastTimeElapsed,
-            m_TimeScale;
-
   double    m_NormalFPS;
   double    m_SlowFPS;
-
+  double    m_TimeElapsed;
+  LONGLONG  m_FrameTime;
+  LONGLONG  m_CurrentTime;
+  LONGLONG  m_LastTime;
+  LONGLONG  m_LastTimeInTimeElapsed;
+  LONGLONG  m_PerfCountFreq;
   bool      m_bStarted;
-
+  LONGLONG  m_StartTime;
+  double    m_LastTimeElapsed;
   //if true a call to TimeElapsed() will return 0 if the current
   //time elapsed is much smaller than the previous. Used to counter
   //the problems associated with the user using menus/resizing/moving 
   //a window etc
   bool      m_bSmoothUpdates;
 
+  LONGLONG  m_NextTime;
+  double    m_TimeScale;
 
 public:
 

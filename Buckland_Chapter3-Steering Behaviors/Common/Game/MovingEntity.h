@@ -18,7 +18,6 @@
 #include "BaseGameEntity.h"
 
 
-
 class MovingEntity : public BaseGameEntity
 {
 protected:

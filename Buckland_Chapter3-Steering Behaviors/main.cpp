@@ -1,5 +1,3 @@
-#pragma warning (disable:4786)
-
 #include <windows.h>
 #include <memory>
 #include <time.h>

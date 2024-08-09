@@ -1,6 +1,5 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
-#pragma warning (disable:4786)
 //------------------------------------------------------------------------
 //
 //  Name:   Vehicle.h

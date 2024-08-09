@@ -47,4 +47,5 @@ target_link_libraries(SteeringBehaviors PRIVATE
     Game 
     Misc
     2D
+    winmm
 )

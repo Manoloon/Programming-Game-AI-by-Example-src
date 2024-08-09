@@ -4,8 +4,6 @@
 #include "utils.h"
 #include "Stream_Utility_Functions.h"
 
-
-
 //---------------------- ChangeMenuState ---------------------------------
 //
 //  Changes the state of a menu item given the item identifier, the 

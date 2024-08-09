@@ -16,8 +16,7 @@
 #include <limits>
 #include <cassert>
 #include <iomanip>
-
-
+#include <type_traits>
 
 //a few useful constants
 const int     MaxInt    = (std::numeric_limits<int>::max)();
@@ -151,16 +150,18 @@ inline double Sigmoid(double input, double response = 1.0)
 
 //returns the maximum of two values
 template <class T>
-inline T MaxOf(const T& a, const T& b)
+inline typename std::enable_if<std::is_arithmetic<T>::value, T>::type
+MaxOf(const T& a, const T& b)
 {
-  if (a>b) return a; return b;
+  return (a>b)? a : b;
 }
 
 //returns the minimum of two values
 template <class T>
-inline T MinOf(const T& a, const T& b)
+inline typename std::enable_if<std::is_arithmetic<T>::value, T>::type
+MinOf(const T& a, const T& b)
 {
-  if (a<b) return a; return b;
+  return (a<b)? a : b;
 }
 
 

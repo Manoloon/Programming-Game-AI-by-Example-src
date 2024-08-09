@@ -16,16 +16,15 @@
 //          to sychronize the entity and the cell space it occupies
 //
 //-----------------------------------------------------------------------------
-#pragma warning (disable:4786)
 
 #include <vector>
 #include <list>
 #include <cassert>
+#include <cmath>
 
 #include "../2d/Vector2D.h"
 #include "../2d/InvertedAABBox2D.h"
 #include "utils.h"
-
 
 
 //------------------------------------------------------------------------
@@ -59,14 +58,6 @@ private:
   //the required amount of cells in the space
   std::vector<Cell<entity> >               m_Cells;
 
-  //this is used to store any valid neighbors when an agent searches
-  //its neighboring space
-  std::vector<entity>                      m_Neighbors;
-
-  //this iterator will be used by the methods next and begin to traverse
-  //through the above vector of neighbors
-  typename std::vector<entity>::iterator   m_curNeighbor;
-
   //the width and height of the world space the entities inhabit
   double  m_dSpaceWidth;
   double  m_dSpaceHeight;
@@ -78,6 +69,13 @@ private:
   double  m_dCellSizeX;
   double  m_dCellSizeY;
 
+  //this is used to store any valid neighbors when an agent searches
+  //its neighboring space
+  std::vector<entity>                      m_Neighbors;
+
+  //this iterator will be used by the methods next and begin to traverse
+  //through the above vector of neighbors
+  typename std::vector<entity>::iterator   m_curNeighbor;
 
   //given a position in the game space this method determines the           
   //relevant cell's index
@@ -187,10 +185,10 @@ void CellSpacePartition<entity>::CalculateNeighbors(Vector2D TargetPos,
     {
       //add any entities found within query radius to the neighbor list
       typename std::list<entity>::iterator it = curCell->Members.begin();
-      for (it; it!=curCell->Members.end(); ++it)
+      for (; it != curCell->Members.end(); ++it)
       {     
         if (Vec2DDistanceSq((*it)->Pos(), TargetPos) <
-            QueryRadius*QueryRadius)
+            std::pow(QueryRadius,2))
         {
           *curNbor++ = *it;
         }
@@ -211,8 +209,7 @@ template<class entity>
 void CellSpacePartition<entity>::EmptyCells()
 {
   typename std::vector<Cell<entity> >::iterator it = m_Cells.begin();
-
-  for (it; it!=m_Cells.end(); ++it)
+  for (; it != m_Cells.end(); ++it)
   {
     it->Members.clear();
   }
@@ -226,12 +223,13 @@ void CellSpacePartition<entity>::EmptyCells()
 template<class entity>
 inline int CellSpacePartition<entity>::PositionToIndex(const Vector2D& pos)const
 {
-  int idx = (int)(m_iNumCellsX * pos.x / m_dSpaceWidth) + 
+  unsigned int idx = (int)(m_iNumCellsX * pos.x / m_dSpaceWidth) + 
             ((int)((m_iNumCellsY) * pos.y / m_dSpaceHeight) * m_iNumCellsX);
 
   //if the entity's position is equal to vector2d(m_dSpaceWidth, m_dSpaceHeight)
   //then the index will overshoot. We need to check for this and adjust
-  if (idx > m_Cells.size()-1) idx = m_Cells.size()-1;
+  if (!m_Cells.empty() && idx > m_Cells.size()-1) 
+      idx = m_Cells.size()-1;
 
   return idx;
 }
