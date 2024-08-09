@@ -204,8 +204,8 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 //	The entry point of the windows program
 //------------------------------------------------------------------------
 int WINAPI WinMain (HINSTANCE hInstance,
-                    HINSTANCE hPrevInstance,
-                    LPSTR     szCmdLine, 
+                    [[maybe_unused]] HINSTANCE hPrevInstance,
+                    [[maybe_unused]] LPSTR     szCmdLine, 
                     int       iCmdShow)
 {
   //handle to our window

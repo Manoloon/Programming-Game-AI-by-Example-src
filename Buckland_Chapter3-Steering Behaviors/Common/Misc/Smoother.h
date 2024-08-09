@@ -23,11 +23,11 @@ private:
   //this holds the history
   std::vector<T>  m_History;
 
-  int           m_iNextUpdateSlot;
-
   //an example of the 'zero' value of the type to be smoothed. This
   //would be something like Vector2D(0,0)
   T             m_ZeroValue;
+  
+  int           m_iNextUpdateSlot;
 
 public:
 

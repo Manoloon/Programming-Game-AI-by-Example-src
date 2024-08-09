@@ -12,10 +12,7 @@
 #include "../2d/Vector2D.h"
 #include "../Game/BaseGameEntity.h"
 #include "../misc/Cgdi.h"
-
-
 #include <windows.h>
-
 
 class Obstacle : public BaseGameEntity
 {
@@ -35,15 +32,13 @@ public:
 
   //this is defined as a pure virtual function in BasegameEntity so
   //it must be implemented
-  void      Update(double time_elapsed){}
+  void      Update([[maybe_unused]] double time_elapsed) override {};
 
   void      Render(){gdi->BlackPen();gdi->Circle(Pos(), BRadius());}
 
   void      Write(std::ostream& os)const;
   void      Read(std::ifstream& in);
+  bool      HandleMessage([[maybe_unused]] const Telegram& msg) override {return false;};
 };
 
-
-
 #endif
-

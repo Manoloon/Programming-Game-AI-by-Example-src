@@ -35,11 +35,11 @@ GameWorld::GameWorld(int cx, int cy):
             m_bShowFeelers(false),
             m_bShowDetectionBox(false),
             m_bShowFPS(true),
-            m_dAvFrameTime(0),
-            m_pPath(NULL),
             m_bRenderNeighbors(false),
             m_bViewKeys(false),
-            m_bShowCellSpaceInfo(false)
+            m_bShowCellSpaceInfo(false),
+            m_dAvFrameTime(0),
+            m_pPath(NULL)
 {
 
   //setup the spatial subdivision class

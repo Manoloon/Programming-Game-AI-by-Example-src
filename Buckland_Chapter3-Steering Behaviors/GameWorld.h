@@ -46,35 +46,31 @@ private:
 
   CellSpacePartition<Vehicle*>* m_pCellSpace;
 
-  //any path we may create for the vehicles to follow
-  Path*                         m_pPath;
-
+  //local copy of client window dimensions
+  int                           m_cxClient;
+  int                           m_cyClient;
   //set true to pause the motion
   bool                          m_bPaused;
-
-  //local copy of client window dimensions
-  int                           m_cxClient,
-                                m_cyClient;
   //the position of the crosshair
   Vector2D                      m_vCrosshair;
+  
+  //flags to turn aids and obstacles etc on/off
+  bool                          m_bShowWalls;
+  bool                          m_bShowObstacles;
+  bool                          m_bShowPath;
+  bool                          m_bShowWanderCircle;
+  bool                          m_bShowSteeringForce;
+  bool                          m_bShowFeelers;
+  bool                          m_bShowDetectionBox;
+  bool                          m_bShowFPS;
+  bool                          m_bRenderNeighbors;
+  bool                          m_bViewKeys;
+  bool                          m_bShowCellSpaceInfo; 
 
   //keeps track of the average FPS
   double                         m_dAvFrameTime;
-
-
-  //flags to turn aids and obstacles etc on/off
-  bool  m_bShowWalls;
-  bool  m_bShowObstacles;
-  bool  m_bShowPath;
-  bool  m_bShowDetectionBox;
-  bool  m_bShowWanderCircle;
-  bool  m_bShowFeelers;
-  bool  m_bShowSteeringForce;
-  bool  m_bShowFPS;
-  bool  m_bRenderNeighbors;
-  bool  m_bViewKeys;
-  bool  m_bShowCellSpaceInfo;
-
+  //any path we may create for the vehicles to follow
+  Path*                         m_pPath;
 
   void CreateObstacles();
 

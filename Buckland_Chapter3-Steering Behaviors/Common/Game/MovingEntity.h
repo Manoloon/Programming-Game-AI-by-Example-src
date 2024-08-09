@@ -23,26 +23,26 @@ class MovingEntity : public BaseGameEntity
 {
 protected:
   
+    //a normalized vector pointing in the direction the entity is heading. 
+  Vector2D    m_vHeading;
+
   Vector2D    m_vVelocity;
   
-  //a normalized vector pointing in the direction the entity is heading. 
-  Vector2D    m_vHeading;
+   double      m_dMass;
 
   //a vector perpendicular to the heading vector
   Vector2D    m_vSide; 
-
-  double      m_dMass;
   
   //the maximum speed this entity may travel at.
   double      m_dMaxSpeed;
 
+  //the maximum rate (radians per second)this vehicle can rotate         
+  double      m_dMaxTurnRate;
+  
   //the maximum force this entity can produce to power itself 
   //(think rockets and thrust)
   double      m_dMaxForce;
   
-  //the maximum rate (radians per second)this vehicle can rotate         
-  double      m_dMaxTurnRate;
-
 public:
 
 
@@ -54,7 +54,8 @@ public:
                double   mass,
                Vector2D scale,
                double   turn_rate,
-               double   max_force):BaseGameEntity(BaseGameEntity::GetNextValidID()),
+               double   max_force):
+                                  BaseGameEntity(BaseGameEntity::GetNextValidID()),
                                   m_vHeading(heading),
                                   m_vVelocity(velocity),
                                   m_dMass(mass),
@@ -96,6 +97,11 @@ public:
   double    MaxTurnRate()const{return m_dMaxTurnRate;}
   void      SetMaxTurnRate(double val){m_dMaxTurnRate = val;}
 
+  void      Update(double time_elapsed) override =0;
+  //entities should be able to read/write their data to a stream
+  void      Write([[maybe_unused]] std::ostream&  os)const override{};
+  void      Read ([[maybe_unused]] std::ifstream& is) override{};
+  bool      HandleMessage([[maybe_unused]] const Telegram& msg){return false;};
 };
 
 
@@ -158,8 +164,5 @@ inline void MovingEntity::SetHeading(Vector2D new_heading)
   //the side vector must always be perpendicular to the heading
   m_vSide = m_vHeading.Perp();
 }
-
-
-
 
 #endif

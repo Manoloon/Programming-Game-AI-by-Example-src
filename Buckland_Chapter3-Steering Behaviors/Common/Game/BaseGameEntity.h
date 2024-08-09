@@ -29,13 +29,23 @@ public:
   
   enum {default_entity_type = -1};
 
+
+private: 
+  //every entity has a type associated with it (health, troll, ammo etc)
+  int         m_iType;
+protected:
+  //its location in the environment
+  Vector2D    m_vPosition;
+
+  //the magnitude of this object's bounding radius
+  double      m_dBoundingRadius;
+
+  Vector2D    m_vScale;
+
 private:
   
   //each entity has a unique ID
   int         m_ID;
-
-  //every entity has a type associated with it (health, troll, ammo etc)
-  int         m_iType;
 
   //this is a generic flag. 
   bool        m_bTag;
@@ -52,46 +62,39 @@ private:
 
 protected:
   
-  //its location in the environment
-  Vector2D m_vPosition;
-
-  Vector2D m_vScale;
-
-  //the magnitude of this object's bounding radius
-  double    m_dBoundingRadius;
-
-  
   BaseGameEntity(int ID);
 
-  BaseGameEntity():m_ID(m_iNextValidID),
-                   m_dBoundingRadius(0.0),
-                   m_vPosition(Vector2D()),
-                   m_vScale(Vector2D(1.0,1.0)),
-                   m_iType(default_entity_type),
-                   m_bTag(false)
+  BaseGameEntity():
+                  m_iType(default_entity_type),
+                  m_vPosition(Vector2D()),
+                  m_dBoundingRadius(0.0),
+                  m_vScale(Vector2D(1.0,1.0)),
+                  m_ID(GetNextValidID()),
+                  m_bTag(false)
   {}
   
-  BaseGameEntity(int entity_type, Vector2D pos, double r):m_vPosition(pos),
-                                        m_dBoundingRadius(r),
-                                        m_ID(m_iNextValidID),
-                                        m_vScale(Vector2D(1.0,1.0)),
-                                        m_iType(entity_type),
-                                        m_bTag(false)
+  BaseGameEntity(int entity_type, Vector2D pos, double r):
+                                                        m_iType(entity_type),
+                                                        m_vPosition(pos),
+                                                        m_dBoundingRadius(r),
+                                                        m_vScale(Vector2D(1.0,1.0)),
+                                                        m_ID(GetNextValidID()),
+                                                        m_bTag(false)
                                         
   {}
-public:
 
+public:
   virtual ~BaseGameEntity(){}
 
-  virtual void Update(){}; 
+  virtual void Update(double time_elapsed)=0; 
 
   virtual void Render()=0;
   
-  virtual bool HandleMessage(const Telegram& msg){return false;}
+  virtual bool HandleMessage(const Telegram& msg)=0;//{return false;}
   
   //entities should be able to read/write their data to a stream
-  virtual void Write(std::ostream&  os)const{}
-  virtual void Read (std::ifstream& is){}
+  virtual void Write(std::ostream&  os)const=0;
+  virtual void Read (std::ifstream& is)=0;
 
   //use this to grab the next valid ID
   static int   GetNextValidID(){return m_iNextValidID;}
@@ -120,12 +123,5 @@ public:
   void         SetEntityType(int new_type){m_iType = new_type;}
 
 };
-
-
-
       
 #endif
-
-
-
-

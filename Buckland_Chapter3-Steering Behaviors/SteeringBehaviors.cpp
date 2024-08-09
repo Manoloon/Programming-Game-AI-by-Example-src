@@ -22,27 +22,21 @@ using std::vector;
 //
 //------------------------------------------------------------------------
 SteeringBehavior::SteeringBehavior(Vehicle* agent):
-                                  
-             
              m_pVehicle(agent),
              m_iFlags(0),
              m_dDBoxLength(Prm.MinDetectionBoxLength),
-             m_dWeightCohesion(Prm.CohesionWeight),
-             m_dWeightAlignment(Prm.AlignmentWeight),
-             m_dWeightSeparation(Prm.SeparationWeight),
-             m_dWeightObstacleAvoidance(Prm.ObstacleAvoidanceWeight),
-             m_dWeightWander(Prm.WanderWeight),
-             m_dWeightWallAvoidance(Prm.WallAvoidanceWeight),
-             m_dViewDistance(Prm.ViewDistance),
-             m_dWallDetectionFeelerLength(Prm.WallDetectionFeelerLength),
+             m_pTargetAgent1(nullptr),
+             m_pTargetAgent2(nullptr),
              m_Feelers(3),
-             m_Deceleration(normal),
-             m_pTargetAgent1(NULL),
-             m_pTargetAgent2(NULL),
-             m_dWanderDistance(WanderDist),
              m_dWanderJitter(WanderJitterPerSec),
              m_dWanderRadius(WanderRad),
-             m_dWaypointSeekDistSq(WaypointSeekDist*WaypointSeekDist),
+             m_dWanderDistance(WanderDist),
+             m_dWeightSeparation(Prm.SeparationWeight),
+             m_dWeightCohesion(Prm.CohesionWeight),
+             m_dWeightAlignment(Prm.AlignmentWeight),
+             m_dWeightWander(Prm.WanderWeight),
+             m_dWeightObstacleAvoidance(Prm.ObstacleAvoidanceWeight),
+             m_dWeightWallAvoidance(Prm.WallAvoidanceWeight),
              m_dWeightSeek(Prm.SeekWeight),
              m_dWeightFlee(Prm.FleeWeight),
              m_dWeightArrive(Prm.ArriveWeight),
@@ -52,10 +46,13 @@ SteeringBehavior::SteeringBehavior(Vehicle* agent):
              m_dWeightHide(Prm.HideWeight),
              m_dWeightEvade(Prm.EvadeWeight),
              m_dWeightFollowPath(Prm.FollowPathWeight),
+             m_dViewDistance(Prm.ViewDistance),
+             m_dWallDetectionFeelerLength(Prm.WallDetectionFeelerLength),
+             m_Deceleration(normal),
+             m_dWaypointSeekDistSq(WaypointSeekDist*WaypointSeekDist),
+
              m_bCellSpaceOn(false),
              m_SummingMethod(prioritized)
-
-
 {
   //stuff for the wander behavior
   double theta = RandFloat() * TwoPi;
@@ -1171,7 +1168,7 @@ Vector2D SteeringBehavior::Cohesion(const vector<Vehicle*> &neighbors)
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::SeparationPlus(const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::SeparationPlus([[maybe_unused]] const vector<Vehicle*> &neighbors)
 {  
   Vector2D SteeringForce;
 
@@ -1202,7 +1199,7 @@ Vector2D SteeringBehavior::SeparationPlus(const vector<Vehicle*> &neighbors)
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::AlignmentPlus(const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::AlignmentPlus([[maybe_unused]] const vector<Vehicle*> &neighbors)
 {
   //This will record the average heading of the neighbors
   Vector2D AverageHeading;
@@ -1246,7 +1243,7 @@ Vector2D SteeringBehavior::AlignmentPlus(const vector<Vehicle*> &neighbors)
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::CohesionPlus(const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::CohesionPlus([[maybe_unused]] const vector<Vehicle*> &neighbors)
 {
   //first find the center of mass of all the agents
   Vector2D CenterOfMass, SteeringForce;
@@ -1544,10 +1541,10 @@ void SteeringBehavior::RenderAids( )
   m_pVehicle->World()->TagObstaclesWithinViewRange(m_pVehicle, m_dDBoxLength);
 
   //this will keep track of the closest intersecting obstacle (CIB)
-  BaseGameEntity* ClosestIntersectingObstacle = NULL;
+  [[maybe_unused]] BaseGameEntity* ClosestIntersectingObstacle = nullptr;
  
   //this will be used to track the distance to the CIB
-  double DistToClosestIP = MaxDouble;
+  [[maybe_unused]] double DistToClosestIP = MaxDouble;
 
   //this will record the transformed local coordinates of the CIB
   Vector2D LocalPosOfClosestObstacle;

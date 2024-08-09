@@ -6,6 +6,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Define the main source directory for clarity
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/")
 
+if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
+    add_compile_options(-Wall -Wextra -Wpedantic -Wshadow)
+endif()
+
 # Add the subdirectories containing the libraries
 add_subdirectory(Common/Messaging)
 add_subdirectory(Common/Time)

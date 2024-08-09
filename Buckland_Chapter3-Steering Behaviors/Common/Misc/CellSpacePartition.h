@@ -244,8 +244,8 @@ template<class entity>
 inline void CellSpacePartition<entity>::AddEntity(const entity& ent)
 { 
   assert (ent);
-
-  int sz = m_Cells.size();
+  // DISABLED
+  //int sz = m_Cells.size();
   int idx = PositionToIndex(ent->Pos());
   
   m_Cells[idx].Members.push_back(ent);

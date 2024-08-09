@@ -35,7 +35,6 @@ private:
   //the steering behavior class
   SteeringBehavior*     m_pSteering;
 
-
   //some steering behaviors give jerky looking movement. The
   //following members are used to smooth the vehicle's heading
   Smoother<Vector2D>*  m_pHeadingSmoother;
@@ -67,9 +66,9 @@ private:
 public:
 
   Vehicle(GameWorld* world,
-         Vector2D position,
+         Vector2D  position,
          double    rotation,
-         Vector2D velocity,
+         Vector2D  velocity,
          double    mass,
          double    max_force,
          double    max_speed,
@@ -79,14 +78,13 @@ public:
   ~Vehicle();
 
   //updates the vehicle's position and orientation
-  void        Update(double time_elapsed);
+  void        Update(double time_elapsed) override;
 
-  void        Render();
-
+  void        Render() override;
                                                                           
   //-------------------------------------------accessor methods
-  SteeringBehavior*const  Steering()const{return m_pSteering;}
-  GameWorld*const         World()const{return m_pWorld;} 
+  SteeringBehavior* Steering() const {return m_pSteering;}
+  GameWorld*  World() const {return m_pWorld;} 
 
   
   Vector2D    SmoothedHeading()const{return m_vSmoothedHeading;}
@@ -96,10 +94,8 @@ public:
   void        SmoothingOff(){m_bSmoothingOn = false;}
   void        ToggleSmoothing(){m_bSmoothingOn = !m_bSmoothingOn;}
   
-  double       TimeElapsed()const{return m_dTimeElapsed;}
+  double      TimeElapsed()const{return m_dTimeElapsed;}
  
 };
-
-
 
 #endif

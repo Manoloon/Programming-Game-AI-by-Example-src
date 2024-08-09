@@ -72,44 +72,25 @@ private:
   };
 
 private:
-
-  
-  //a pointer to the owner of this instance
-  Vehicle*     m_pVehicle;   
-  
   //the steering force created by the combined effect of all
   //the selected behaviors
-  Vector2D    m_vSteeringForce;
- 
-  //these can be used to keep track of friends, pursuers, or prey
-  Vehicle*     m_pTargetAgent1;
-  Vehicle*     m_pTargetAgent2;
+  Vector2D      m_vSteeringForce;
 
-  //the current target
-  Vector2D    m_vTarget;
-
+  //a pointer to the owner of this instance
+  Vehicle*      m_pVehicle;   
+  //binary flags to indicate whether or not a behavior should be active
+  int           m_iFlags;
   //length of the 'detection box' utilized in obstacle avoidance
-  double                 m_dDBoxLength;
-
-
+  double        m_dDBoxLength;
+  //these can be used to keep track of friends, pursuers, or prey
+  Vehicle*      m_pTargetAgent1;
+  Vehicle*      m_pTargetAgent2;
   //a vertex buffer to contain the feelers rqd for wall avoidance  
   std::vector<Vector2D> m_Feelers;
-  
-  //the length of the 'feeler/s' used in wall detection
-  double                 m_dWallDetectionFeelerLength;
-
-
-
-  //the current position on the wander circle the agent is
-  //attempting to steer towards
-  Vector2D     m_vWanderTarget; 
-
-  //explained above
+    //explained above
   double        m_dWanderJitter;
   double        m_dWanderRadius;
   double        m_dWanderDistance;
-
-
   //multipliers. These can be adjusted to effect strength of the  
   //appropriate behavior. Useful to get flocking the way you require
   //for example.
@@ -131,37 +112,33 @@ private:
 
   //how far the agent can 'see'
   double        m_dViewDistance;
+  //the length of the 'feeler/s' used in wall detection
+  double        m_dWallDetectionFeelerLength;
+
+  //Arrive makes use of these to determine how quickly a vehicle
+  //should decelerate to its target
+  enum Deceleration{slow = 3, normal = 2, fast = 1};
+  //default
+  Deceleration m_Deceleration;
+  //the distance (squared) a vehicle has to be from a path waypoint before
+  //it starts seeking to the next waypoint
+  double        m_dWaypointSeekDistSq;
+  //is cell space partitioning to be used or not?
+  bool          m_bCellSpaceOn;
+  //what type of method is used to sum any active behavior
+  summing_method  m_SummingMethod;
+  //the current target
+  Vector2D      m_vTarget;
+
+  //the current position on the wander circle the agent is
+  //attempting to steer towards
+  Vector2D      m_vWanderTarget; 
 
   //pointer to any current path
   Path*          m_pPath;
 
-  //the distance (squared) a vehicle has to be from a path waypoint before
-  //it starts seeking to the next waypoint
-  double        m_dWaypointSeekDistSq;
-
-
   //any offset used for formations or offset pursuit
   Vector2D     m_vOffset;
-
-
-
-  //binary flags to indicate whether or not a behavior should be active
-  int           m_iFlags;
-
-  
-  //Arrive makes use of these to determine how quickly a vehicle
-  //should decelerate to its target
-  enum Deceleration{slow = 3, normal = 2, fast = 1};
-
-  //default
-  Deceleration m_Deceleration;
-
-  //is cell space partitioning to be used or not?
-  bool          m_bCellSpaceOn;
- 
-  //what type of method is used to sum any active behavior
-  summing_method  m_SummingMethod;
-
 
   //this function tests if a specific bit of m_iFlags is set
   bool      On(behavior_type bt){return (m_iFlags & bt) == bt;}
@@ -170,7 +147,6 @@ private:
 
   //creates the antenna utilized by the wall avoidance behavior
   void      CreateFeelers();
-
 
 
    /* .......................................................
@@ -306,22 +282,28 @@ public:
   void      SetSummingMethod(summing_method sm){m_SummingMethod = sm;}
 
 
-  void FleeOn(){m_iFlags |= flee;}
-  void SeekOn(){m_iFlags |= seek;}
-  void ArriveOn(){m_iFlags |= arrive;}
-  void WanderOn(){m_iFlags |= wander;}
-  void PursuitOn(Vehicle* v){m_iFlags |= pursuit; m_pTargetAgent1 = v;}
-  void EvadeOn(Vehicle* v){m_iFlags |= evade; m_pTargetAgent1 = v;}
-  void CohesionOn(){m_iFlags |= cohesion;}
-  void SeparationOn(){m_iFlags |= separation;}
-  void AlignmentOn(){m_iFlags |= allignment;}
-  void ObstacleAvoidanceOn(){m_iFlags |= obstacle_avoidance;}
-  void WallAvoidanceOn(){m_iFlags |= wall_avoidance;}
-  void FollowPathOn(){m_iFlags |= follow_path;}
-  void InterposeOn(Vehicle* v1, Vehicle* v2){m_iFlags |= interpose; m_pTargetAgent1 = v1; m_pTargetAgent2 = v2;}
-  void HideOn(Vehicle* v){m_iFlags |= hide; m_pTargetAgent1 = v;}
-  void OffsetPursuitOn(Vehicle* v1, const Vector2D offset){m_iFlags |= offset_pursuit; m_vOffset = offset; m_pTargetAgent1 = v1;}  
-  void FlockingOn(){CohesionOn(); AlignmentOn(); SeparationOn(); WanderOn();}
+  void      FleeOn(){m_iFlags |= flee;}
+  void      SeekOn(){m_iFlags |= seek;}
+  void      ArriveOn(){m_iFlags |= arrive;}
+  void      WanderOn(){m_iFlags |= wander;}
+  void      PursuitOn(Vehicle* v){m_iFlags |= pursuit; m_pTargetAgent1 = v;}
+  void      EvadeOn(Vehicle* v){m_iFlags |= evade; m_pTargetAgent1 = v;}
+  void      CohesionOn(){m_iFlags |= cohesion;}
+  void      SeparationOn(){m_iFlags |= separation;}
+  void      AlignmentOn(){m_iFlags |= allignment;}
+  void      ObstacleAvoidanceOn(){m_iFlags |= obstacle_avoidance;}
+  void      WallAvoidanceOn(){m_iFlags |= wall_avoidance;}
+  void      FollowPathOn(){m_iFlags |= follow_path;}
+  void      InterposeOn(Vehicle* v1, Vehicle* v2){m_iFlags |= interpose; m_pTargetAgent1 = v1; m_pTargetAgent2 = v2;}
+  void      HideOn(Vehicle* v){m_iFlags |= hide; m_pTargetAgent1 = v;}
+  void      OffsetPursuitOn(Vehicle* v1, const Vector2D offset){m_iFlags |= offset_pursuit; m_vOffset = offset; m_pTargetAgent1 = v1;}  
+  
+  void      FlockingOn(){ 
+                          CohesionOn(); 
+                          AlignmentOn(); 
+                          SeparationOn(); 
+                          WanderOn();
+                        }
 
   void FleeOff()  {if(On(flee))   m_iFlags ^=flee;}
   void SeekOff()  {if(On(seek))   m_iFlags ^=seek;}
@@ -368,8 +350,5 @@ public:
   double CohesionWeight()const{return m_dWeightCohesion;}
 
 };
-
-
-
 
 #endif

@@ -18,15 +18,13 @@
 class Path
 {
 private:
-  
-  std::list<Vector2D>            m_WayPoints;
-
-  //points to the current waypoint
-  std::list<Vector2D>::iterator  curWaypoint;
-
   //flag to indicate if the path should be looped
   //(The last waypoint connected to the first)
   bool                           m_bLooped;
+  //points to the current waypoint
+  std::list<Vector2D>::iterator  curWaypoint;
+
+  std::list<Vector2D>            m_WayPoints;
 
 public:
   
@@ -55,8 +53,8 @@ public:
       throw std::runtime_error("Current waypoint is null");
     } 
     return *curWaypoint; 
-    }
-
+  }
+  
   //returns true if the end of the list has been reached
   bool        Finished(){return !(curWaypoint != m_WayPoints.end());}
   

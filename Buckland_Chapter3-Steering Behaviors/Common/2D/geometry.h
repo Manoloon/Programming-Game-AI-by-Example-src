@@ -449,7 +449,7 @@ inline bool TwoCirclesIntersectionPoints(double x1, double y1, double r1,
   //Now calculate the distance from the center of each circle to the center
   //of the line which connects the intersection points.
   double a = (r1 - r2 + (d * d)) / (2 * d);
-  double b = (r2 - r1 + (d * d)) / (2 * d);
+ // double b = (r2 - r1 + (d * d)) / (2 * d);
   
 
   //MAYBE A TEST FOR EXACT OVERLAP? 
