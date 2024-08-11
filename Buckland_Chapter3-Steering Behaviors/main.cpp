@@ -18,7 +18,7 @@
 wchar_t g_szApplicationName[] = L"Steering Behaviors - Another Big Shoal";
 wchar_t g_szWindowClassName[] = L"MyWindowClass";
 
-GameWorld* g_GameWorld;
+std::unique_ptr<GameWorld> g_GameWorld = nullptr;
 
 
 //---------------------------- WindowProc ---------------------------------
@@ -80,8 +80,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          //don't forget to release the DC
          ReleaseDC(hwnd, hdc); 
          
-         g_GameWorld = new GameWorld(cxClient, cyClient);
-
+        g_GameWorld = std::make_unique<GameWorld>(cxClient,cyClient);
          ChangeMenuState(hwnd, IDR_PRIORITIZED, MFS_CHECKED);
          ChangeMenuState(hwnd, ID_VIEW_FPS, MFS_CHECKED);
          
@@ -95,7 +94,6 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
     }
 
     break;
-
 
     case WM_LBUTTONUP:
     {
@@ -117,9 +115,9 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
           case 'R':
             {
-               delete g_GameWorld;
-          
-               g_GameWorld = new GameWorld(cxClient, cyClient);
+              g_GameWorld = std::make_unique<GameWorld>(cxClient,cyClient);
+              // TODO : Replace with the method.
+              //g_GameWorld->Restart(cxClient,cyClient);
             }
 
             break;
@@ -134,7 +132,6 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
       break;
 
-    
     case WM_PAINT:
       {
  		       
@@ -171,8 +168,6 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
       break;
 
-
-          
 		 case WM_DESTROY:
 			 {
 
@@ -302,8 +297,6 @@ int WINAPI WinMain (HINSTANCE hInstance,
     }
    					
   }//end while
-
-  delete g_GameWorld;
 
   UnregisterClassW( g_szWindowClassName, winclass.hInstance );
 

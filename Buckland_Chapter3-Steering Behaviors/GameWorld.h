@@ -22,14 +22,11 @@
 #include "../Game/EntityFunctionTemplates.h"
 #include "vehicle.h"
 
-
 class Obstacle;
 class Wall2D;
 class Path;
 
-
 typedef std::vector<BaseGameEntity*>::iterator  ObIt;
-
 
 class GameWorld
 { 
@@ -76,8 +73,6 @@ private:
 
   void CreateWalls();
 
-  
-
 public:
   
   GameWorld(int cx, int cy);
@@ -88,6 +83,7 @@ public:
 
   void  Render();
 
+  void Restart(int cx,int cy);
 
   void  NonPenetrationContraint(Vehicle* v){EnforceNonPenetrationConstraint(v, m_Vehicles);}
 

@@ -89,9 +89,6 @@ public:
   void Render()const; 
 };
 
-
-
-
 //-------------------- Methods -------------------------------------------
 
 inline void Path::SetNextWaypoint()
@@ -106,7 +103,5 @@ inline void Path::SetNextWaypoint()
     }
   }
 }  
-
-
 
 #endif

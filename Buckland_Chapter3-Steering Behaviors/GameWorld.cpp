@@ -22,7 +22,6 @@ using std::list;
 //------------------------------- ctor -----------------------------------
 //------------------------------------------------------------------------
 GameWorld::GameWorld(int cx, int cy):
-
             m_cxClient(cx),
             m_cyClient(cy),
             m_bPaused(false),
@@ -328,8 +327,6 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
   }//end switch
 }
 
-
-
 //-------------------------- HandleMenuItems -----------------------------
 void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
 {
@@ -606,4 +603,25 @@ void GameWorld::Render()
     m_pCellSpace->RenderCells();
   }
 
+}
+
+void GameWorld::Restart(int cx, int cy)
+{
+            m_cxClient = cx;
+            m_cyClient = cy;
+            m_bPaused = false;
+            m_vCrosshair = Vector2D(cxClient()/2.0, cxClient()/2.0);
+            m_bShowWalls = false;
+            m_bShowObstacles = false;
+            m_bShowPath = false;
+            m_bShowWanderCircle = false;
+            m_bShowSteeringForce = false;
+            m_bShowFeelers = false;
+            m_bShowDetectionBox = false;
+            m_bShowFPS = true;
+            m_bRenderNeighbors = false;
+            m_bViewKeys = false;
+            m_bShowCellSpaceInfo = false;
+            m_dAvFrameTime = 0;
+            m_pPath = nullptr;
 }
