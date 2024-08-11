@@ -60,9 +60,6 @@ ParamLoader* ParamLoader::Instance()
     prHide                  = GetNextParameterFloat();
     prArrive                = GetNextParameterFloat();
 
-    CreateWalls             = GetNextParameterBool();
-    CreateObstacles         = GetNextParameterBool();
-
     MaxTurnRatePerSecond    = Pi;
     } catch (const std::exception& e)
     {

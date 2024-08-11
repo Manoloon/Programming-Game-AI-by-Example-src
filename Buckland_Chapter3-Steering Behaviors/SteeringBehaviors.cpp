@@ -50,7 +50,6 @@ SteeringBehavior::SteeringBehavior(Vehicle* agent):
              m_dWallDetectionFeelerLength(Prm.WallDetectionFeelerLength),
              m_Deceleration(normal),
              m_dWaypointSeekDistSq(WaypointSeekDist*WaypointSeekDist),
-
              m_bCellSpaceOn(false),
              m_SummingMethod(prioritized)
 {
@@ -184,7 +183,6 @@ bool SteeringBehavior::AccumulateForce(Vector2D &RunningTot,
 }
 
 
-
 //---------------------- CalculatePrioritized ----------------------------
 //
 //  this method calls each active steering behavior in order of priority
@@ -198,18 +196,18 @@ Vector2D SteeringBehavior::CalculatePrioritized()
   
    if (On(wall_avoidance))
   {
-    force = WallAvoidance(m_pVehicle->World()->Walls()) *
-            m_dWeightWallAvoidance;
+    force = WallAvoidance(m_pVehicle->World()->Walls()) *  m_dWeightWallAvoidance;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
    
   if (On(obstacle_avoidance))
   {
-    force = ObstacleAvoidance(m_pVehicle->World()->Obstacles()) * 
-            m_dWeightObstacleAvoidance;
+    force = ObstacleAvoidance(m_pVehicle->World()->Obstacles()) * m_dWeightObstacleAvoidance;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
   if (On(evade))
@@ -229,8 +227,6 @@ Vector2D SteeringBehavior::CalculatePrioritized()
     if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
   }
 
-
- 
   //these next three can be combined for flocking behavior (wander is
   //also a good behavior to add into this mix)
   if (!isSpacePartitioningOn())
@@ -239,21 +235,24 @@ Vector2D SteeringBehavior::CalculatePrioritized()
     {
       force = Separation(m_pVehicle->World()->Agents()) * m_dWeightSeparation;
 
-      if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+      if (!AccumulateForce(m_vSteeringForce, force)) 
+          return m_vSteeringForce;
     }
 
     if (On(allignment))
     {
       force = Alignment(m_pVehicle->World()->Agents()) * m_dWeightAlignment;
 
-      if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+      if (!AccumulateForce(m_vSteeringForce, force)) 
+          return m_vSteeringForce;
     }
 
     if (On(cohesion))
     {
       force = Cohesion(m_pVehicle->World()->Agents()) * m_dWeightCohesion;
 
-      if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+      if (!AccumulateForce(m_vSteeringForce, force)) 
+          return m_vSteeringForce;
     }
   }
 
@@ -264,21 +263,24 @@ Vector2D SteeringBehavior::CalculatePrioritized()
     {
       force = SeparationPlus(m_pVehicle->World()->Agents()) * m_dWeightSeparation;
 
-      if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+      if (!AccumulateForce(m_vSteeringForce, force)) 
+          return m_vSteeringForce;
     }
 
     if (On(allignment))
     {
       force = AlignmentPlus(m_pVehicle->World()->Agents()) * m_dWeightAlignment;
 
-      if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+      if (!AccumulateForce(m_vSteeringForce, force)) 
+          return m_vSteeringForce;
     }
 
     if (On(cohesion))
     {
       force = CohesionPlus(m_pVehicle->World()->Agents()) * m_dWeightCohesion;
 
-      if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+      if (!AccumulateForce(m_vSteeringForce, force)) 
+          return m_vSteeringForce;
     }
   }
 
@@ -286,7 +288,8 @@ Vector2D SteeringBehavior::CalculatePrioritized()
   {
     force = Seek(m_pVehicle->World()->Crosshair()) * m_dWeightSeek;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
 
@@ -294,14 +297,16 @@ Vector2D SteeringBehavior::CalculatePrioritized()
   {
     force = Arrive(m_pVehicle->World()->Crosshair(), m_Deceleration) * m_dWeightArrive;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
   if (On(wander))
   {
     force = Wander() * m_dWeightWander;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
   if (On(pursuit))
@@ -310,7 +315,8 @@ Vector2D SteeringBehavior::CalculatePrioritized()
 
     force = Pursuit(m_pTargetAgent1) * m_dWeightPursuit;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
   if (On(offset_pursuit))
@@ -320,7 +326,8 @@ Vector2D SteeringBehavior::CalculatePrioritized()
 
     force = OffsetPursuit(m_pTargetAgent1, m_vOffset);
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
   if (On(interpose))
@@ -329,7 +336,8 @@ Vector2D SteeringBehavior::CalculatePrioritized()
 
     force = Interpose(m_pTargetAgent1, m_pTargetAgent2) * m_dWeightInterpose;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
   if (On(hide))
@@ -338,7 +346,8 @@ Vector2D SteeringBehavior::CalculatePrioritized()
 
     force = Hide(m_pTargetAgent1, m_pVehicle->World()->Obstacles()) * m_dWeightHide;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
 
@@ -346,7 +355,8 @@ Vector2D SteeringBehavior::CalculatePrioritized()
   {
     force = FollowPath() * m_dWeightFollowPath;
 
-    if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
+    if (!AccumulateForce(m_vSteeringForce, force)) 
+        return m_vSteeringForce;
   }
 
   return m_vSteeringForce;
@@ -370,7 +380,7 @@ Vector2D SteeringBehavior::CalculateWeightedSum()
   if (On(obstacle_avoidance))
   {
     m_vSteeringForce += ObstacleAvoidance(m_pVehicle->World()->Obstacles()) * 
-            m_dWeightObstacleAvoidance;
+                        m_dWeightObstacleAvoidance;
   }
 
   if (On(evade))

@@ -91,15 +91,6 @@ GameWorld::GameWorld(int cx, int cy):
   }
 #endif
  
-  //create any obstacles or walls
-  if(Prm.CreateObstacles)
-  {
-    CreateObstacles();
-  }
-  if(Prm.CreateWalls)
-  {
-    CreateWalls();
-  }
 }
 
 
@@ -315,6 +306,25 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
         }
         break;
 
+    case 'W' :
+        m_bShowWalls = !m_bShowWalls;
+        if(!m_bShowWalls)
+        {
+          m_Walls.clear();
+          for(const auto& vehicle : m_Vehicles)
+          {
+            vehicle->Steering()->WallAvoidanceOff();
+          }
+        }
+        else
+        {
+          CreateWalls();
+          for(const auto& vehicle : m_Vehicles)
+          {
+            vehicle->Steering()->WallAvoidanceOn();
+          }
+        }
+        break;
   }//end switch
 }
 
