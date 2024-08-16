@@ -37,22 +37,21 @@ GameWorld::GameWorld(int cx, int cy):
             m_bRenderNeighbors(false),
             m_bViewKeys(false),
             m_bShowCellSpaceInfo(false),
-            m_dAvFrameTime(0),
-            m_pPath(NULL)
+            m_dAvFrameTime(0)
 {
 
   //setup the spatial subdivision class
   m_pCellSpace = new CellSpacePartition<Vehicle*>((double)cx, (double)cy, Prm.NumCellsX, Prm.NumCellsY, Prm.NumAgents);
 
   double border = 30;
-  m_pPath = new Path(5, border, border, cx-border, cy-border, true); 
+  m_pPath = std::make_unique<Path>(5, border, border, cx-border, cy-border, true); 
 
   //setup the agents
   for (int a=0; a<Prm.NumAgents; ++a)
   {
 
     //determine a random starting position
-    Vector2D SpawnPos = Vector2D(cx/2.0+RandomClamped()*cx/2.0,
+    auto SpawnPos = Vector2D(cx/2.0+RandomClamped()*cx/2.0,
                                  cy/2.0+RandomClamped()*cy/2.0);
 
 
@@ -108,8 +107,6 @@ GameWorld::~GameWorld()
   }
 
   delete m_pCellSpace;
-  
-  delete m_pPath;
 }
 
 
@@ -250,9 +247,8 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
   {
   case 'U':
     {
-      delete m_pPath;
       double border = 60;
-      m_pPath = new Path(RandInt(3, 7), border, border, cxClient()-border, cyClient()-border, true); 
+      m_pPath = std::make_unique<Path>(RandInt(3, 7), border, border, cxClient()-border, cyClient()-border, true); 
       m_bShowPath = true; 
       for (unsigned int i=0; i<m_Vehicles.size(); ++i)
       {
@@ -623,5 +619,4 @@ void GameWorld::Restart(int cx, int cy)
             m_bViewKeys = false;
             m_bShowCellSpaceInfo = false;
             m_dAvFrameTime = 0;
-            m_pPath = nullptr;
 }

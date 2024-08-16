@@ -14,7 +14,7 @@
 //------------------------------------------------------------------------
 #include <windows.h>
 #include <vector>
-
+#include <memory>
 #include "../2d/Vector2D.h"
 #include "../time/PrecisionTimer.h"
 #include "../misc/CellSpacePartition.h"
@@ -67,7 +67,7 @@ private:
   //keeps track of the average FPS
   double                         m_dAvFrameTime;
   //any path we may create for the vehicles to follow
-  Path*                         m_pPath;
+  std::unique_ptr<Path>   m_pPath;
 
   void CreateObstacles();
 
