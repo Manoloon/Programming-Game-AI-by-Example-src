@@ -41,7 +41,7 @@ GameWorld::GameWorld(int cx, int cy):
 {
 
   //setup the spatial subdivision class
-  m_pCellSpace = new CellSpacePartition<Vehicle*>((double)cx, (double)cy, Prm.NumCellsX, Prm.NumCellsY, Prm.NumAgents);
+  m_pCellSpace = std::make_unique<CellSpacePartition<Vehicle*>>((double)cx, (double)cy, Prm.NumCellsX, Prm.NumCellsY, Prm.NumAgents);
 
   double border = 30;
   m_pPath = std::make_unique<Path>(5, border, border, cx-border, cy-border, true); 
@@ -105,8 +105,6 @@ GameWorld::~GameWorld()
   {
     delete m_Obstacles[ob];
   }
-
-  delete m_pCellSpace;
 }
 
 

@@ -41,7 +41,7 @@ private:
   //container containing any walls in the environment
   std::vector<Wall2D>           m_Walls;
 
-  CellSpacePartition<Vehicle*>* m_pCellSpace;
+  std::unique_ptr<CellSpacePartition<Vehicle*>> m_pCellSpace;
 
   //local copy of client window dimensions
   int                           m_cxClient;
@@ -67,7 +67,7 @@ private:
   //keeps track of the average FPS
   double                         m_dAvFrameTime;
   //any path we may create for the vehicles to follow
-  std::unique_ptr<Path>   m_pPath;
+  std::unique_ptr<Path>         m_pPath;
 
   void CreateObstacles();
 
@@ -98,7 +98,7 @@ public:
   }
 
   const std::vector<Wall2D>&          Walls(){return m_Walls;}                          
-  CellSpacePartition<Vehicle*>*       CellSpace(){return m_pCellSpace;}
+  std::unique_ptr<CellSpacePartition<Vehicle*>>  CellSpace(){return std::move(m_pCellSpace);}
   const std::vector<BaseGameEntity*>& Obstacles()const{return m_Obstacles;}
   const std::vector<Vehicle*>&        Agents(){return m_Vehicles;}
 
