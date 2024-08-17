@@ -16,6 +16,7 @@
 #include <vector>
 #include <list>
 #include <string>
+#include <memory>
 
 class GameWorld;
 class SteeringBehavior;
@@ -29,14 +30,14 @@ private:
 
   //a pointer to the world data. So a vehicle can access any obstacle,
   //path, wall or agent data
-  GameWorld*            m_pWorld;
+  std::unique_ptr<GameWorld>   m_pWorld;
 
   //the steering behavior class
-  SteeringBehavior*     m_pSteering;
+  std::unique_ptr<SteeringBehavior>  m_pSteering;
 
   //some steering behaviors give jerky looking movement. The
   //following members are used to smooth the vehicle's heading
-  Smoother<Vector2D>*  m_pHeadingSmoother;
+  std::unique_ptr<Smoother<Vector2D>>  m_pHeadingSmoother;
 
   //this vector represents the average of the vehicle's heading
   //vector smoothed over the last few frames
@@ -82,8 +83,8 @@ public:
   void        Render() override;
                                                                           
   //-------------------------------------------accessor methods
-  SteeringBehavior* Steering() const {return m_pSteering;}
-  GameWorld*  World() const {return m_pWorld;} 
+  std::unique_ptr<SteeringBehavior> Steering() {return std::move(m_pSteering);}
+  std::unique_ptr<GameWorld>  World() {return std::move(m_pWorld);} 
 
   
   Vector2D    SmoothedHeading()const{return m_vSmoothedHeading;}

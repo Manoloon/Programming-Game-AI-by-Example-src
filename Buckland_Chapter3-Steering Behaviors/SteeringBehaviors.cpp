@@ -90,7 +90,7 @@ Vector2D SteeringBehavior::Calculate()
     //tag neighbors if any of the following 3 group behaviors are switched on
     if (On(separation) || On(allignment) || On(cohesion))
     {
-      m_pVehicle->World()->TagVehiclesWithinViewRange(m_pVehicle, m_dViewDistance);
+      m_pVehicle->World()->TagVehiclesWithinViewRange(m_pVehicle.get(), m_dViewDistance);
     }
   }
   else
@@ -204,7 +204,8 @@ Vector2D SteeringBehavior::CalculatePrioritized()
    
   if (On(obstacle_avoidance))
   {
-    force = ObstacleAvoidance(m_pVehicle->World()->Obstacles()) * m_dWeightObstacleAvoidance;
+    Vector2D ForceAvoidCollide =  ObstacleAvoidance(m_pVehicle->World()->Obstacles());
+    force = ForceAvoidCollide * m_dWeightObstacleAvoidance;
 
     if (!AccumulateForce(m_vSteeringForce, force)) 
         return m_vSteeringForce;
@@ -863,7 +864,7 @@ Vector2D SteeringBehavior::Wander()
 //  Given a vector of CObstacles, this method returns a steering force
 //  that will prevent the agent colliding with the closest obstacle
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<BaseGameEntity*>& obstacles)
+Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<std::unique_ptr<BaseGameEntity>>& obstacles)
 {
   //the detection box length is proportional to the agent's velocity
   m_dDBoxLength = Prm.MinDetectionBoxLength + 
@@ -871,19 +872,17 @@ Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<BaseGameEntity*>&
                   Prm.MinDetectionBoxLength;
 
   //tag all obstacles within range of the box for processing
-  m_pVehicle->World()->TagObstaclesWithinViewRange(m_pVehicle, m_dDBoxLength);
+  m_pVehicle->World()->TagObstaclesWithinViewRange(m_pVehicle.get(), m_dDBoxLength);
 
-  //this will keep track of the closest intersecting obstacle (CIB)
-  BaseGameEntity* ClosestIntersectingObstacle = NULL;
- 
+
   //this will be used to track the distance to the CIB
   double DistToClosestIP = MaxDouble;
 
   //this will record the transformed local coordinates of the CIB
   Vector2D LocalPosOfClosestObstacle;
 
-  std::vector<BaseGameEntity*>::const_iterator curOb = obstacles.begin();
-
+  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator curOb = obstacles.begin();
+  std::unique_ptr<BaseGameEntity> ClosestIntersectingObstacle = nullptr;
   while(curOb != obstacles.end())
   {
     //if the obstacle has been tagged within range proceed
@@ -930,14 +929,14 @@ Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<BaseGameEntity*>&
           {
             DistToClosestIP = ip;
 
-            ClosestIntersectingObstacle = *curOb;
+            //this will keep track of the closest intersecting obstacle (CIB)
+            ClosestIntersectingObstacle = std::make_unique<BaseGameEntity>(curOb);
 
             LocalPosOfClosestObstacle = LocalPos;
           }         
         }
       }
     }
-
     ++curOb;
   }
 
@@ -970,6 +969,8 @@ Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<BaseGameEntity*>&
                             m_pVehicle->Heading(),
                             m_pVehicle->Side());
 }
+
+
 
 
 //--------------------------- WallAvoidance --------------------------------
@@ -1061,7 +1062,7 @@ void SteeringBehavior::CreateFeelers()
 //
 // this calculates a force repelling from the other neighbors
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::Separation(const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::Separation(const std::vector<std::unique_ptr<Vehicle>> &neighbors)
 {  
   Vector2D SteeringForce;
 
@@ -1071,7 +1072,7 @@ Vector2D SteeringBehavior::Separation(const vector<Vehicle*> &neighbors)
     //the agent being examined is close enough. ***also make sure it doesn't
     //include the evade target ***
     if((neighbors[a] != m_pVehicle) && neighbors[a]->IsTagged() &&
-      (neighbors[a] != m_pTargetAgent1))
+      (neighbors[a].get() != m_pTargetAgent1))
     {
       Vector2D ToAgent = m_pVehicle->Pos() - neighbors[a]->Pos();
 
@@ -1090,7 +1091,7 @@ Vector2D SteeringBehavior::Separation(const vector<Vehicle*> &neighbors)
 //  returns a force that attempts to align this agents heading with that
 //  of its neighbors
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::Alignment(const vector<Vehicle*>& neighbors)
+Vector2D SteeringBehavior::Alignment(const std::vector<std::unique_ptr<Vehicle>>& neighbors)
 {
   //used to record the average heading of the neighbors
   Vector2D AverageHeading;
@@ -1105,7 +1106,7 @@ Vector2D SteeringBehavior::Alignment(const vector<Vehicle*>& neighbors)
     //the agent being examined  is close enough ***also make sure it doesn't
     //include any evade target ***
     if((neighbors[a] != m_pVehicle) && neighbors[a]->IsTagged() &&
-      (neighbors[a] != m_pTargetAgent1))
+      (neighbors[a].get() != m_pTargetAgent1))
     {
       AverageHeading += neighbors[a]->Heading();
 
@@ -1130,10 +1131,11 @@ Vector2D SteeringBehavior::Alignment(const vector<Vehicle*>& neighbors)
 //  returns a steering force that attempts to move the agent towards the
 //  center of mass of the agents in its immediate area
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::Cohesion(const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::Cohesion(const std::vector<std::unique_ptr<Vehicle>> &neighbors)
 {
   //first find the center of mass of all the agents
-  Vector2D CenterOfMass, SteeringForce;
+  Vector2D CenterOfMass;
+  Vector2D SteeringForce;
 
   int NeighborCount = 0;
 
@@ -1144,7 +1146,7 @@ Vector2D SteeringBehavior::Cohesion(const vector<Vehicle*> &neighbors)
     //the agent being examined is close enough ***also make sure it doesn't
     //include the evade target ***
     if((neighbors[a] != m_pVehicle) && neighbors[a]->IsTagged() &&
-      (neighbors[a] != m_pTargetAgent1))
+      (neighbors[a].get() != m_pTargetAgent1))
     {
       CenterOfMass += neighbors[a]->Pos();
 
@@ -1178,7 +1180,7 @@ Vector2D SteeringBehavior::Cohesion(const vector<Vehicle*> &neighbors)
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::SeparationPlus([[maybe_unused]] const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::SeparationPlus([[maybe_unused]] const std::vector<std::unique_ptr<Vehicle>> &neighbors)
 {  
   Vector2D SteeringForce;
 
@@ -1189,7 +1191,7 @@ Vector2D SteeringBehavior::SeparationPlus([[maybe_unused]] const vector<Vehicle*
   {    
     //make sure this agent isn't included in the calculations and that
     //the agent being examined is close enough
-    if(pV != m_pVehicle)
+    if(pV != m_pVehicle.get())
     {
       Vector2D ToAgent = m_pVehicle->Pos() - pV->Pos();
 
@@ -1209,7 +1211,7 @@ Vector2D SteeringBehavior::SeparationPlus([[maybe_unused]] const vector<Vehicle*
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::AlignmentPlus([[maybe_unused]] const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::AlignmentPlus([[maybe_unused]] const std::vector<std::unique_ptr<Vehicle>> &neighbors)
 {
   //This will record the average heading of the neighbors
   Vector2D AverageHeading;
@@ -1224,7 +1226,7 @@ Vector2D SteeringBehavior::AlignmentPlus([[maybe_unused]] const vector<Vehicle*>
   {
     //make sure *this* agent isn't included in the calculations and that
     //the agent being examined  is close enough
-    if(pV != m_pVehicle)
+    if(pV != m_pVehicle.get())
     {
       AverageHeading += pV->Heading();
 
@@ -1253,10 +1255,11 @@ Vector2D SteeringBehavior::AlignmentPlus([[maybe_unused]] const vector<Vehicle*>
 //
 //  USES SPACIAL PARTITIONING
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::CohesionPlus([[maybe_unused]] const vector<Vehicle*> &neighbors)
+Vector2D SteeringBehavior::CohesionPlus([[maybe_unused]] const std::vector<std::unique_ptr<Vehicle>> &neighbors)
 {
   //first find the center of mass of all the agents
-  Vector2D CenterOfMass, SteeringForce;
+  Vector2D CenterOfMass;
+  Vector2D SteeringForce;
 
   int NeighborCount = 0;
 
@@ -1267,7 +1270,7 @@ Vector2D SteeringBehavior::CohesionPlus([[maybe_unused]] const vector<Vehicle*> 
   {
     //make sure *this* agent isn't included in the calculations and that
     //the agent being examined is close enough
-    if(pV != m_pVehicle)
+    if(pV != m_pVehicle.get())
     {
       CenterOfMass += pV->Pos();
 
@@ -1322,13 +1325,13 @@ Vector2D SteeringBehavior::Interpose(const Vehicle* AgentA,
 //
 //------------------------------------------------------------------------
 Vector2D SteeringBehavior::Hide(const Vehicle*           hunter,
-                                 const vector<BaseGameEntity*>& obstacles)
+                                 std::vector<std::unique_ptr<BaseGameEntity>> obstacles)
 {
   double    DistToClosest = MaxDouble;
   Vector2D BestHidingSpot;
 
-  std::vector<BaseGameEntity*>::const_iterator curOb = obstacles.begin();
-  std::vector<BaseGameEntity*>::const_iterator closest;
+  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator curOb = obstacles.begin();
+  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator closest;
 
   while(curOb != obstacles.end())
   {
@@ -1548,7 +1551,7 @@ void SteeringBehavior::RenderAids( )
                   Prm.MinDetectionBoxLength;
 
   //tag all obstacles within range of the box for processing
-  m_pVehicle->World()->TagObstaclesWithinViewRange(m_pVehicle, m_dDBoxLength);
+  m_pVehicle->World()->TagObstaclesWithinViewRange(m_pVehicle.get(), m_dDBoxLength);
 
   //this will keep track of the closest intersecting obstacle (CIB)
   [[maybe_unused]] BaseGameEntity* ClosestIntersectingObstacle = nullptr;
@@ -1559,7 +1562,7 @@ void SteeringBehavior::RenderAids( )
   //this will record the transformed local coordinates of the CIB
   Vector2D LocalPosOfClosestObstacle;
 
-  std::vector<BaseGameEntity*>::const_iterator curOb = m_pVehicle->World()->Obstacles().begin();
+  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator curOb = m_pVehicle->World()->Obstacles().begin();
 
   while(curOb != m_pVehicle->World()->Obstacles().end())
   {

@@ -39,21 +39,12 @@ Vehicle::Vehicle(GameWorld* world,
   InitializeBuffer();
 
   //set up the steering behavior class
-  m_pSteering = new SteeringBehavior(this);    
+  m_pSteering = std::make_unique<SteeringBehavior>(this);    
 
   //set up the smoother
-  m_pHeadingSmoother = new Smoother<Vector2D>(Prm.NumSamplesForSmoothing, Vector2D(0.0, 0.0)); 
+  m_pHeadingSmoother = std::make_unique<Smoother<Vector2D>>(Prm.NumSamplesForSmoothing, Vector2D(0.0, 0.0)); 
   
  
-}
-
-
-//---------------------------- dtor -------------------------------------
-//-----------------------------------------------------------------------
-Vehicle::~Vehicle()
-{
-  delete m_pSteering;
-  delete m_pHeadingSmoother;
 }
 
 //------------------------------ Update ----------------------------------

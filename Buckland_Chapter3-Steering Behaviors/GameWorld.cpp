@@ -55,7 +55,7 @@ GameWorld::GameWorld(int cx, int cy):
                                  cy/2.0+RandomClamped()*cy/2.0);
 
 
-    Vehicle* pVehicle = new Vehicle(this,
+    auto pVehicle = std::make_unique<Vehicle>(this,
                                     SpawnPos,                 //initial position
                                     RandFloat()*TwoPi,        //start rotation
                                     Vector2D(0,0),            //velocity
@@ -67,10 +67,10 @@ GameWorld::GameWorld(int cx, int cy):
 
     pVehicle->Steering()->FlockingOn();
 
-    m_Vehicles.push_back(pVehicle);
+    m_Vehicles.emplace_back(pVehicle);
 
     //add it to the cell subdivision
-    m_pCellSpace->AddEntity(pVehicle);
+    m_pCellSpace->AddEntity(pVehicle.get());
   }
 
 
@@ -84,29 +84,12 @@ GameWorld::GameWorld(int cx, int cy):
 
    for (int i=0; i<Prm.NumAgents-1; ++i)
   {
-    m_Vehicles[i]->Steering()->EvadeOn(m_Vehicles[Prm.NumAgents-1]);
+    m_Vehicles[i]->Steering()->EvadeOn(m_Vehicles[Prm.NumAgents-1].get());
 
   }
 #endif
  
 }
-
-
-//-------------------------------- dtor ----------------------------------
-//------------------------------------------------------------------------
-GameWorld::~GameWorld()
-{
-  for (unsigned int a=0; a<m_Vehicles.size(); ++a)
-  {
-    delete m_Vehicles[a];
-  }
-
-  for (unsigned int ob=0; ob<m_Obstacles.size(); ++ob)
-  {
-    delete m_Obstacles[ob];
-  }
-}
-
 
 //----------------------------- Update -----------------------------------
 //------------------------------------------------------------------------
@@ -192,21 +175,16 @@ void GameWorld::CreateObstacles()
       const int border                 = 10;
       const int MinGapBetweenObstacles = 20;
 
-      Obstacle* ob = new Obstacle(RandInt(radius+border, m_cxClient-radius-border),
+      auto ob = std::make_unique<Obstacle>(RandInt(radius+border, m_cxClient-radius-border),
                                   RandInt(radius+border, m_cyClient-radius-30-border),
                                   radius);
 
-      if (!Overlapped(ob, m_Obstacles, MinGapBetweenObstacles))
+      if (!Overlapped(ob.get(), m_Obstacles, MinGapBetweenObstacles))
       {
         //its not overlapped so we can add it
-        m_Obstacles.push_back(ob);
+        m_Obstacles.push_back(std::move(ob));
 
         bOverlapped = false;
-      }
-
-      else
-      {
-        delete ob;
       }
     }
   }
@@ -224,9 +202,9 @@ void GameWorld::SetCrosshair(POINTS p)
   Vector2D ProposedPosition((double)p.x, (double)p.y);
 
   //make sure it's not inside an obstacle
-  for (ObIt curOb = m_Obstacles.begin(); curOb != m_Obstacles.end(); ++curOb)
+  for (const auto& obstacle : m_Obstacles)
   {
-    if (PointInCircle((*curOb)->Pos(), (*curOb)->BRadius(), ProposedPosition))
+    if (PointInCircle(obstacle->Pos(), obstacle->BRadius(), ProposedPosition))
     {
       return;
     }
@@ -392,9 +370,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
 
     case IDR_PARTITIONING:
       {
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+        for(const auto& vehicle : m_Vehicles)
         {
-          m_Vehicles[i]->Steering()->ToggleSpacePartitioningOnOff();
+          vehicle->Steering()->ToggleSpacePartitioningOnOff();
         }
 
         //if toggled on, empty the cell space and then re-add all the 
@@ -403,9 +381,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
         {
           m_pCellSpace->EmptyCells();
        
-          for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+          for(const auto& vehicle : m_Vehicles)
           {
-            m_pCellSpace->AddEntity(m_Vehicles[i]);
+            m_pCellSpace->AddEntity(vehicle.get());
           }
 
           ChangeMenuState(hwnd, IDR_PARTITIONING, MFS_CHECKED);

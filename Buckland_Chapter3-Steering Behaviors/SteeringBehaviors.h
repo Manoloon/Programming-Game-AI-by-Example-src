@@ -11,6 +11,7 @@
 //------------------------------------------------------------------------
 #include <vector>
 #include <windows.h>
+#include <memory>
 #include <string>
 #include <list>
 
@@ -76,7 +77,7 @@ private:
   Vector2D      m_vSteeringForce;
 
   //a pointer to the owner of this instance
-  Vehicle*      m_pVehicle;   
+  std::unique_ptr<Vehicle>      m_pVehicle;   
   //binary flags to indicate whether or not a behavior should be active
   int           m_iFlags;
   //length of the 'detection box' utilized in obstacle avoidance
@@ -183,7 +184,7 @@ private:
 
   //this returns a steering force which will attempt to keep the agent 
   //away from any obstacles it may encounter
-  Vector2D ObstacleAvoidance(const std::vector<BaseGameEntity*>& obstacles);
+  Vector2D ObstacleAvoidance(const std::vector<std::unique_ptr<BaseGameEntity>>& obstacles);
 
   //this returns a steering force which will keep the agent away from any
   //walls it may encounter
@@ -200,22 +201,22 @@ private:
 
   //given another agent position to hide from and a list of BaseGameEntitys this
   //method attempts to put an obstacle between itself and its opponent
-  Vector2D Hide(const Vehicle* hunter, const std::vector<BaseGameEntity*>& obstacles);
+  Vector2D Hide(const Vehicle* hunter, const std::vector<std::unique_ptr<BaseGameEntity>> obstacles);
 
 
   // -- Group Behaviors -- //
 
-  Vector2D Cohesion(const std::vector<Vehicle*> &agents);
+  Vector2D Cohesion(const std::vector<std::unique_ptr<Vehicle>>& agents);
   
-  Vector2D Separation(const std::vector<Vehicle*> &agents);
+  Vector2D Separation(const std::vector<std::unique_ptr<Vehicle>>& agents);
 
-  Vector2D Alignment(const std::vector<Vehicle*> &agents);
+  Vector2D Alignment(const std::vector<std::unique_ptr<Vehicle>>& agents);
 
   //the following three are the same as above but they use cell-space
   //partitioning to find the neighbors
-  Vector2D CohesionPlus(const std::vector<Vehicle*> &agents);
-  Vector2D SeparationPlus(const std::vector<Vehicle*> &agents);
-  Vector2D AlignmentPlus(const std::vector<Vehicle*> &agents);
+  Vector2D CohesionPlus(const std::vector<std::unique_ptr<Vehicle>>& agents);
+  Vector2D SeparationPlus(const std::vector<std::unique_ptr<Vehicle>>& agents);
+  Vector2D AlignmentPlus(const std::vector<std::unique_ptr<Vehicle>>& agents);
 
     /* .......................................................
 

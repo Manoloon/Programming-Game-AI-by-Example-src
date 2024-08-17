@@ -33,10 +33,10 @@ class GameWorld
 private:
 
   //a container of all the moving entities
-  std::vector<Vehicle*>         m_Vehicles;
+  std::vector<std::unique_ptr<Vehicle>>   m_Vehicles;
 
   //any obstacles
-  std::vector<BaseGameEntity*>  m_Obstacles;
+  std::vector<std::unique_ptr<BaseGameEntity>>  m_Obstacles;
 
   //container containing any walls in the environment
   std::vector<Wall2D>           m_Walls;
@@ -77,30 +77,28 @@ public:
   
   GameWorld(int cx, int cy);
 
-  ~GameWorld();
-
   void  Update(double time_elapsed);
 
   void  Render();
 
   void Restart(int cx,int cy);
 
-  void  NonPenetrationContraint(Vehicle* v){EnforceNonPenetrationConstraint(v, m_Vehicles);}
+  void  NonPenetrationContraint(std::unique_ptr<Vehicle> v){EnforceNonPenetrationConstraint(v, m_Vehicles);}
 
-  void  TagVehiclesWithinViewRange(BaseGameEntity* pVehicle, double range)
+  void  TagVehiclesWithinViewRange(Vehicle* pVehicle, double range)
   {
     TagNeighbors(pVehicle, m_Vehicles, range);
   }
 
-  void  TagObstaclesWithinViewRange(BaseGameEntity* pVehicle, double range)
+  void  TagObstaclesWithinViewRange(Vehicle* pVehicle, double range)
   {
     TagNeighbors(pVehicle, m_Obstacles, range);
   }
 
   const std::vector<Wall2D>&          Walls(){return m_Walls;}                          
   std::unique_ptr<CellSpacePartition<Vehicle*>>  CellSpace(){return std::move(m_pCellSpace);}
-  const std::vector<BaseGameEntity*>& Obstacles()const{return m_Obstacles;}
-  const std::vector<Vehicle*>&        Agents(){return m_Vehicles;}
+  std::vector<std::unique_ptr<BaseGameEntity>> Obstacles() {return std::move(m_Obstacles);}
+  std::vector<std::unique_ptr<Vehicle>>  Agents() {return m_Vehicles;}
 
 
   //handle WM_COMMAND messages

@@ -2,6 +2,7 @@
 #define GAME_ENTITY_FUNCTION_TEMPLATES
 
 #include "BaseGameEntity.h"
+#include <memory>
 #include "../2d/geometry.h"
 
 
@@ -19,14 +20,13 @@
 template <class T, class conT>
 bool Overlapped(const T* ob, const conT& conOb, double MinDistBetweenObstacles = 40.0)
 {
-  typename conT::const_iterator it;
-
-  for (it=conOb.begin(); it != conOb.end(); ++it)
+  for (auto it = conOb.begin() ; it != conOb.end(); ++it)
   {
+    const auto* currentObj = *it;
     if (TwoCirclesOverlapped(ob->Pos(),
                              ob->BRadius()+MinDistBetweenObstacles,                             
-                             (*it)->Pos(),
-                             (*it)->BRadius()))
+                             currentObj->Pos(),
+                             currentObj->BRadius()))
     {
       return true;
     }
@@ -41,32 +41,29 @@ bool Overlapped(const T* ob, const conT& conOb, double MinDistBetweenObstacles =
 //  radius of the single entity parameter
 //------------------------------------------------------------------------
 template <class T, class conT>
-void TagNeighbors(T* entity, conT& others, const double radius)
+void TagNeighbors(T& entity, conT& others, const double radius)
 {
-  typename conT::iterator it;
-
+  for(const auto& other : others)
   //iterate through all entities checking for range
-  for (it=others.begin(); it != others.end(); ++it)
   {
+    if(other.get() == entity) return;
     //first clear any current tag
-    (*it)->UnTag();
+    other->UnTag();
 
     //work in distance squared to avoid sqrts
-    Vector2D to = (*it)->Pos() - entity->Pos();
-
+    Vector2D to = other->Pos() - entity->Pos();
+    double distanceSq = to.LengthSq();
     //the bounding radius of the other is taken into account by adding it 
     //to the range
-    double range = radius + (*it)->BRadius();
+    double effectiveRange = (radius + other->BRadius()) * (radius + other->BRadius());
 
     //if entity within range, tag for further consideration
-    if ( ((*it) != entity) && (to.LengthSq() < range*range))
+    if (distanceSq < effectiveRange)
     {
-      (*it)->Tag();
+      other->Tag();
     }
-    
   }//next entity
 }
-
 
 //------------------- EnforceNonPenetrationConstraint ---------------------
 //
@@ -76,26 +73,24 @@ void TagNeighbors(T* entity, conT& others, const double radius)
 //  other
 //------------------------------------------------------------------------
 template <class T, class conT>
-void EnforceNonPenetrationConstraint(T entity, const conT& others)
+void EnforceNonPenetrationConstraint(T& entity, const conT& others)
 {
-  typename conT::const_iterator it;
-
-  //iterate through all entities checking for any overlap of bounding
+   //iterate through all entities checking for any overlap of bounding
   //radii
-  for (it=others.begin(); it != others.end(); ++it)
+  for(const auto& other : others)
   {
     //make sure we don't check against this entity
-    if (*it == entity) continue;
+    if (other == entity) continue;
 
     //calculate the distance between the positions of the entities
-    Vector2D ToEntity = entity->Pos() - (*it)->Pos();
+    Vector2D ToEntity = entity->Pos() - other->Pos();
 
     double DistFromEachOther = ToEntity.Length();
 
     //if this distance is smaller than the sum of their radii then this
     //entity must be moved away in the direction parallel to the
     //ToEntity vector   
-    double AmountOfOverLap = (*it)->BRadius() + entity->BRadius() -
+    double AmountOfOverLap = other->BRadius() + entity->BRadius() -
                              DistFromEachOther;
 
     if (AmountOfOverLap >= 0)
