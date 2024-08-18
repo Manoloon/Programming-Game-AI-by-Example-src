@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <memory>
 #include <time.h>
+#include <iostream>
 
 #include "constants.h"
 #include "../misc/utils.h"
@@ -15,8 +16,8 @@
 //
 //------------------------------------------------------------------------
 
-wchar_t g_szApplicationName[] = L"Steering Behaviors - Another Big Shoal";
-wchar_t g_szWindowClassName[] = L"MyWindowClass";
+//wchar_t g_szApplicationName[] = L"Steering Behaviors - Another Big Shoal";
+//wchar_t g_szWindowClassName[] = L"MyWindowClass";
 
 std::unique_ptr<GameWorld> g_GameWorld = nullptr;
 
@@ -83,7 +84,6 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          g_GameWorld = std::make_unique<GameWorld>(cxClient,cyClient);
          ChangeMenuState(hwnd, IDR_PRIORITIZED, MFS_CHECKED);
          ChangeMenuState(hwnd, ID_VIEW_FPS, MFS_CHECKED);
-         
       }
 
       break;
@@ -197,6 +197,8 @@ int WINAPI WinMain (HINSTANCE hInstance,
                     [[maybe_unused]] LPSTR     szCmdLine, 
                     int       iCmdShow)
 {
+  wchar_t g_szApplicationName[] = L"Steering Behaviors - Another Big Shoal";
+  wchar_t g_szWindowClassName[] = L"MyWindowClass";   
   //handle to our window
   HWND						hWnd;
     
@@ -217,6 +219,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
   winclass.lpszClassName = g_szWindowClassName;
   winclass.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
 
+std::wcout << L"Window Title: " << g_szApplicationName << std::endl;
   //register the window class
   if (!RegisterClassExW(&winclass))
   {
@@ -298,5 +301,3 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
   return msg.wParam;
 }
-
-
