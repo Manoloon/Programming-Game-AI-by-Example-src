@@ -874,7 +874,7 @@ Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<BaseGameEntity*>&
   m_pVehicle->World()->TagObstaclesWithinViewRange(m_pVehicle, m_dDBoxLength);
 
   //this will keep track of the closest intersecting obstacle (CIB)
-  BaseGameEntity* ClosestIntersectingObstacle = NULL;
+  BaseGameEntity* ClosestIntersectingObstacle = nullptr;
  
   //this will be used to track the distance to the CIB
   double DistToClosestIP = MaxDouble;

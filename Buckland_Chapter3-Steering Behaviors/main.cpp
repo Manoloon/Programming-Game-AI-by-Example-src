@@ -80,7 +80,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          //don't forget to release the DC
          ReleaseDC(hwnd, hdc); 
          
-        g_GameWorld = std::make_unique<GameWorld>(cxClient,cyClient);
+         g_GameWorld = std::make_unique<GameWorld>(cxClient,cyClient);
          ChangeMenuState(hwnd, IDR_PRIORITIZED, MFS_CHECKED);
          ChangeMenuState(hwnd, ID_VIEW_FPS, MFS_CHECKED);
          

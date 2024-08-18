@@ -270,7 +270,6 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
         {
           m_Vehicles[i]->ToggleSmoothing();
         }
-
       }
 
       break;

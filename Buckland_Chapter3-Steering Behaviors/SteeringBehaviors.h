@@ -234,10 +234,6 @@ private:
                               const double     radiusOb,
                               const Vector2D& posHunter);
 
-
-
-  
-  
 public:
 
   SteeringBehavior(Vehicle* agent);
@@ -254,8 +250,6 @@ public:
   //calculates the component of the steering force that is perpendicuar
   //with the vehicle heading
   double    SideComponent();
-
-
 
   //renders visual aids and info for seeing how each behavior is
   //calculated
