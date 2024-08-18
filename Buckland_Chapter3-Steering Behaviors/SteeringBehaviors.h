@@ -273,7 +273,8 @@ public:
   bool      isSpacePartitioningOn()const{return m_bCellSpaceOn;}
 
   void      SetSummingMethod(summing_method sm){m_SummingMethod = sm;}
-
+  //Get calculated steering force by weightedSum , Prioritized or Dithered
+  Vector2D  GetSteeringForce();
 
   void      FleeOn(){m_iFlags |= flee;}
   void      SeekOn(){m_iFlags |= seek;}

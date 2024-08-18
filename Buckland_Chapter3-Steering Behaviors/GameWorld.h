@@ -83,8 +83,6 @@ public:
 
   void  Render();
 
-  void Restart(int cx,int cy);
-
   void  NonPenetrationContraint(Vehicle* v){EnforceNonPenetrationConstraint(v, m_Vehicles);}
 
   void  TagVehiclesWithinViewRange(BaseGameEntity* pVehicle, double range)
@@ -135,7 +133,5 @@ public:
   bool  ViewKeys()const{return m_bViewKeys;}
 
 };
-
-
 
 #endif

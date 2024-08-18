@@ -102,26 +102,32 @@ Vector2D SteeringBehavior::Calculate()
       m_pVehicle->World()->CellSpace()->CalculateNeighbors(m_pVehicle->Pos(), m_dViewDistance);
     }
   }
+  m_vSteeringForce = GetSteeringForce();
+  return m_vSteeringForce;
+}
 
-  switch (m_SummingMethod)
+Vector2D SteeringBehavior::GetSteeringForce()
+{
+    switch (m_SummingMethod)
   {
   case weighted_average:
     
-    m_vSteeringForce = CalculateWeightedSum(); break;
+    return CalculateWeightedSum();
+    break;
 
   case prioritized:
 
-    m_vSteeringForce = CalculatePrioritized(); break;
+    return CalculatePrioritized();
+    break;
 
   case dithered:
     
-    m_vSteeringForce = CalculateDithered();break;
+    return CalculateDithered();
+    break;
 
-  default:m_vSteeringForce = Vector2D(0,0); 
+  default: return Vector2D(0,0); 
 
   }//end switch
-
-  return m_vSteeringForce;
 }
 
 //------------------------- ForwardComponent -----------------------------
@@ -1646,8 +1652,4 @@ void SteeringBehavior::RenderAids( )
   }  
 
 }
-
-
-
-
 

@@ -116,8 +116,6 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
           case 'R':
             {
               g_GameWorld = std::make_unique<GameWorld>(cxClient,cyClient);
-              // TODO : Replace with the method.
-              //g_GameWorld->Restart(cxClient,cyClient);
             }
 
             break;
@@ -177,8 +175,6 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          DeleteDC(hdcBackBuffer);
          DeleteObject(hBitmap); 
 
-         
-         
          // kill the application, this sends a WM_QUIT message  
 				 PostQuitMessage (0);
 			 }
