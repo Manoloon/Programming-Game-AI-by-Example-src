@@ -33,15 +33,15 @@ class GameWorld
 private:
 
   //a container of all the moving entities
-  std::vector<std::unique_ptr<Vehicle>>   m_Vehicles;
+  std::vector<std::shared_ptr<Vehicle>>   m_Vehicles;
 
   //any obstacles
-  std::vector<std::unique_ptr<BaseGameEntity>>  m_Obstacles;
+  std::vector<std::shared_ptr<BaseGameEntity>>  m_Obstacles;
 
   //container containing any walls in the environment
   std::vector<Wall2D>           m_Walls;
 
-  std::unique_ptr<CellSpacePartition<Vehicle*>> m_pCellSpace;
+  std::unique_ptr<CellSpacePartition<std::shared_ptr<Vehicle>>> m_pCellSpace;
 
   //local copy of client window dimensions
   int                           m_cxClient;
@@ -83,23 +83,22 @@ public:
 
   void Restart(int cx,int cy);
 
-  void  NonPenetrationContraint(std::unique_ptr<Vehicle> v){EnforceNonPenetrationConstraint(v, m_Vehicles);}
+  void  NonPenetrationContraint(std::shared_ptr<Vehicle> v){EnforceNonPenetrationConstraint(v, m_Vehicles);}
 
-  void  TagVehiclesWithinViewRange(Vehicle* pVehicle, double range)
+  void  TagVehiclesWithinViewRange(std::shared_ptr<Vehicle> pVehicle, double range)
   {
     TagNeighbors(pVehicle, m_Vehicles, range);
   }
 
-  void  TagObstaclesWithinViewRange(Vehicle* pVehicle, double range)
+  void  TagObstaclesWithinViewRange(std::shared_ptr<Vehicle> pVehicle, double range)
   {
     TagNeighbors(pVehicle, m_Obstacles, range);
   }
 
   const std::vector<Wall2D>&          Walls(){return m_Walls;}                          
-  std::unique_ptr<CellSpacePartition<Vehicle*>>  CellSpace(){return std::move(m_pCellSpace);}
-  std::vector<std::unique_ptr<BaseGameEntity>> Obstacles() {return std::move(m_Obstacles);}
-  std::vector<std::unique_ptr<Vehicle>>  Agents() {return m_Vehicles;}
-
+  std::unique_ptr<CellSpacePartition<std::shared_ptr<Vehicle>>>  CellSpace(){return std::move(m_pCellSpace);}
+  std::vector<std::shared_ptr<BaseGameEntity>> Obstacles() {return m_Obstacles;}
+  std::vector<std::shared_ptr<Vehicle>>  Agents() {return m_Vehicles;}
 
   //handle WM_COMMAND messages
   void        HandleKeyPresses(WPARAM wParam);
@@ -133,7 +132,5 @@ public:
   bool  ViewKeys()const{return m_bViewKeys;}
 
 };
-
-
 
 #endif

@@ -13,7 +13,7 @@ using std::list;
 
 //----------------------------- ctor -------------------------------------
 //------------------------------------------------------------------------
-Vehicle::Vehicle(GameWorld* world,
+Vehicle::Vehicle(std::unique_ptr<GameWorld> world,
                Vector2D position,
                double    rotation,
                Vector2D velocity,
@@ -31,7 +31,7 @@ Vehicle::Vehicle(GameWorld* world,
                                                  max_turn_rate,
                                                  max_force),
 
-                                       m_pWorld(world),
+                                       m_pWorld(std::move(world)),
                                        m_vSmoothedHeading(Vector2D(0,0)),
                                        m_bSmoothingOn(false),
                                        m_dTimeElapsed(0.0)
@@ -43,8 +43,6 @@ Vehicle::Vehicle(GameWorld* world,
 
   //set up the smoother
   m_pHeadingSmoother = std::make_unique<Smoother<Vector2D>>(Prm.NumSamplesForSmoothing, Vector2D(0.0, 0.0)); 
-  
- 
 }
 
 //------------------------------ Update ----------------------------------
@@ -59,7 +57,6 @@ void Vehicle::Update(double time_elapsed)
   //keep a record of its old position so we can update its cell later
   //in this method
   Vector2D OldPos = Pos();
-
 
   Vector2D SteeringForce;
 
@@ -162,7 +159,6 @@ void Vehicle::Render()
     Steering()->RenderAids();
   }
 }
-
 
 //----------------------------- InitializeBuffer -----------------------------
 //

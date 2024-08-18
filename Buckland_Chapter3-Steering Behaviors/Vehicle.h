@@ -21,8 +21,6 @@
 class GameWorld;
 class SteeringBehavior;
 
-
-
 class Vehicle : public MovingEntity
 {
 
@@ -65,7 +63,7 @@ private:
 
 public:
 
-  Vehicle(GameWorld* world,
+  Vehicle(std::unique_ptr<GameWorld> world,
          Vector2D  position,
          double    rotation,
          Vector2D  velocity,
@@ -75,8 +73,6 @@ public:
          double    max_turn_rate,
          double    scale);
 
-  ~Vehicle();
-
   //updates the vehicle's position and orientation
   void        Update(double time_elapsed) override;
 
@@ -85,7 +81,6 @@ public:
   //-------------------------------------------accessor methods
   std::unique_ptr<SteeringBehavior> Steering() {return std::move(m_pSteering);}
   std::unique_ptr<GameWorld>  World() {return std::move(m_pWorld);} 
-
   
   Vector2D    SmoothedHeading()const{return m_vSmoothedHeading;}
 

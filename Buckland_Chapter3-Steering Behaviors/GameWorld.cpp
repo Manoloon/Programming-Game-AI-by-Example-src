@@ -12,7 +12,6 @@
 #include "../misc/WindowUtils.h"
 #include "../misc/Stream_Utility_Functions.h"
 
-
 #include "resource.h"
 
 #include <list>
@@ -55,7 +54,7 @@ GameWorld::GameWorld(int cx, int cy):
                                  cy/2.0+RandomClamped()*cy/2.0);
 
 
-    auto pVehicle = std::make_unique<Vehicle>(this,
+    auto pVehicle = std::make_unique<Vehicle>(std::move(this),
                                     SpawnPos,                 //initial position
                                     RandFloat()*TwoPi,        //start rotation
                                     Vector2D(0,0),            //velocity
@@ -175,14 +174,14 @@ void GameWorld::CreateObstacles()
       const int border                 = 10;
       const int MinGapBetweenObstacles = 20;
 
-      auto ob = std::make_unique<Obstacle>(RandInt(radius+border, m_cxClient-radius-border),
+      auto ob = std::make_shared<Obstacle>(RandInt(radius+border, m_cxClient-radius-border),
                                   RandInt(radius+border, m_cyClient-radius-30-border),
                                   radius);
 
-      if (!Overlapped(ob.get(), m_Obstacles, MinGapBetweenObstacles))
+      if (!Overlapped(ob, m_Obstacles, MinGapBetweenObstacles))
       {
         //its not overlapped so we can add it
-        m_Obstacles.push_back(std::move(ob));
+        m_Obstacles.emplace_back(ob);
 
         bOverlapped = false;
       }
@@ -383,7 +382,7 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
        
           for(const auto& vehicle : m_Vehicles)
           {
-            m_pCellSpace->AddEntity(vehicle.get());
+            m_pCellSpace->AddEntity(vehicle);
           }
 
           ChangeMenuState(hwnd, IDR_PARTITIONING, MFS_CHECKED);

@@ -18,22 +18,18 @@
 //  stored in a std container
 //------------------------------------------------------------------------
 template <class T, class conT>
-bool Overlapped(const T* ob, const conT& conOb, double MinDistBetweenObstacles = 40.0)
+bool Overlapped(const std::shared_ptr<T>& ob, const conT& conOb, double MinDistBetweenObstacles = 40.0)
 {
-  for (auto it = conOb.begin() ; it != conOb.end(); ++it)
-  {
-    const auto* currentObj = *it;
-    if (TwoCirclesOverlapped(ob->Pos(),
-                             ob->BRadius()+MinDistBetweenObstacles,                             
-                             currentObj->Pos(),
-                             currentObj->BRadius()))
+    for(const auto& currentObj : conOb)
     {
-      return true;
+      if (TwoCirclesOverlapped(ob->Pos(),ob->BRadius()+MinDistBetweenObstacles,                             
+                             currentObj->Pos(),currentObj->BRadius()))
+      {
+        return true;
+      }
     }
+   return false;
   }
-
-  return false;
-}
 
 //----------------------- TagNeighbors ----------------------------------
 //
@@ -41,12 +37,12 @@ bool Overlapped(const T* ob, const conT& conOb, double MinDistBetweenObstacles =
 //  radius of the single entity parameter
 //------------------------------------------------------------------------
 template <class T, class conT>
-void TagNeighbors(T& entity, conT& others, const double radius)
+void TagNeighbors(const std::shared_ptr<T>& entity, conT& others, const double radius)
 {
   for(const auto& other : others)
   //iterate through all entities checking for range
   {
-    if(other.get() == entity) return;
+    if(other == entity) return;
     //first clear any current tag
     other->UnTag();
 
@@ -73,7 +69,7 @@ void TagNeighbors(T& entity, conT& others, const double radius)
 //  other
 //------------------------------------------------------------------------
 template <class T, class conT>
-void EnforceNonPenetrationConstraint(T& entity, const conT& others)
+void EnforceNonPenetrationConstraint(const std::shared_ptr<T>& entity, const conT& others)
 {
    //iterate through all entities checking for any overlap of bounding
   //radii
@@ -101,14 +97,5 @@ void EnforceNonPenetrationConstraint(T& entity, const conT& others)
     }
   }//next entity
 }
-
-
-
-
-
-
-
-
-
 
 #endif

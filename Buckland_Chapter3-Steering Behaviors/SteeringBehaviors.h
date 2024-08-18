@@ -184,7 +184,7 @@ private:
 
   //this returns a steering force which will attempt to keep the agent 
   //away from any obstacles it may encounter
-  Vector2D ObstacleAvoidance(const std::vector<std::unique_ptr<BaseGameEntity>>& obstacles);
+  Vector2D ObstacleAvoidance(const std::vector<std::shared_ptr<BaseGameEntity>>& obstacles);
 
   //this returns a steering force which will keep the agent away from any
   //walls it may encounter
@@ -201,7 +201,7 @@ private:
 
   //given another agent position to hide from and a list of BaseGameEntitys this
   //method attempts to put an obstacle between itself and its opponent
-  Vector2D Hide(const Vehicle* hunter, const std::vector<std::unique_ptr<BaseGameEntity>> obstacles);
+  Vector2D Hide(const Vehicle* hunter, const std::vector<std::shared_ptr<BaseGameEntity>> obstacles);
 
 
   // -- Group Behaviors -- //
@@ -235,10 +235,6 @@ private:
                               const double     radiusOb,
                               const Vector2D& posHunter);
 
-
-
-  
-  
 public:
 
   SteeringBehavior(Vehicle* agent);

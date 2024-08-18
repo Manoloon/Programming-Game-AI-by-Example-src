@@ -380,8 +380,8 @@ Vector2D SteeringBehavior::CalculateWeightedSum()
    
   if (On(obstacle_avoidance))
   {
-    m_vSteeringForce += ObstacleAvoidance(m_pVehicle->World()->Obstacles()) * 
-                        m_dWeightObstacleAvoidance;
+    Vector2D avoidanceForce = ObstacleAvoidance(m_pVehicle->World()->Obstacles());
+    m_vSteeringForce +=  avoidanceForce * m_dWeightObstacleAvoidance;
   }
 
   if (On(evade))
@@ -864,7 +864,7 @@ Vector2D SteeringBehavior::Wander()
 //  Given a vector of CObstacles, this method returns a steering force
 //  that will prevent the agent colliding with the closest obstacle
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<std::unique_ptr<BaseGameEntity>>& obstacles)
+Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<std::shared_ptr<BaseGameEntity>>& obstacles)
 {
   //the detection box length is proportional to the agent's velocity
   m_dDBoxLength = Prm.MinDetectionBoxLength + 
@@ -881,7 +881,7 @@ Vector2D SteeringBehavior::ObstacleAvoidance(const std::vector<std::unique_ptr<B
   //this will record the transformed local coordinates of the CIB
   Vector2D LocalPosOfClosestObstacle;
 
-  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator curOb = obstacles.begin();
+  std::vector<std::shared_ptr<BaseGameEntity>>::const_iterator curOb = obstacles.begin();
   std::unique_ptr<BaseGameEntity> ClosestIntersectingObstacle = nullptr;
   while(curOb != obstacles.end())
   {
@@ -1325,13 +1325,13 @@ Vector2D SteeringBehavior::Interpose(const Vehicle* AgentA,
 //
 //------------------------------------------------------------------------
 Vector2D SteeringBehavior::Hide(const Vehicle*           hunter,
-                                 std::vector<std::unique_ptr<BaseGameEntity>> obstacles)
+                                 std::vector<std::shared_ptr<BaseGameEntity>> obstacles)
 {
-  double    DistToClosest = MaxDouble;
+  double   DistToClosest = MaxDouble;
   Vector2D BestHidingSpot;
 
-  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator curOb = obstacles.begin();
-  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator closest;
+  std::vector<std::shared_ptr<BaseGameEntity>>::const_iterator curOb = obstacles.begin();
+  std::vector<std::shared_ptr<BaseGameEntity>>::const_iterator closest;
 
   while(curOb != obstacles.end())
   {
@@ -1562,7 +1562,7 @@ void SteeringBehavior::RenderAids( )
   //this will record the transformed local coordinates of the CIB
   Vector2D LocalPosOfClosestObstacle;
 
-  std::vector<std::unique_ptr<BaseGameEntity>>::const_iterator curOb = m_pVehicle->World()->Obstacles().begin();
+  std::vector<std::shared_ptr<BaseGameEntity>>::const_iterator curOb = m_pVehicle->World()->Obstacles().begin();
 
   while(curOb != m_pVehicle->World()->Obstacles().end())
   {
