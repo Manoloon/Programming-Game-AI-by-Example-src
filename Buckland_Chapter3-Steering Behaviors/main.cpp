@@ -16,9 +16,6 @@
 //
 //------------------------------------------------------------------------
 
-//wchar_t g_szApplicationName[] = L"Steering Behaviors - Another Big Shoal";
-//wchar_t g_szWindowClassName[] = L"MyWindowClass";
-
 std::unique_ptr<GameWorld> g_GameWorld = nullptr;
 
 
@@ -33,7 +30,8 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
                              LPARAM lParam)
 {
    //these hold the dimensions of the client window area
-	 static int cxClient, cyClient; 
+	 static int cxClient; 
+   static int cyClient; 
 
 	 //used to create the back buffer
    static HDC		hdcBackBuffer;

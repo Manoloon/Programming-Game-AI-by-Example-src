@@ -70,7 +70,6 @@ private:
     offset_pursuit     = 0x10000,
   };
 
-private:
   //the steering force created by the combined effect of all
   //the selected behaviors
   Vector2D      m_vSteeringForce;
@@ -140,7 +139,7 @@ private:
   Vector2D     m_vOffset;
 
   //this function tests if a specific bit of m_iFlags is set
-  bool      On(behavior_type bt){return (m_iFlags & bt) == bt;}
+  bool      On(behavior_type bt) const {return (m_iFlags & bt) == bt;}
 
   bool      AccumulateForce(Vector2D &sf, Vector2D ForceToAdd);
 
@@ -236,7 +235,7 @@ private:
 
 public:
 
-  SteeringBehavior(Vehicle* agent);
+  explicit SteeringBehavior(Vehicle* agent);
 
   virtual ~SteeringBehavior();
 
@@ -263,7 +262,7 @@ public:
   void      SetOffset(const Vector2D offset){m_vOffset = offset;}
   Vector2D  GetOffset()const{return m_vOffset;}
 
-  void      SetPath(std::list<Vector2D> new_path){m_pPath->Set(new_path);}
+  void      SetPath(const std::list<Vector2D>& new_path){m_pPath->Set(new_path);}
   void      CreateRandomPath(int num_waypoints, int mx, int my, int cx, int cy)const
             {m_pPath->CreateRandomPath(num_waypoints, mx, my, cx, cy);}
 
@@ -316,21 +315,21 @@ public:
   void OffsetPursuitOff(){if(On(offset_pursuit)) m_iFlags ^=offset_pursuit;}
   void FlockingOff(){CohesionOff(); AlignmentOff(); SeparationOff(); WanderOff();}
 
-  bool isFleeOn(){return On(flee);}
-  bool isSeekOn(){return On(seek);}
-  bool isArriveOn(){return On(arrive);}
-  bool isWanderOn(){return On(wander);}
-  bool isPursuitOn(){return On(pursuit);}
-  bool isEvadeOn(){return On(evade);}
-  bool isCohesionOn(){return On(cohesion);}
-  bool isSeparationOn(){return On(separation);}
-  bool isAlignmentOn(){return On(allignment);}
-  bool isObstacleAvoidanceOn(){return On(obstacle_avoidance);}
-  bool isWallAvoidanceOn(){return On(wall_avoidance);}
-  bool isFollowPathOn(){return On(follow_path);}
-  bool isInterposeOn(){return On(interpose);}
-  bool isHideOn(){return On(hide);}
-  bool isOffsetPursuitOn(){return On(offset_pursuit);}
+  bool isFleeOn() const {return On(flee);}
+  bool isSeekOn() const {return On(seek);}
+  bool isArriveOn() const {return On(arrive);}
+  bool isWanderOn() const {return On(wander);}
+  bool isPursuitOn() const {return On(pursuit);}
+  bool isEvadeOn() const {return On(evade);}
+  bool isCohesionOn() const {return On(cohesion);}
+  bool isSeparationOn() const {return On(separation);}
+  bool isAlignmentOn() const {return On(allignment);}
+  bool isObstacleAvoidanceOn() const {return On(obstacle_avoidance);}
+  bool isWallAvoidanceOn() const {return On(wall_avoidance);}
+  bool isFollowPathOn() const {return On(follow_path);}
+  bool isInterposeOn() const {return On(interpose);}
+  bool isHideOn() const {return On(hide);}
+  bool isOffsetPursuitOn() const {return On(offset_pursuit);}
 
   double DBoxLength()const{return m_dDBoxLength;}
   const std::vector<Vector2D>& GetFeelers()const{return m_Feelers;}

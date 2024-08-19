@@ -26,7 +26,7 @@ class Obstacle;
 class Wall2D;
 class Path;
 
-typedef std::vector<BaseGameEntity*>::iterator  ObIt;
+using ObIt = std::vector<BaseGameEntity*>::iterator;
 
 class GameWorld
 { 
@@ -83,7 +83,7 @@ public:
 
   void  Render();
 
-  void  NonPenetrationContraint(Vehicle* v){EnforceNonPenetrationConstraint(v, m_Vehicles);}
+  void  NonPenetrationContraint(Vehicle* v) const {EnforceNonPenetrationConstraint(v, m_Vehicles);}
 
   void  TagVehiclesWithinViewRange(BaseGameEntity* pVehicle, double range)
   {
@@ -95,10 +95,10 @@ public:
     TagNeighbors(pVehicle, m_Obstacles, range);
   }
 
-  const std::vector<Wall2D>&          Walls(){return m_Walls;}                          
+  const std::vector<Wall2D>&          Walls() const {return m_Walls;}                          
   std::unique_ptr<CellSpacePartition<Vehicle*>>  CellSpace(){return std::move(m_pCellSpace);}
   const std::vector<BaseGameEntity*>& Obstacles()const{return m_Obstacles;}
-  const std::vector<Vehicle*>&        Agents(){return m_Vehicles;}
+  const std::vector<Vehicle*>&        Agents() const {return m_Vehicles;}
 
 
   //handle WM_COMMAND messages

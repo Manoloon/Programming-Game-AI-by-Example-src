@@ -26,18 +26,18 @@ public:
   Obstacle(Vector2D pos, double radius):BaseGameEntity(0, pos, radius)
   {}
 
-  Obstacle(std::ifstream& in){Read(in);}
+  explicit Obstacle(std::ifstream& in) {Read(in);}
 
-  virtual ~Obstacle(){}
+  ~Obstacle() override = default;
 
   //this is defined as a pure virtual function in BasegameEntity so
   //it must be implemented
   void      Update([[maybe_unused]] double time_elapsed) override {};
 
-  void      Render(){gdi->BlackPen();gdi->Circle(Pos(), BRadius());}
+  void      Render() override {gdi->BlackPen();gdi->Circle(Pos(), BRadius());}
 
-  void      Write(std::ostream& os)const;
-  void      Read(std::ifstream& in);
+  void      Write(std::ostream& os)const override;
+  void      Read(std::ifstream& in) override;
   bool      HandleMessage([[maybe_unused]] const Telegram& msg) override {return false;};
 };
 
