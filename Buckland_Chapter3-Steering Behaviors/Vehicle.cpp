@@ -1,11 +1,11 @@
 #include "Vehicle.h"
-#include "../2d/C2DMatrix.h"
-#include "../2d/Geometry.h"
+#include "../2D/C2DMatrix.h"
+#include "../2D/Geometry.h"
 #include "SteeringBehaviors.h"
-#include "../2d/Transformations.h"
+#include "../2D/Transformations.h"
 #include "GameWorld.h"
-#include "../misc/CellSpacePartition.h"
-#include "../misc/cgdi.h"
+#include "../Misc/CellSpacePartition.h"
+#include "../Misc/cgdi.h"
 
 using std::vector;
 using std::list;
@@ -180,10 +180,9 @@ void Vehicle::Render()
 void Vehicle::InitializeBuffer()
 {
   const int NumVehicleVerts = 3;
-
-  Vector2D vehicle[NumVehicleVerts] = {Vector2D(-1.0f,0.6f),
-                                        Vector2D(1.0f,0.0f),
-                                        Vector2D(-1.0f,-0.6f)};
+  std::vector<Vector2D> vehicle{ Vector2D(-1.0f,0.6f),
+                                 Vector2D(1.0f,0.0f),
+                                 Vector2D(-1.0f,-0.6f)};
 
   //setup the vertex buffers and calculate the bounding radius
   for (int vtx=0; vtx<NumVehicleVerts; ++vtx)

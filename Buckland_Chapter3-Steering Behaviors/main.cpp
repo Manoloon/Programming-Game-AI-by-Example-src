@@ -4,13 +4,13 @@
 #include <iostream>
 
 #include "constants.h"
-#include "../misc/utils.h"
-#include "../time/PrecisionTimer.h"
+#include "../Misc/utils.h"
+#include "../Time/PrecisionTimer.h"
 #include "GameWorld.h"
-#include "../misc/Cgdi.h"
+#include "../Misc/Cgdi.h"
 #include "ParamLoader.h"
 #include "resource.h"
-#include "../misc/WindowUtils.h"
+#include "../Misc/WindowUtils.h"
 
 //--------------------------------- Globals ------------------------------
 //

@@ -21,9 +21,10 @@
 #include <list>
 #include <cassert>
 #include <cmath>
+#include <stdexcept>
 
-#include "../2d/Vector2D.h"
-#include "../2d/InvertedAABBox2D.h"
+#include "../2D/Vector2D.h"
+#include "../2D/InvertedAABBox2D.h"
 #include "utils.h"
 
 
@@ -90,33 +91,31 @@ public:
                      int   MaxEntitys);  //maximum number of entities to add
 
   //adds entities to the class by allocating them to the appropriate cell
-  inline void AddEntity(const entity& ent);
+  void           AddEntity(const entity& ent);
 
   //update an entity's cell by calling this from your entity's Update method 
-  inline void UpdateEntity(const entity& ent, Vector2D OldPos);
+  void           UpdateEntity(const entity& ent, Vector2D OldPos);
 
   //this method calculates all a target's neighbors and stores them in
   //the neighbor vector. After you have called this method use the begin, 
   //next and end methods to iterate through the vector.
-  inline void CalculateNeighbors(Vector2D TargetPos, double QueryRadius);
+  void           CalculateNeighbors(Vector2D TargetPos, double QueryRadius);
 
   //returns a reference to the entity at the front of the neighbor vector
-  inline entity& begin(){m_curNeighbor = m_Neighbors.begin(); return *m_curNeighbor;}
+  inline entity& begin() {m_curNeighbor = m_Neighbors.begin(); return *m_curNeighbor;}
 
   //this returns the next entity in the neighbor vector
-  inline entity& next(){++m_curNeighbor; return *m_curNeighbor;}
+  inline entity& next() {++m_curNeighbor; return *m_curNeighbor;}
 
   //returns true if the end of the vector is found (a zero value marks the end)
-  inline bool   end(){return (m_curNeighbor == m_Neighbors.end()) || (*m_curNeighbor == 0);}   
+  inline bool   end() {return (m_curNeighbor == m_Neighbors.end()) || (*m_curNeighbor == 0);}   
    
   //empties the cells of entities
-  void        EmptyCells();
+  void          EmptyCells();
 
   //call this to use the gdi to render the cell edges
-  inline void RenderCells()const;
+  void          RenderCells() const;
 };
-
-
 
 //----------------------------- ctor ---------------------------------------
 //--------------------------------------------------------------------------
@@ -133,9 +132,13 @@ CellSpacePartition<entity>::CellSpacePartition(double  width,        //width of 
                   m_Neighbors(MaxEntitys, entity())
 {
   //calculate bounds of each cell
+  if(cellsX == 0 || cellsY == 0)
+  {
+    std::runtime_error("CellSpacePartition : cellsX or cellsY == 0!");
+  }
+
   m_dCellSizeX = width  / cellsX;
   m_dCellSizeY = height / cellsY;
-
   
   //create the cells
   for (int y=0; y<m_iNumCellsY; ++y)
@@ -175,8 +178,9 @@ void CellSpacePartition<entity>::CalculateNeighbors(Vector2D TargetPos,
   //iterate through each cell and test to see if its bounding box overlaps
   //with the query box. If it does and it also contains entities then
   //make further proximity tests.
-  typename std::vector<Cell<entity> >::iterator curCell; 
-  for (curCell = m_Cells.begin(); curCell != m_Cells.end(); ++curCell)
+  for (typename std::vector<Cell<entity> >::iterator curCell = m_Cells.begin(); 
+                                                     curCell != m_Cells.end(); 
+                                                     ++curCell)
   {
     //test to see if this cell contains members and if it overlaps the
     //query box
@@ -224,7 +228,7 @@ template<class entity>
 inline int CellSpacePartition<entity>::PositionToIndex(const Vector2D& pos)const
 {
   unsigned int idx = (int)(m_iNumCellsX * pos.x / m_dSpaceWidth) + 
-            ((int)((m_iNumCellsY) * pos.y / m_dSpaceHeight) * m_iNumCellsX);
+            ((int)( m_iNumCellsY * pos.y / m_dSpaceHeight) * m_iNumCellsX);
 
   //if the entity's position is equal to vector2d(m_dSpaceWidth, m_dSpaceHeight)
   //then the index will overshoot. We need to check for this and adjust
@@ -276,8 +280,9 @@ inline void CellSpacePartition<entity>::UpdateEntity(const entity&  ent,
 template<class entity>
 inline void CellSpacePartition<entity>::RenderCells()const
 {
-  typename std::vector<Cell<entity> >::const_iterator curCell;
-  for (curCell=m_Cells.begin(); curCell!=m_Cells.end(); ++curCell)
+  for (typename std::vector<Cell<entity> >::const_iterator curCell = m_Cells.begin(); 
+                                                           curCell!=m_Cells.end(); 
+                                                           ++curCell)
   {
     curCell->BBox.Render(false);
   }

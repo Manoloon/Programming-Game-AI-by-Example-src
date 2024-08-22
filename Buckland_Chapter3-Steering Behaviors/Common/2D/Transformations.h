@@ -26,7 +26,7 @@
 //  given a std::vector of 2D vectors, a position, orientation and scale,
 //  this function transforms the 2D vectors into the object's world space
 //------------------------------------------------------------------------
-inline std::vector<Vector2D> WorldTransform(std::vector<Vector2D> &points,
+inline std::vector<Vector2D> WorldTransform(const std::vector<Vector2D> &points,
                                             const Vector2D   &pos,
                                             const Vector2D   &forward,
                                             const Vector2D   &side,
@@ -61,7 +61,7 @@ inline std::vector<Vector2D> WorldTransform(std::vector<Vector2D> &points,
 //  given a std::vector of 2D vectors, a position and  orientation
 //  this function transforms the 2D vectors into the object's world space
 //------------------------------------------------------------------------
-inline std::vector<Vector2D> WorldTransform(std::vector<Vector2D> &points,
+inline std::vector<Vector2D> WorldTransform(const std::vector<Vector2D> &points,
                                  const Vector2D   &pos,
                                  const Vector2D   &forward,
                                  const Vector2D   &side)

@@ -2,15 +2,15 @@
 #include "Vehicle.h"
 #include "constants.h"
 #include "Obstacle.h"
-#include "../2d/Geometry.h"
-#include "../2d/Wall2D.h"
-#include "../2d/Transformations.h"
+#include "../2D/Geometry.h"
+#include "../2D/Wall2D.h"
+#include "../2D/Transformations.h"
 #include "SteeringBehaviors.h"
-#include "../time/PrecisionTimer.h"
-#include "../misc/Smoother.h"
+#include "../Time/PrecisionTimer.h"
+#include "../Misc/Smoother.h"
 #include "ParamLoader.h"
-#include "../misc/WindowUtils.h"
-#include "../misc/Stream_Utility_Functions.h"
+#include "../Misc/WindowUtils.h"
+#include "../Misc/Stream_Utility_Functions.h"
 
 
 #include "resource.h"
@@ -141,10 +141,8 @@ void GameWorld::CreateWalls()
   double CornerSize = 0.2;
   double vDist = m_cyClient-2*bordersize;
   double hDist = m_cxClient-2*bordersize;
-  
-  const int NumWallVerts = 8;
 
-  Vector2D walls[NumWallVerts] = {Vector2D(hDist*CornerSize+bordersize, bordersize),
+  std::vector<Vector2D> walls = {  Vector2D(hDist*CornerSize+bordersize, bordersize),
                                    Vector2D(m_cxClient-bordersize-hDist*CornerSize, bordersize),
                                    Vector2D(m_cxClient-bordersize, bordersize+vDist*CornerSize),
                                    Vector2D(m_cxClient-bordersize, m_cyClient-bordersize-vDist*CornerSize),
@@ -154,14 +152,12 @@ void GameWorld::CreateWalls()
                                    Vector2D(bordersize, m_cyClient-bordersize-vDist*CornerSize),
                                    Vector2D(bordersize, bordersize+vDist*CornerSize)};
   
-  for (int w=0; w<NumWallVerts-1; ++w)
+  for (int w=0; w < walls.size()-1; ++w)
   {
-    m_Walls.push_back(Wall2D(walls[w], walls[w+1]));
+    m_Walls.emplace_back(walls[w], walls[w+1]);
   }
-
-  m_Walls.push_back(Wall2D(walls[NumWallVerts-1], walls[0]));
+  m_Walls.emplace_back(walls.back(), walls.front()); 
 }
-
 
 //--------------------------- CreateObstacles -----------------------------
 //

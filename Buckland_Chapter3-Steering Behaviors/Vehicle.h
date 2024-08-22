@@ -20,8 +20,6 @@
 class GameWorld;
 class SteeringBehavior;
 
-
-
 class Vehicle : public MovingEntity
 {
 
@@ -74,7 +72,7 @@ public:
          double    max_turn_rate,
          double    scale);
 
-  ~Vehicle();
+  ~Vehicle() override;
 
   //updates the vehicle's position and orientation
   void        Update(double time_elapsed) override;

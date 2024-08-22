@@ -15,12 +15,12 @@
 #include <windows.h>
 #include <vector>
 #include <memory>
-#include "../2d/Vector2D.h"
-#include "../time/PrecisionTimer.h"
-#include "../misc/CellSpacePartition.h"
+#include "../2D/Vector2D.h"
+#include "../Time/PrecisionTimer.h"
+#include "../Misc/CellSpacePartition.h"
 #include "../Game/BaseGameEntity.h"
 #include "../Game/EntityFunctionTemplates.h"
-#include "vehicle.h"
+#include "Vehicle.h"
 
 class Obstacle;
 class Wall2D;
