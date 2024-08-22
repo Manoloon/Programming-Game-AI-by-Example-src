@@ -55,7 +55,7 @@ GameWorld::GameWorld(int cx, int cy):
                                  cy/2.0+RandomClamped()*cy/2.0);
 
 
-    Vehicle* pVehicle = new Vehicle(this,
+    auto* pVehicle = new Vehicle(this,
                                     SpawnPos,                 //initial position
                                     RandFloat()*TwoPi,        //start rotation
                                     Vector2D(0,0),            //velocity
@@ -96,14 +96,14 @@ GameWorld::GameWorld(int cx, int cy):
 //------------------------------------------------------------------------
 GameWorld::~GameWorld()
 {
-  for (unsigned int a=0; a<m_Vehicles.size(); ++a)
+  for (auto& vehicle : m_Vehicles)
   {
-    delete m_Vehicles[a];
+    delete vehicle;
   }
 
-  for (unsigned int ob=0; ob<m_Obstacles.size(); ++ob)
+  for (auto& obstacle : m_Obstacles)
   {
-    delete m_Obstacles[ob];
+    delete obstacle;
   }
 }
 
@@ -122,9 +122,9 @@ void GameWorld::Update(double time_elapsed)
   
 
   //update the vehicles
-  for (unsigned int a=0; a<m_Vehicles.size(); ++a)
+  for (auto vehicle : m_Vehicles)
   {
-    m_Vehicles[a]->Update(time_elapsed);
+    vehicle->Update(time_elapsed);
   }
 }
   
@@ -152,7 +152,7 @@ void GameWorld::CreateWalls()
                                    Vector2D(bordersize, m_cyClient-bordersize-vDist*CornerSize),
                                    Vector2D(bordersize, bordersize+vDist*CornerSize)};
   
-  for (int w=0; w < walls.size()-1; ++w)
+  for (size_t w=0; w < walls.size() - 1; ++w)
   {
     m_Walls.emplace_back(walls[w], walls[w+1]);
   }
@@ -188,7 +188,7 @@ void GameWorld::CreateObstacles()
       const int border                 = 10;
       const int MinGapBetweenObstacles = 20;
 
-      Obstacle* ob = new Obstacle(RandInt(radius+border, m_cxClient-radius-border),
+      auto* ob = new Obstacle(RandInt(radius+border, m_cxClient-radius-border),
                                   RandInt(radius+border, m_cyClient-radius-30-border),
                                   radius);
 
@@ -244,9 +244,9 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
       double border = 60;
       m_pPath = std::make_unique<Path>(RandInt(3, 7), border, border, cxClient()-border, cyClient()-border, true); 
       m_bShowPath = true; 
-      for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+      for (const auto& vehicle : m_Vehicles)
       {
-        m_Vehicles[i]->Steering()->SetPath(m_pPath->GetPath());
+        vehicle->Steering()->SetPath(m_pPath->GetPath());
       }
     }
     break;
@@ -262,9 +262,9 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
     case 'I':
 
       {
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+        for (const auto& vehicle : m_Vehicles)
         {
-          m_Vehicles[i]->ToggleSmoothing();
+          vehicle->ToggleSmoothing();
         }
       }
 
@@ -277,20 +277,15 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
         if (!m_bShowObstacles)
         {
           m_Obstacles.clear();
-
-          for (unsigned int i=0; i<m_Vehicles.size(); ++i)
-          {
-            m_Vehicles[i]->Steering()->ObstacleAvoidanceOff();
-          }
         }
         else
         {
           CreateObstacles();
+        }
 
-          for (unsigned int i=0; i<m_Vehicles.size(); ++i)
-          {
-            m_Vehicles[i]->Steering()->ObstacleAvoidanceOn();
-          }
+        for (const auto& vehicle : m_Vehicles)
+        {
+          m_bShowObstacles? vehicle->Steering()->ObstacleAvoidanceOn() : vehicle->Steering()->ObstacleAvoidanceOff();
         }
         break;
 
@@ -299,18 +294,15 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
         if(!m_bShowWalls)
         {
           m_Walls.clear();
-          for(const auto& vehicle : m_Vehicles)
-          {
-            vehicle->Steering()->WallAvoidanceOff();
-          }
         }
         else
         {
           CreateWalls();
-          for(const auto& vehicle : m_Vehicles)
-          {
-            vehicle->Steering()->WallAvoidanceOn();
-          }
+        }
+
+        for(const auto& vehicle : m_Vehicles)
+        {
+          m_bShowWalls? vehicle->Steering()->WallAvoidanceOn() : vehicle->Steering()->WallAvoidanceOff();
         }
         break;
   }//end switch
@@ -329,9 +321,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
         {
           m_Obstacles.clear();
 
-          for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+          for (auto& vehicle : m_Vehicles)
           {
-            m_Vehicles[i]->Steering()->ObstacleAvoidanceOff();
+            vehicle->Steering()->ObstacleAvoidanceOff();
           }
 
           //uncheck the menu
@@ -341,9 +333,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
         {
           CreateObstacles();
 
-          for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+          for (auto& vehicle : m_Vehicles)
           {
-            m_Vehicles[i]->Steering()->ObstacleAvoidanceOn();
+            vehicle->Steering()->ObstacleAvoidanceOn();
           }
 
           //check the menu
@@ -359,12 +351,6 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
       if (m_bShowWalls)
       {
         CreateWalls();
-
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
-        {
-          m_Vehicles[i]->Steering()->WallAvoidanceOn();
-        }
-
         //check the menu
          ChangeMenuState(hwnd, ID_OB_WALLS, MFS_CHECKED);
       }
@@ -372,35 +358,32 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
       else
       {
         m_Walls.clear();
-
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
-        {
-          m_Vehicles[i]->Steering()->WallAvoidanceOff();
-        }
-
         //uncheck the menu
          ChangeMenuState(hwnd, ID_OB_WALLS, MFS_UNCHECKED);
       }
-
+      for (auto& vehicle : m_Vehicles)
+      {
+        m_bShowWalls ?  vehicle->Steering()->WallAvoidanceOn() : vehicle->Steering()->WallAvoidanceOff();
+      }
       break;
 
 
     case IDR_PARTITIONING:
       {
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+        for (auto& vehicle : m_Vehicles)
         {
-          m_Vehicles[i]->Steering()->ToggleSpacePartitioningOnOff();
+          vehicle->Steering()->ToggleSpacePartitioningOnOff();
         }
 
         //if toggled on, empty the cell space and then re-add all the 
         //vehicles
-        if (m_Vehicles[0]->Steering()->isSpacePartitioningOn())
+        if (m_Vehicles.back()->Steering()->isSpacePartitioningOn())
         {
           m_pCellSpace->EmptyCells();
        
-          for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+          for (auto& vehicle : m_Vehicles)
           {
-            m_pCellSpace->AddEntity(m_Vehicles[i]);
+            m_pCellSpace->AddEntity(vehicle);
           }
 
           ChangeMenuState(hwnd, IDR_PARTITIONING, MFS_CHECKED);
@@ -443,9 +426,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
         ChangeMenuState(hwnd, IDR_PRIORITIZED, MFS_UNCHECKED);
         ChangeMenuState(hwnd, IDR_DITHERED, MFS_UNCHECKED);
 
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+        for (auto& vehicle : m_Vehicles)
         {
-          m_Vehicles[i]->Steering()->SetSummingMethod(SteeringBehavior::weighted_average);
+          vehicle->Steering()->SetSummingMethod(SteeringBehavior::weighted_average);
         }
       }
 
@@ -457,9 +440,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
         ChangeMenuState(hwnd, IDR_PRIORITIZED, MFS_CHECKED);
         ChangeMenuState(hwnd, IDR_DITHERED, MFS_UNCHECKED);
 
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+        for (auto& vehicle : m_Vehicles)
         {
-          m_Vehicles[i]->Steering()->SetSummingMethod(SteeringBehavior::prioritized);
+          vehicle->Steering()->SetSummingMethod(SteeringBehavior::prioritized);
         }
       }
 
@@ -471,9 +454,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
         ChangeMenuState(hwnd, IDR_PRIORITIZED, MFS_UNCHECKED);
         ChangeMenuState(hwnd, IDR_DITHERED, MFS_CHECKED);
 
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+        for (auto& vehicle : m_Vehicles)
         {
-          m_Vehicles[i]->Steering()->SetSummingMethod(SteeringBehavior::dithered);
+          vehicle->Steering()->SetSummingMethod(SteeringBehavior::dithered);
         }
       }
 
@@ -500,9 +483,9 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
 
       case ID_MENU_SMOOTHING:
       {
-        for (unsigned int i=0; i<m_Vehicles.size(); ++i)
+        for (auto& vehicle : m_Vehicles)
         {
-          m_Vehicles[i]->ToggleSmoothing();
+          vehicle->ToggleSmoothing();
         }
 
         CheckMenuItemAppropriately(hwnd, ID_MENU_SMOOTHING, m_Vehicles[0]->isSmoothingOn());
@@ -522,17 +505,17 @@ void GameWorld::Render()
 
   //render any walls
   gdi->BlackPen();
-  for (unsigned int w=0; w<m_Walls.size(); ++w)
+  for (const auto& wall : m_Walls)
   {
-    m_Walls[w].Render(true);  //true flag shows normals
+    wall.Render(true);  //true flag shows normals
   }
 
   //render any obstacles
   gdi->BlackPen();
   
-  for (unsigned int ob=0; ob<m_Obstacles.size(); ++ob)
+  for (auto& obstacle : m_Obstacles)
   {
-    gdi->Circle(m_Obstacles[ob]->Pos(), m_Obstacles[ob]->BRadius());
+    gdi->Circle(obstacle->Pos(), obstacle->BRadius());
   }
 
   //render the agents
