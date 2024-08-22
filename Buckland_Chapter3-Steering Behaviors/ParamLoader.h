@@ -11,8 +11,8 @@
 #include "constants.h"
 #include <stdexcept>
 #include <string>
-#include "../misc/iniFileLoaderBase.h"
-#include "../misc/utils.h"
+#include "../Misc/iniFileLoaderBase.h"
+#include "../Misc/utils.h"
 
 #define Prm (*ParamLoader::Instance())
 

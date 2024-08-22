@@ -195,7 +195,7 @@ void GameWorld::CreateObstacles()
       if (!Overlapped(ob, m_Obstacles, MinGapBetweenObstacles))
       {
         //its not overlapped so we can add it
-        m_Obstacles.push_back(ob);
+        m_Obstacles.emplace_back(ob);
 
         bOverlapped = false;
       }
@@ -220,7 +220,7 @@ void GameWorld::SetCrosshair(POINTS p)
   Vector2D ProposedPosition((double)p.x, (double)p.y);
 
   //make sure it's not inside an obstacle
-  for (ObIt curOb = m_Obstacles.begin(); curOb != m_Obstacles.end(); ++curOb)
+  for (auto curOb = std::begin(m_Obstacles); curOb != std::end(m_Obstacles); ++curOb)
   {
     if (PointInCircle((*curOb)->Pos(), (*curOb)->BRadius(), ProposedPosition))
     {
@@ -304,6 +304,8 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
         {
           m_bShowWalls? vehicle->Steering()->WallAvoidanceOn() : vehicle->Steering()->WallAvoidanceOff();
         }
+        break;
+    default:
         break;
   }//end switch
 }
@@ -490,8 +492,10 @@ void GameWorld::HandleMenuItems(WPARAM wParam, HWND hwnd)
 
         CheckMenuItemAppropriately(hwnd, ID_MENU_SMOOTHING, m_Vehicles[0]->isSmoothingOn());
       }
-
       break;
+      
+      default:
+        break;
       
   }//end switch
 }
@@ -533,7 +537,7 @@ void GameWorld::Render()
 
       gdi->RedPen();
       CellSpace()->CalculateNeighbors(m_Vehicles[a]->Pos(), Prm.ViewDistance);
-      for (BaseGameEntity* pV = CellSpace()->begin();!CellSpace()->end();pV = CellSpace()->next())
+      for (const BaseGameEntity* pV = CellSpace()->begin();!CellSpace()->end();pV = CellSpace()->next())
       {
         gdi->Circle(pV->Pos(), pV->BRadius());
       }

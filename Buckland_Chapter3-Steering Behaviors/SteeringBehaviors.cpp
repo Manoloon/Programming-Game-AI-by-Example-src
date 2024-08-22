@@ -744,7 +744,7 @@ Vector2D SteeringBehavior::Arrive(Vector2D     TargetPos,
   Vector2D ToTarget = TargetPos - m_pVehicle->Pos();
 
   //calculate the distance to the target
-  double dist = ToTarget.Length();
+  const double dist = ToTarget.Length();
 
   if (dist > 0)
   {
