@@ -141,6 +141,7 @@ public:
   void  ToggleViewKeys(){m_bViewKeys = !m_bViewKeys;}
   bool  ViewKeys()const{return m_bViewKeys;}
 
+  void ToggleCellSpaceInfo() {m_bShowCellSpaceInfo = m_bShowCellSpaceInfo;}
 };
 
 #endif

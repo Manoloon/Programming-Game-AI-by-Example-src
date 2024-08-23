@@ -262,7 +262,8 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
       ToggleSteeringForce(); break;
     case '6':
       ToggleShowPath(); break;
-      
+    case '7':
+      ToggleCellSpaceInfo(); break;
     case 'P':
       TogglePause(); break;
     case 'O':

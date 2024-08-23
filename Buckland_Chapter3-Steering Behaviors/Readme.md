@@ -20,6 +20,7 @@ W = toggle Walls
     H/N = +/- Radius
 5 = Toggle Steering Force
 6 = Toggle Show Path
+7 = Toggle CellSpace Info
 S/X Up Down separation SteeringForceTweaker by 200
 A/Z Up Down Alligment SteeringForceTweaker by 200
 D/C Up Down Cohesion SteeringForceTweaker by 200
