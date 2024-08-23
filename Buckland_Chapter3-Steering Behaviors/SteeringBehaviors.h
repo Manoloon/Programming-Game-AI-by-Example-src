@@ -233,7 +233,8 @@ private:
                               const Vector2D& posHunter) const;
 
 // helper functions
-void ApplyByInput();
+void ChangeForceAndSpeedByInput();
+void ChangeWanderAttributesByInput();
 
 public:
 

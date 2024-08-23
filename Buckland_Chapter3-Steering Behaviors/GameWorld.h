@@ -117,15 +117,23 @@ public:
  
   bool  RenderWalls()const{return m_bShowWalls;}
   bool  RenderObstacles()const{return m_bShowObstacles;}
+  void  ToggleShowPath() {m_bShowPath = !m_bShowPath;}
   bool  RenderPath()const{return m_bShowPath;}
-  //TODO : implementar su uso.
+  
+  void  ToggleDetectionBox() {m_bShowDetectionBox = !m_bShowDetectionBox; }
   bool  RenderDetectionBox()const{return m_bShowDetectionBox;}
+
+  void  ToggleWanderCircle() {m_bShowWanderCircle = !m_bShowWanderCircle;}
   bool  RenderWanderCircle()const{return m_bShowWanderCircle;}
+
+  void  ToggleFeelers() {m_bShowFeelers = !m_bShowFeelers;}
   bool  RenderFeelers()const{return m_bShowFeelers;}
+
+  void  ToggleSteeringForce() { m_bShowSteeringForce = !m_bShowSteeringForce;}
   bool  RenderSteeringForce()const{return m_bShowSteeringForce;}
 
-  bool  RenderFPS()const{return m_bShowFPS;}
   void  ToggleShowFPS(){m_bShowFPS = !m_bShowFPS;}
+  bool  RenderFPS()const{return m_bShowFPS;}
   
   void  ToggleRenderNeighbors(){m_bRenderNeighbors = !m_bRenderNeighbors;}
   bool  RenderNeighbors()const{return m_bRenderNeighbors;}

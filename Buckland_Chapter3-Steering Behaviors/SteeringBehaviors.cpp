@@ -1447,7 +1447,7 @@ Vector2D SteeringBehavior::OffsetPursuit(const Vehicle*  leader,
 //----------------------------- RenderAids -------------------------------
 //
 //------------------------------------------------------------------------
-void SteeringBehavior::ApplyByInput()
+void SteeringBehavior::ChangeForceAndSpeedByInput()
 {
   //for receiving keyboard input from user
   #define KEYDOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
@@ -1458,6 +1458,16 @@ void SteeringBehavior::ApplyByInput()
   if (KEYDOWN(VK_END)){if (m_pVehicle->MaxSpeed() > 0.2f) m_pVehicle->SetMaxSpeed(m_pVehicle->MaxSpeed() - 50.0f*m_pVehicle->TimeElapsed());}
 }
 
+void SteeringBehavior::ChangeWanderAttributesByInput()
+{
+    if (KEYDOWN('F')){m_dWanderJitter+=1.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderJitter, 0.0f, 100.0f);}
+    if (KEYDOWN('V')){m_dWanderJitter-=1.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderJitter, 0.0f, 100.0f );}
+    if (KEYDOWN('G')){m_dWanderDistance+=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderDistance, 0.0f, 50.0f);}
+    if (KEYDOWN('B')){m_dWanderDistance-=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderDistance, 0.0f, 50.0f);}
+    if (KEYDOWN('H')){m_dWanderRadius+=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderRadius, 0.0f, 100.0f);}
+    if (KEYDOWN('N')){m_dWanderRadius-=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderRadius, 0.0f, 100.0f);}
+}
+
 void SteeringBehavior::RenderAids( )
 { 
   
@@ -1466,7 +1476,7 @@ void SteeringBehavior::RenderAids( )
 
   int NextSlot = 0; int SlotSize = 20;
 
-  ApplyByInput();
+  ChangeForceAndSpeedByInput();
 
   if (m_pVehicle->MaxForce() < 0) m_pVehicle->SetMaxForce(0.0f);
   if (m_pVehicle->MaxSpeed() < 0) m_pVehicle->SetMaxSpeed(0.0f);
@@ -1485,14 +1495,8 @@ void SteeringBehavior::RenderAids( )
   //render wander stuff if relevant
   if (On(wander) && m_pVehicle->World()->RenderWanderCircle())
   {    
-    if (KEYDOWN('F')){m_dWanderJitter+=1.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderJitter, 0.0f, 100.0f);}
-    if (KEYDOWN('V')){m_dWanderJitter-=1.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderJitter, 0.0f, 100.0f );}
-    if (KEYDOWN('G')){m_dWanderDistance+=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderDistance, 0.0f, 50.0f);}
-    if (KEYDOWN('B')){m_dWanderDistance-=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderDistance, 0.0f, 50.0f);}
-    if (KEYDOWN('H')){m_dWanderRadius+=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderRadius, 0.0f, 100.0f);}
-    if (KEYDOWN('N')){m_dWanderRadius-=2.0f*m_pVehicle->TimeElapsed(); Clamp(m_dWanderRadius, 0.0f, 100.0f);}
+    ChangeWanderAttributesByInput();
 
- 
     if (m_pVehicle->ID() == 0){ gdi->TextAtPos(5,NextSlot, "Jitter(F/V): "); gdi->TextAtPos(160, NextSlot, ttos(m_dWanderJitter));NextSlot+=SlotSize;}
     if (m_pVehicle->ID() == 0) {gdi->TextAtPos(5,NextSlot,"Distance(G/B): "); gdi->TextAtPos(160, NextSlot, ttos(m_dWanderDistance));NextSlot+=SlotSize;}
     if (m_pVehicle->ID() == 0) {gdi->TextAtPos(5,NextSlot,"Radius(H/N): ");gdi->TextAtPos(160, NextSlot,  ttos(m_dWanderRadius));NextSlot+=SlotSize;}
@@ -1651,4 +1655,3 @@ void SteeringBehavior::RenderAids( )
   }  
 
 }
-

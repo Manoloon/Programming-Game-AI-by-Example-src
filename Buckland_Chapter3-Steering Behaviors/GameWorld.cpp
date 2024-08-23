@@ -251,11 +251,18 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
     }
     break;
     case '1':
-      RenderFeelers();  break;
+      ToggleFeelers();  break;
     case '2':
-      RenderDetectionBox();  break;
+      ToggleDetectionBox();  break;
     case '3':
       ToggleViewKeys();  break;
+    case '4':
+      ToggleWanderCircle(); break;
+    case '5':
+      ToggleSteeringForce(); break;
+    case '6':
+      ToggleShowPath(); break;
+      
     case 'P':
       TogglePause(); break;
     case 'O':
