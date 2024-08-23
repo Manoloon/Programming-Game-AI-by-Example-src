@@ -141,7 +141,7 @@ private:
   //this function tests if a specific bit of m_iFlags is set
   bool      On(behavior_type bt) const {return (m_iFlags & bt) == bt;}
 
-  bool      AccumulateForce(Vector2D &sf, Vector2D ForceToAdd);
+  bool      AccumulateForce(Vector2D &sf, Vector2D ForceToAdd) const;
 
   //creates the antenna utilized by the wall avoidance behavior
   void      CreateFeelers();
@@ -155,16 +155,15 @@ private:
 
 
   //this behavior moves the agent towards a target position
-  Vector2D Seek(Vector2D TargetPos);
+  Vector2D Seek(Vector2D TargetPos) const;
 
   //this behavior returns a vector that moves the agent away
   //from a target position
-  Vector2D Flee(Vector2D TargetPos);
+  Vector2D Flee(Vector2D TargetPos) const;
 
   //this behavior is similar to seek but it attempts to arrive 
   //at the target position with a zero velocity
-  Vector2D Arrive(Vector2D     TargetPos,
-                  Deceleration deceleration);
+  Vector2D Arrive(Vector2D TargetPos,Deceleration deceleration) const;
 
   //this behavior predicts where an agent will be in time T and seeks
   //towards that point to intercept it.
@@ -231,7 +230,10 @@ private:
   //side of an obstacle to the pursuer
   Vector2D GetHidingPosition(const Vector2D& posOb,
                               const double     radiusOb,
-                              const Vector2D& posHunter);
+                              const Vector2D& posHunter) const;
+
+// helper functions
+void ApplyByInput();
 
 public:
 
@@ -244,11 +246,11 @@ public:
 
   //calculates the component of the steering force that is parallel
   //with the vehicle heading
-  double    ForwardComponent();
+  double    ForwardComponent() const;
 
   //calculates the component of the steering force that is perpendicuar
   //with the vehicle heading
-  double    SideComponent();
+  double    SideComponent() const;
 
   //renders visual aids and info for seeing how each behavior is
   //calculated

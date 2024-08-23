@@ -250,15 +250,16 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
       }
     }
     break;
-
+    case '1':
+      RenderFeelers();  break;
+    case '2':
+      RenderDetectionBox();  break;
+    case '3':
+      ToggleViewKeys();  break;
     case 'P':
-      
       TogglePause(); break;
-
     case 'O':
-
       ToggleRenderNeighbors(); break;
-
     case 'I':
 
       {
@@ -299,7 +300,6 @@ void GameWorld::HandleKeyPresses(WPARAM wParam)
         {
           CreateWalls();
         }
-
         for(const auto& vehicle : m_Vehicles)
         {
           m_bShowWalls? vehicle->Steering()->WallAvoidanceOn() : vehicle->Steering()->WallAvoidanceOff();

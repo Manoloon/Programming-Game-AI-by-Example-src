@@ -118,6 +118,7 @@ public:
   bool  RenderWalls()const{return m_bShowWalls;}
   bool  RenderObstacles()const{return m_bShowObstacles;}
   bool  RenderPath()const{return m_bShowPath;}
+  //TODO : implementar su uso.
   bool  RenderDetectionBox()const{return m_bShowDetectionBox;}
   bool  RenderWanderCircle()const{return m_bShowWanderCircle;}
   bool  RenderFeelers()const{return m_bShowFeelers;}

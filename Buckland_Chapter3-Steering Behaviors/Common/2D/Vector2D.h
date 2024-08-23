@@ -23,7 +23,7 @@ struct Vector2D
 
   Vector2D():x(0.0),y(0.0){}
   Vector2D(double a, double b):x(a),y(b){}
-
+ 
   //sets x and y to zero
   void Zero(){x=0.0; y=0.0;}
 
@@ -31,36 +31,36 @@ struct Vector2D
   bool isZero()const{return (x*x + y*y) < MinDouble;}
 
   //returns the length of the vector
-  inline double    Length()const;
+  double    Length()const;
 
   //returns the squared length of the vector (thereby avoiding the sqrt)
-  inline double    LengthSq()const;
+  double    LengthSq()const;
 
-  inline void      Normalize();
+  void      Normalize();
 
-  inline double    Dot(const Vector2D& v2)const;
+  double    Dot(const Vector2D& v2)const;
 
   //returns positive if v2 is clockwise of this vector,
   //negative if anticlockwise (assuming the Y axis is pointing down,
   //X axis to right like a Window app)
-  inline int       Sign(const Vector2D& v2)const;
+  int       Sign(const Vector2D& v2)const;
 
   //returns the vector that is perpendicular to this one.
-  inline Vector2D  Perp()const;
+  Vector2D  Perp()const;
 
   //adjusts x and y so that the length of the vector does not exceed max
-  inline void      Truncate(double max);
+  void      Truncate(double max);
 
   //returns the distance between this vector and th one passed as a parameter
-  inline double    Distance(const Vector2D &v2)const;
+  double    Distance(const Vector2D &v2)const;
 
   //squared version of above.
-  inline double    DistanceSq(const Vector2D &v2)const;
+  double    DistanceSq(const Vector2D &v2)const;
 
-  inline void      Reflect(const Vector2D& norm);
+  void      Reflect(const Vector2D& norm);
 
   //returns the vector that is the reverse of this vector
-  inline Vector2D  GetReverse()const;
+  Vector2D  GetReverse()const;
 
 
   //we need some overloaded operators

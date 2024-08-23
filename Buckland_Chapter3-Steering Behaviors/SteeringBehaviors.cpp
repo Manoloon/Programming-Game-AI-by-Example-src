@@ -134,7 +134,7 @@ Vector2D SteeringBehavior::GetSteeringForce()
 //
 //  returns the forward oomponent of the steering force
 //------------------------------------------------------------------------
-double SteeringBehavior::ForwardComponent()
+double SteeringBehavior::ForwardComponent() const
 {
   return m_pVehicle->Heading().Dot(m_vSteeringForce);
 }
@@ -142,7 +142,7 @@ double SteeringBehavior::ForwardComponent()
 //--------------------------- SideComponent ------------------------------
 //  returns the side component of the steering force
 //------------------------------------------------------------------------
-double SteeringBehavior::SideComponent()
+double SteeringBehavior::SideComponent() const
 {
   return m_pVehicle->Side().Dot(m_vSteeringForce);
 }
@@ -155,7 +155,7 @@ double SteeringBehavior::SideComponent()
 //  force to add.
 //------------------------------------------------------------------------
 bool SteeringBehavior::AccumulateForce(Vector2D &RunningTot,
-                                       Vector2D ForceToAdd)
+                                       Vector2D ForceToAdd) const
 {
   
   //calculate how much steering force the vehicle has used so far
@@ -166,15 +166,12 @@ bool SteeringBehavior::AccumulateForce(Vector2D &RunningTot,
 
   //return false if there is no more force left to use
   if (MagnitudeRemaining <= 0.0) return false;
-
-  //calculate the magnitude of the force we want to add
-  double MagnitudeToAdd = ForceToAdd.Length();
   
   //if the magnitude of the sum of ForceToAdd and the running total
   //does not exceed the maximum force available to this vehicle, just
   //add together. Otherwise add as much of the ForceToAdd vector is
   //possible without going over the max.
-  if (MagnitudeToAdd < MagnitudeRemaining)
+  if (MagnitudeRemaining > ForceToAdd.Length())
   {
     RunningTot += ForceToAdd;
   }
@@ -704,7 +701,7 @@ Vector2D SteeringBehavior::CalculateDithered()
 //  Given a target, this behavior returns a steering force which will
 //  direct the agent towards the target
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::Seek(Vector2D TargetPos)
+Vector2D SteeringBehavior::Seek(Vector2D TargetPos) const
 {
   Vector2D DesiredVelocity = Vec2DNormalize(TargetPos - m_pVehicle->Pos())
                             * m_pVehicle->MaxSpeed();
@@ -716,7 +713,7 @@ Vector2D SteeringBehavior::Seek(Vector2D TargetPos)
 //
 //  Does the opposite of Seek
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::Flee(Vector2D TargetPos)
+Vector2D SteeringBehavior::Flee(Vector2D TargetPos) const
 {
   //only flee if the target is within 'panic distance'. Work in distance
   //squared space.
@@ -739,7 +736,7 @@ Vector2D SteeringBehavior::Flee(Vector2D TargetPos)
 //  target with a zero velocity
 //------------------------------------------------------------------------
 Vector2D SteeringBehavior::Arrive(Vector2D     TargetPos,
-                                  Deceleration deceleration)
+                                  Deceleration deceleration) const
 {
   Vector2D ToTarget = TargetPos - m_pVehicle->Pos();
 
@@ -1327,10 +1324,10 @@ Vector2D SteeringBehavior::Interpose(const Vehicle* AgentA,
 //--------------------------- Hide ---------------------------------------
 //
 //------------------------------------------------------------------------
-Vector2D SteeringBehavior::Hide(const Vehicle*           hunter,
-                                 const vector<BaseGameEntity*>& obstacles)
+Vector2D SteeringBehavior::Hide(const Vehicle* hunter,
+                                const vector<BaseGameEntity*>& obstacles)
 {
-  double    DistToClosest = MaxDouble;
+  double   DistToClosest = MaxDouble;
   Vector2D BestHidingSpot;
 
   std::vector<BaseGameEntity*>::const_iterator curOb = obstacles.begin();
@@ -1346,7 +1343,7 @@ Vector2D SteeringBehavior::Hide(const Vehicle*           hunter,
     //work in distance-squared space to find the closest hiding
     //spot to the agent
     double dist = Vec2DDistanceSq(HidingSpot, m_pVehicle->Pos());
-
+    
     if (dist < DistToClosest)
     {
       DistToClosest = dist;
@@ -1378,7 +1375,7 @@ Vector2D SteeringBehavior::Hide(const Vehicle*           hunter,
 //------------------------------------------------------------------------
 Vector2D SteeringBehavior::GetHidingPosition(const Vector2D& posOb,
                                               const double     radiusOb,
-                                              const Vector2D& posHunter)
+                                              const Vector2D& posHunter) const
 {
   //calculate how far away the agent is to be from the chosen obstacle's
   //bounding radius
@@ -1392,7 +1389,6 @@ Vector2D SteeringBehavior::GetHidingPosition(const Vector2D& posOb,
   //the hiding spot.
   return (ToOb * DistAway) + posOb;
 }
-
 
 //------------------------------- FollowPath -----------------------------
 //
@@ -1448,13 +1444,20 @@ Vector2D SteeringBehavior::OffsetPursuit(const Vehicle*  leader,
   return Arrive(WorldOffsetPos + leader->Velocity() * LookAheadTime, fast);
 }
 
-
-
-//for receiving keyboard input from user
-#define KEYDOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
 //----------------------------- RenderAids -------------------------------
 //
 //------------------------------------------------------------------------
+void SteeringBehavior::ApplyByInput()
+{
+  //for receiving keyboard input from user
+  #define KEYDOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
+  
+  if (KEYDOWN(VK_INSERT)){m_pVehicle->SetMaxForce(m_pVehicle->MaxForce() + 1000.0f*m_pVehicle->TimeElapsed());} 
+  if (KEYDOWN(VK_DELETE)){if (m_pVehicle->MaxForce() > 0.2f) m_pVehicle->SetMaxForce(m_pVehicle->MaxForce() - 1000.0f*m_pVehicle->TimeElapsed());}
+  if (KEYDOWN(VK_HOME)){m_pVehicle->SetMaxSpeed(m_pVehicle->MaxSpeed() + 50.0f*m_pVehicle->TimeElapsed());}
+  if (KEYDOWN(VK_END)){if (m_pVehicle->MaxSpeed() > 0.2f) m_pVehicle->SetMaxSpeed(m_pVehicle->MaxSpeed() - 50.0f*m_pVehicle->TimeElapsed());}
+}
+
 void SteeringBehavior::RenderAids( )
 { 
   
@@ -1463,10 +1466,7 @@ void SteeringBehavior::RenderAids( )
 
   int NextSlot = 0; int SlotSize = 20;
 
-  if (KEYDOWN(VK_INSERT)){m_pVehicle->SetMaxForce(m_pVehicle->MaxForce() + 1000.0f*m_pVehicle->TimeElapsed());} 
-  if (KEYDOWN(VK_DELETE)){if (m_pVehicle->MaxForce() > 0.2f) m_pVehicle->SetMaxForce(m_pVehicle->MaxForce() - 1000.0f*m_pVehicle->TimeElapsed());}
-  if (KEYDOWN(VK_HOME)){m_pVehicle->SetMaxSpeed(m_pVehicle->MaxSpeed() + 50.0f*m_pVehicle->TimeElapsed());}
-  if (KEYDOWN(VK_END)){if (m_pVehicle->MaxSpeed() > 0.2f) m_pVehicle->SetMaxSpeed(m_pVehicle->MaxSpeed() - 50.0f*m_pVehicle->TimeElapsed());}
+  ApplyByInput();
 
   if (m_pVehicle->MaxForce() < 0) m_pVehicle->SetMaxForce(0.0f);
   if (m_pVehicle->MaxSpeed() < 0) m_pVehicle->SetMaxSpeed(0.0f);
@@ -1600,15 +1600,14 @@ void SteeringBehavior::RenderAids( )
 /////////////////////////////////////////////////////
   }
 
-  //render the wall avoidnace feelers
+  //render the wall avoidance feelers
   if (On(wall_avoidance) && m_pVehicle->World()->RenderFeelers())
   {
     gdi->OrangePen();
 
-    for (unsigned int flr=0; flr<m_Feelers.size(); ++flr)
+    for (const auto& feeler : m_Feelers)
     {
-
-      gdi->Line(m_pVehicle->Pos(), m_Feelers[flr]);
+      gdi->Line(m_pVehicle->Pos(), feeler);
     }            
   }  
 
