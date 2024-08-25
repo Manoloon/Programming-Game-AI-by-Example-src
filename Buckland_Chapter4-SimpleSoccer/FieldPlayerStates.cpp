@@ -1,18 +1,18 @@
 #include "FieldPlayerStates.h"
-#include "Debug/DebugConsole.h"
+#include "../Debug/DebugConsole.h"
 #include "SoccerPitch.h"
 #include "FieldPlayer.h"
 #include "SteeringBehaviors.h"
 #include "SoccerTeam.h"
 #include "Goal.h"
-#include "2D/geometry.h"
+#include "../2D/geometry.h"
 #include "SoccerBall.h"
 #include "ParamLoader.h"
-#include "Messaging/Telegram.h"
-#include "Messaging/MessageDispatcher.h"
+#include "../Messaging/Telegram.h"
+#include "../Messaging/MessageDispatcher.h"
 #include "SoccerMessages.h"
 
-#include "time/Regulator.h"
+#include "../Time/Regulator.h"
 
 
 //uncomment below to send state info to the debug window
@@ -52,7 +52,7 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
   case Msg_ReceiveBall:
     {
       //set the target
-      player->Steering()->SetTarget(*(static_cast<Vector2D*>(telegram.ExtraInfo)));
+      player->Steering()->SetTarget(*(std::get<Vector2D*>(telegram.ExtraInfo)));
 
       //change state 
       player->GetFSM()->ChangeState(ReceiveBall::Instance());
@@ -106,7 +106,7 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
     {  
       
       //get the position of the player requesting the pass 
-      FieldPlayer* receiver = static_cast<FieldPlayer*>(telegram.ExtraInfo);
+      FieldPlayer* receiver = std::get<FieldPlayer*>(telegram.ExtraInfo);
 
       #ifdef PLAYER_STATE_INFO_ON
       debug_con << "Player " << player->ID() << " received request from " <<

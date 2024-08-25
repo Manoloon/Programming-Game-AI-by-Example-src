@@ -1,0 +1,2 @@
+C:\Coding\common\mingw64\bin\ar.exe qc libMisc.a CMakeFiles/Misc.dir/Cgdi.cpp.obj CMakeFiles/Misc.dir/FrameCounter.cpp.obj CMakeFiles/Misc.dir/iniFileLoaderBase.cpp.obj CMakeFiles/Misc.dir/WindowUtils.cpp.obj
+C:\Coding\common\mingw64\bin\ranlib.exe libMisc.a

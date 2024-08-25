@@ -1,0 +1,2 @@
+C:\Coding\common\mingw64\bin\ar.exe qc libDebug.a CMakeFiles/Debug.dir/DebugConsole.cpp.obj
+C:\Coding\common\mingw64\bin\ranlib.exe libDebug.a

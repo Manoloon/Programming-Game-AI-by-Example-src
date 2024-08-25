@@ -1,0 +1,1 @@
+ Common/Messaging/libMessaging.a Common/Time/libTime.a Common/Game/libGame.a Common/Misc/libMisc.a Common/2D/lib2D.a Common/Debug/libDebug.a -lwinmm -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

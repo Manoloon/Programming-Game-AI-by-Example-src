@@ -1,6 +1,8 @@
-#include "Debug/DebugConsole.h"
+#include "DebugConsole.h"
 #include <iterator>
-#pragma warning (disable : 4786)
+#include <codecvt>  // For string conversion
+#include <locale>
+#include <string>
 
 //initialize static variable
 std::vector<std::string> DebugConsole::m_Buffer;
@@ -200,7 +202,9 @@ LRESULT CALLBACK DebugConsole::DebugWindowProc(HWND hwnd,
 
           for (beg; (beg !=end) && (beg != m_Buffer.end()); ++beg)
           {
-            TextOut(ps.hdc, 0, cyChar*line++, (*beg).c_str(), (*beg).size()); 
+            // Convert std::string to std::wstring
+            std::wstring wstr = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(*beg);
+            TextOutW(ps.hdc, 0, cyChar* line++, wstr.c_str(), wstr.size()); 
           }
         }
     
@@ -254,7 +258,7 @@ bool DebugConsole::Create()
   m_LogOut.open("DebugLog.txt");
 
   
-  WNDCLASSEX wDebugConsole = {sizeof(WNDCLASSEX), 
+  WNDCLASSEXW wDebugConsole = {sizeof(WNDCLASSEX), 
                        CS_HREDRAW | CS_VREDRAW,
                        DebugWindowProc,
                        0,
@@ -264,14 +268,14 @@ bool DebugConsole::Create()
 						           NULL,
 						           (HBRUSH)(GetStockObject(GRAY_BRUSH)),
 						           NULL,
-						           "Debug",
+						           L"Debug",
 						           NULL }; 
 
 
   //register the window class
-  if (!RegisterClassEx(&wDebugConsole))
+  if (!RegisterClassExW(&wDebugConsole))
   {
-    MessageBox(NULL, "Registration of Debug Console Failed!", "Error", 0);
+    MessageBoxW(NULL, L"Registration of Debug Console Failed!", L"Error", 0);
 
     //exit the application
     return false;
@@ -283,8 +287,8 @@ bool DebugConsole::Create()
  // GetClientRect(GetActiveWindow(), &rectActive);
 
 	// Create the info window
-  m_hwnd = CreateWindow("Debug",
-                            "Debug Console", 
+  m_hwnd = CreateWindowW(L"Debug",
+                           L"Debug Console", 
 									          WS_OVERLAPPED | WS_VISIBLE | WS_SYSMENU| WS_VSCROLL | WS_THICKFRAME,
                             0,
 									          0,
@@ -298,7 +302,7 @@ bool DebugConsole::Create()
     //make sure the window creation has gone OK
   if(!m_hwnd)
   {
-    MessageBox(m_hwnd, "CreateWindowEx Failed!", "Error!", 0);
+    MessageBoxW(m_hwnd,L"CreateWindowEx Failed!",L"Error!", 0);
 
     return false;
   }

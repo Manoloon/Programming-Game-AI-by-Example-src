@@ -1,0 +1,158 @@
+[
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\main.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\main.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/main.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\FieldPlayer.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\FieldPlayer.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/FieldPlayer.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\FieldPlayerStates.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\FieldPlayerStates.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/FieldPlayerStates.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/FieldPlayerStates.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\ParamLoader.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\ParamLoader.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/ParamLoader.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/ParamLoader.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\Goal.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Goal.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Goal.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/Goal.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\SteeringBehaviors.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\SteeringBehaviors.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SteeringBehaviors.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/SteeringBehaviors.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\Goalkeeper.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Goalkeeper.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Goalkeeper.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/Goalkeeper.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\GoalKeeperStates.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\GoalKeeperStates.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/GoalKeeperStates.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/GoalKeeperStates.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\PlayerBase.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\PlayerBase.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/PlayerBase.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/PlayerBase.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\SoccerBall.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\SoccerBall.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SoccerBall.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/SoccerBall.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\SoccerMessages.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\SoccerMessages.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SoccerMessages.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/SoccerMessages.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\SoccerPitch.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\SoccerPitch.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SoccerPitch.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/SoccerPitch.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\SoccerTeam.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\SoccerTeam.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SoccerTeam.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/SoccerTeam.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\SupportSpotCalculator.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\SupportSpotCalculator.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SupportSpotCalculator.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/SupportSpotCalculator.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe  @CMakeFiles/SimpleSoccer.dir/includes_CXX.rsp -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\SimpleSoccer.dir\\TeamStates.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\TeamStates.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/TeamStates.cpp",
+  "output": "CMakeFiles/SimpleSoccer.dir/TeamStates.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Messaging",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Messaging.dir\\MessageDispatcher.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Messaging\\MessageDispatcher.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Messaging/MessageDispatcher.cpp",
+  "output": "Common/Messaging/CMakeFiles/Messaging.dir/MessageDispatcher.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Time",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Time.dir\\CrudeTimer.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Time\\CrudeTimer.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Time/CrudeTimer.cpp",
+  "output": "Common/Time/CMakeFiles/Time.dir/CrudeTimer.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Time",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Time.dir\\PrecisionTimer.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Time\\PrecisionTimer.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Time/PrecisionTimer.cpp",
+  "output": "Common/Time/CMakeFiles/Time.dir/PrecisionTimer.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Game",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Game.dir\\BaseGameEntity.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Game\\BaseGameEntity.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Game/BaseGameEntity.cpp",
+  "output": "Common/Game/CMakeFiles/Game.dir/BaseGameEntity.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Game",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Game.dir\\EntityManager.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Game\\EntityManager.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Game/EntityManager.cpp",
+  "output": "Common/Game/CMakeFiles/Game.dir/EntityManager.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Misc",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Misc.dir\\Cgdi.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Misc\\Cgdi.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Misc/Cgdi.cpp",
+  "output": "Common/Misc/CMakeFiles/Misc.dir/Cgdi.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Misc",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Misc.dir\\FrameCounter.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Misc\\FrameCounter.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Misc/FrameCounter.cpp",
+  "output": "Common/Misc/CMakeFiles/Misc.dir/FrameCounter.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Misc",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Misc.dir\\iniFileLoaderBase.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Misc\\iniFileLoaderBase.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Misc/iniFileLoaderBase.cpp",
+  "output": "Common/Misc/CMakeFiles/Misc.dir/iniFileLoaderBase.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Misc",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Misc.dir\\WindowUtils.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Misc\\WindowUtils.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Misc/WindowUtils.cpp",
+  "output": "Common/Misc/CMakeFiles/Misc.dir/WindowUtils.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/2D",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\2D.dir\\Vector2d.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\2D\\Vector2d.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/2D/Vector2d.cpp",
+  "output": "Common/2D/CMakeFiles/2D.dir/Vector2d.cpp.obj"
+},
+{
+  "directory": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Debug",
+  "command": "C:\\Coding\\common\\mingw64\\bin\\g++.exe   -g -std=gnu++17 -Wall -Wextra -Wpedantic -Wshadow -o CMakeFiles\\Debug.dir\\DebugConsole.cpp.obj -c C:\\Coding\\cpp\\Programming-Game-AI-by-Example-src\\Buckland_Chapter4-SimpleSoccer\\Common\\Debug\\DebugConsole.cpp",
+  "file": "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Debug/DebugConsole.cpp",
+  "output": "Common/Debug/CMakeFiles/Debug.dir/DebugConsole.cpp.obj"
+}
+]

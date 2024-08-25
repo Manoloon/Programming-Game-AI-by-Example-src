@@ -18,8 +18,8 @@
 //
 //------------------------------------------------------------------------
 
-char* g_szApplicationName = "Simple Soccer";
-char*	g_szWindowClassName = "MyWindowClass";
+wchar_t* g_szApplicationName = L"Simple Soccer";
+wchar_t*	g_szWindowClassName = L"MyWindowClass";
 
 SoccerPitch* g_SoccerPitch;
 
@@ -306,10 +306,10 @@ int WINAPI WinMain (HINSTANCE hInstance,
   HWND						hWnd;
     
   //our window class structure
-  WNDCLASSEX     winclass;
+  WNDCLASSEXW     winclass;
 		 
   // first fill in the window class stucture
-  winclass.cbSize        = sizeof(WNDCLASSEX);
+  winclass.cbSize        = sizeof(WNDCLASSEXW);
   winclass.style         = CS_HREDRAW | CS_VREDRAW;
   winclass.lpfnWndProc   = WindowProc;
   winclass.cbClsExtra    = 0;
@@ -317,22 +317,22 @@ int WINAPI WinMain (HINSTANCE hInstance,
   winclass.hInstance     = hInstance;
   winclass.hIcon         = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
   winclass.hCursor       = LoadCursor(NULL, IDC_ARROW);
-  winclass.hbrBackground = NULL;
-  winclass.lpszMenuName  = MAKEINTRESOURCE(IDR_MENU1);
+  winclass.hbrBackground = NULL; //(HBRUSH)(COLOR_WINDOW+1)
+  winclass.lpszMenuName  = NULL; //MAKEINTRESOURCE(IDR_MENU1);
   winclass.lpszClassName = g_szWindowClassName;
   winclass.hIconSm       = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
 
   //register the window class
-  if (!RegisterClassEx(&winclass))
+  if (!RegisterClassExW(&winclass))
   {
-    MessageBoxW(NULL, "Registration Failed!", "Error", 0);
+    MessageBoxW(NULL, L"Registration Failed!", L"Error", 0);
 
     //exit the application
     return 0;
   }
 
   //create the window and assign its ID to hwnd    
-  hWnd = CreateWindowEx (NULL,                 // extended style
+  hWnd = CreateWindowExW (NULL,                 // extended style
                          g_szWindowClassName,  // window class name
                          g_szApplicationName,  // window caption
                          WS_OVERLAPPED | WS_VISIBLE | WS_CAPTION | WS_SYSMENU,
@@ -348,7 +348,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
   //make sure the window creation has gone OK
   if(!hWnd)
   {
-    MessageBox(NULL, "CreateWindowEx Failed!", "Error!", 0);
+    MessageBoxW(NULL, L"CreateWindowEx Failed!", L"Error!", 0);
   }
   
   //start the timer
@@ -392,7 +392,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
   delete g_SoccerPitch;
 
-  UnregisterClass( g_szWindowClassName, winclass.hInstance );
+  UnregisterClassW( g_szWindowClassName, winclass.hInstance );
 
   return msg.wParam;
 }

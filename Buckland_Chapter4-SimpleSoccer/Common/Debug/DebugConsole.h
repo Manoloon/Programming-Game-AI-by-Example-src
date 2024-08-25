@@ -1,6 +1,5 @@
 #ifndef DEBUG_CONSOLE_H
 #define DEBUG_CONSOLE_H
-#pragma warning (disable:4786)
 //------------------------------------------------------------------------
 //
 // Name:   DebugConsole.h
@@ -22,8 +21,8 @@
 #include <iosfwd>
 #include <fstream>
 
-#include "misc/utils.h"
-#include "misc/WindowUtils.h"
+#include "../Misc/utils.h"
+#include "../Misc/WindowUtils.h"
 
 
 //need to define a custom message
@@ -133,7 +132,7 @@ public:
   {
     if (!m_bDestroyed)
     {
-      m_bFlushed = true; SendMessage(m_hwnd, UM_SETSCROLL, NULL, NULL);
+      m_bFlushed = true; SendMessageW(m_hwnd, UM_SETSCROLL, 0, 0);
     }
   }
 

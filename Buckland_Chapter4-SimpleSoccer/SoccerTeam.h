@@ -17,9 +17,9 @@
 
 #include <vector>
 
-#include "Game/Region.h"
+#include "../Game/Region.h"
 #include "SupportSpotCalculator.h"
-#include "FSM/StateMachine.h"
+#include "../FSM/StateMachine.h"
 
 class Goal;
 class PlayerBase;
@@ -103,7 +103,7 @@ public:
   //made. Else returns false and sets heading to a zero vector
   bool        CanShoot(Vector2D  BallPos,
                        double     power, 
-                       Vector2D& ShotTarget = Vector2D())const;
+                       Vector2D& ShotTarget)const;
 
   //The best pass is considered to be the pass that cannot be intercepted 
   //by an opponent and that is as far forward of the receiver as possible  

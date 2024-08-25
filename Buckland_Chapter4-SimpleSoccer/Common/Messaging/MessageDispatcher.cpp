@@ -44,7 +44,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
                                     int          sender,
                                     int          receiver,
                                     int          msg,
-                                    std::variant<int,float,double>         AdditionalInfo = 0)
+                                    std::variant<int,float,double,Vector2D*>         AdditionalInfo = 0)
 {
 
   //get a pointer to the receiver

@@ -1,0 +1,2 @@
+C:\Coding\common\mingw64\bin\ar.exe qc libTime.a CMakeFiles/Time.dir/CrudeTimer.cpp.obj CMakeFiles/Time.dir/PrecisionTimer.cpp.obj
+C:\Coding\common\mingw64\bin\ranlib.exe libTime.a

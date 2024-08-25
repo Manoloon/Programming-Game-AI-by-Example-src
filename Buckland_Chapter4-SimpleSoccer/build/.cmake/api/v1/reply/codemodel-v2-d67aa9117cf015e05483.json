@@ -1,0 +1,213 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "Common/Messaging",
+					"jsonFile" : "directory-Common.Messaging-Debug-37d06d1fe9ff6f70958b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Common/Messaging",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "Common/Time",
+					"jsonFile" : "directory-Common.Time-Debug-b1069fd06e20eda5ce7a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Common/Time",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "Common/Game",
+					"jsonFile" : "directory-Common.Game-Debug-e9d8615ea63ac4042b6c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Common/Game",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "Common/Misc",
+					"jsonFile" : "directory-Common.Misc-Debug-dc29b0f792274f6e39f0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Common/Misc",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "Common/2D",
+					"jsonFile" : "directory-Common.2D-Debug-168288282f3e713be183.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Common/2D",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "Common/Debug",
+					"jsonFile" : "directory-Common.Debug-Debug-edd13a628646b0dfe62a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Common/Debug",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "SimpleSoccer",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 5,
+					"id" : "2D::@5ae2f3174182c363446b",
+					"jsonFile" : "target-2D-Debug-a72e9faf0a90f543697a.json",
+					"name" : "2D",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "Debug::@33408d755b25ffa2512a",
+					"jsonFile" : "target-Debug-Debug-1c6cd0292f4abdcb44a5.json",
+					"name" : "Debug",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "Game::@827fb8178c854f4c9b0e",
+					"jsonFile" : "target-Game-Debug-421c2a5c52cc0505ccbe.json",
+					"name" : "Game",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Messaging::@d5f7945db47584364c0f",
+					"jsonFile" : "target-Messaging-Debug-f218e76b973e217bca6c.json",
+					"name" : "Messaging",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "Misc::@cbf11dc2b5e7d812c379",
+					"jsonFile" : "target-Misc-Debug-e268d9f3f2919c10c923.json",
+					"name" : "Misc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SimpleSoccer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SimpleSoccer-Debug-f282118b53f319038452.json",
+					"name" : "SimpleSoccer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Time::@f3ef3615b95292f20af8",
+					"jsonFile" : "target-Time-Debug-ac5022c9d8143028cea9.json",
+					"name" : "Time",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+		"source" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

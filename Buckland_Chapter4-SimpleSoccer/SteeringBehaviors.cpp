@@ -1,9 +1,9 @@
 #include "SteeringBehaviors.h"
 #include "PlayerBase.h"
-#include "2D/Transformations.h"
-#include "misc/utils.h"
+#include "../2D/Transformations.h"
+#include "../Misc/utils.h"
 #include "SoccerTeam.h"
-#include "misc/autolist.h"
+#include "../Misc/autolist.h"
 #include "ParamLoader.h"
 #include "SoccerBall.h"
 
@@ -190,7 +190,7 @@ Vector2D SteeringBehaviors::Arrive(Vector2D    target,
     double speed =  dist / ((double)deceleration * DecelerationTweaker);                    
 
     //make sure the velocity does not exceed the max
-    speed = min(speed, m_pPlayer->MaxSpeed());
+    speed = std::min(speed, m_pPlayer->MaxSpeed());
 
     //from here proceed just like Seek except we don't need to normalize 
     //the ToTarget vector because we have already gone to the trouble

@@ -14,6 +14,7 @@
 #include <iostream>
 #include <variant>
 #include <math.h>
+#include "../Misc/WindowUtils.h"
 
 struct Telegram
 {
@@ -34,7 +35,7 @@ struct Telegram
 
 
   //any additional information that may accompany the message
-  std::variant<int,float,double>       ExtraInfo;
+  std::variant<int,float,double,Vector2D*>       ExtraInfo;
 
 
   Telegram():DispatchTime(-1),
@@ -48,7 +49,7 @@ struct Telegram
            int    sender,
            int    receiver,
            int    msg,
-           std::variant<int,float,double>  info): DispatchTime(time),
+           std::variant<int,float,double,Vector2D*>  info): DispatchTime(time),
                                Sender(sender),
                                Receiver(receiver),
                                Msg(msg),

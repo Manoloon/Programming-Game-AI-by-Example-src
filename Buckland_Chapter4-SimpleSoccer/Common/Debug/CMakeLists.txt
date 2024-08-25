@@ -1,0 +1,1 @@
+add_library(Debug STATIC DebugConsole.cpp)

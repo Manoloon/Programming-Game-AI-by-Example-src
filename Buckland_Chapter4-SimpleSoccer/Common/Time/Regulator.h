@@ -16,7 +16,7 @@
 
 #include <windows.h>
 #include <mmsystem.h> 
-#include "misc/utils.h"
+#include "../Misc/utils.h"
 
 class Regulator
 {

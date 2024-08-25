@@ -1,12 +1,12 @@
 #include "GoalKeeper.h"
-#include "misc/Cgdi.h"
+#include "../Misc/Cgdi.h"
 #include "SteeringBehaviors.h"
 #include "SoccerTeam.h"
 #include "SoccerPitch.h"
-#include "2D/transformations.h"
+#include "../2D/transformations.h"
 #include "GoalKeeperStates.h"
 #include "Goal.h"
-#include "game/EntityFunctionTemplates.h"
+#include "../Game/EntityFunctionTemplates.h"
 #include "ParamLoader.h"
 
 
@@ -75,7 +75,7 @@ void GoalKeeper::Update()
   //enforce a non-penetration constraint if desired
   if(Prm.bNonPenetrationConstraint)
   {
-    EnforceNonPenetrationContraint(this, AutoList<PlayerBase>::GetAllMembers());
+    EnforceNonPenetrationConstraint(this, AutoList<PlayerBase>::GetAllMembers());
   }
 
   //update the heading if the player has a non zero velocity

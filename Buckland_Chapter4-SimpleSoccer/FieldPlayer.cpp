@@ -1,17 +1,17 @@
 #include "FieldPlayer.h"
 #include "PlayerBase.h"
 #include "SteeringBehaviors.h"
-#include "2D/Transformations.h"
-#include "2D/Geometry.h"
-#include "misc/Cgdi.h"
-#include "2D/C2DMatrix.h"
+#include "../2D/Transformations.h"
+#include "../2D/Geometry.h"
+#include "../Misc/Cgdi.h"
+#include "../2D/C2DMatrix.h"
 #include "Goal.h"
-#include "Game/Region.h"
-#include "game/EntityFunctionTemplates.h"
+#include "../Game/Region.h"
+#include "../Game/EntityFunctionTemplates.h"
 #include "ParamLoader.h"
 #include "SoccerTeam.h"
-#include "time/Regulator.h"
-#include "Debug/DebugConsole.h"
+#include "../Time/Regulator.h"
+#include "../Debug/DebugConsole.h"
 
 
 #include <limits>
@@ -123,7 +123,7 @@ void FieldPlayer::Update()
   //enforce a non-penetration constraint if desired
   if(Prm.bNonPenetrationConstraint)
   {
-    EnforceNonPenetrationContraint(this, AutoList<PlayerBase>::GetAllMembers());
+    EnforceNonPenetrationConstraint(this, AutoList<PlayerBase>::GetAllMembers());
   }
 }
 

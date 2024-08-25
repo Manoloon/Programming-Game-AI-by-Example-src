@@ -1,0 +1,2 @@
+C:\Coding\common\mingw64\bin\ar.exe qc libGame.a CMakeFiles/Game.dir/BaseGameEntity.cpp.obj CMakeFiles/Game.dir/EntityManager.cpp.obj
+C:\Coding\common\mingw64\bin\ranlib.exe libGame.a

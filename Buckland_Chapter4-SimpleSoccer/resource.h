@@ -11,7 +11,8 @@
 #define ID_AIDS_SHOWTARGETS             40006
 #define ID_AIDS_NOAIDS                  40007
 #define IDM_AIDS_HIGHLITE               40008
-
+#define UNICODE
+#define _UNICODE
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
