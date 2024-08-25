@@ -1,16 +1,17 @@
-#pragma warning (disable:4786)
+
 #include <windows.h>
 #include <time.h>
 
 #include "constants.h"
-#include "misc/utils.h"
-#include "Time/PrecisionTimer.h"
+#include "../Misc/utils.h"
+#include "../Misc/Cgdi.h"
+#include "../Misc/WindowUtils.h"
+#include "../Debug/DebugConsole.h"
+#include "../Time/PrecisionTimer.h"
 #include "SoccerPitch.h"
-#include "misc/Cgdi.h"
+
 #include "ParamLoader.h"
 #include "Resource.h"
-#include "misc/WindowUtils.h"
-#include "debug/DebugConsole.h"
 
 
 //--------------------------------- Globals ------------------------------
@@ -324,7 +325,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
   //register the window class
   if (!RegisterClassEx(&winclass))
   {
-    MessageBox(NULL, "Registration Failed!", "Error", 0);
+    MessageBoxW(NULL, "Registration Failed!", "Error", 0);
 
     //exit the application
     return 0;
