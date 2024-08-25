@@ -12,7 +12,6 @@
 #include "../Misc/WindowUtils.h"
 #include "../Misc/Stream_Utility_Functions.h"
 
-
 #include "resource.h"
 
 #include <list>
@@ -66,6 +65,12 @@ GameWorld::GameWorld(int cx, int cy):
                                     Prm.VehicleScale);        //scale
 
     pVehicle->Steering()->FlockingOn();
+    /* Follow the leader behavior */
+/*     if(a > 1)
+    {
+      pVehicle->Steering()->SetTargetAgent1(m_Vehicles[a - 1]);
+      pVehicle->Steering()->FollowTheLeaderOn();  
+    } */
 
     m_Vehicles.push_back(pVehicle);
 

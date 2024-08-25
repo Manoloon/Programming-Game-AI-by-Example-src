@@ -300,6 +300,13 @@ public:
                           WanderOn();
                         }
 
+  void      FollowTheLeaderOn()
+                              {
+                                AlignmentOn();
+                                SeparationOn();
+                                OffsetPursuitOn(m_pTargetAgent1,Vector2D{100,200});
+  }
+
   void FleeOff()  {if(On(flee))   m_iFlags ^=flee;}
   void SeekOff()  {if(On(seek))   m_iFlags ^=seek;}
   void ArriveOff(){if(On(arrive)) m_iFlags ^=arrive;}

@@ -13,7 +13,7 @@
 #include <list>
 #include <cassert>
 #include <stdexcept>
-#include "../2d/Vector2D.h"
+#include "../2D/Vector2D.h"
 
 class Path
 {
@@ -59,7 +59,7 @@ public:
   bool        Finished(){return !(curWaypoint != m_WayPoints.end());}
   
   //moves the iterator on to the next waypoint in the list
-  inline void SetNextWaypoint();
+  void SetNextWaypoint();
 
   //creates a random path which is bound by rectangle described by
   //the min/max values
