@@ -1,18 +1,17 @@
 #include "SteeringBehaviors.h"
 #include "Vehicle.h"
-#include "../2d/Wall2D.h"
-#include "../2d/Transformations.h"
-#include "../misc/utils.h"
-#include "../misc/Cgdi.h"
-#include "GameWorld.h"
-#include "../2d/geometry.h"
+#include "../2D/Wall2D.h"
+#include "../2D/Transformations.h"
+#include "../2D/geometry.h"
+#include "../Misc/utils.h"
+#include "../Misc/Cgdi.h"
+#include "../Misc/CellSpacePartition.h"
+#include "../Misc/Stream_Utility_Functions.h"
 #include "../Game/BaseGameEntity.h"
-#include "../misc/CellSpacePartition.h"
-#include "../misc/Stream_Utility_Functions.h"
 #include "../Game/EntityFunctionTemplates.h"
+#include "GameWorld.h"
 
 #include <cassert>
-
 
 using std::string;
 using std::vector;
@@ -61,14 +60,10 @@ SteeringBehavior::SteeringBehavior(Vehicle* agent):
                               m_dWanderRadius * sin(theta));
 
   //create a Path
-  m_pPath = new Path();
+  m_pPath = std::make_unique<Path>(Path());
   m_pPath->LoopOn();
 
 }
-
-//---------------------------------dtor ----------------------------------
-SteeringBehavior::~SteeringBehavior(){delete m_pPath;}
-
 
 /////////////////////////////////////////////////////////////////////////////// CALCULATE METHODS 
 

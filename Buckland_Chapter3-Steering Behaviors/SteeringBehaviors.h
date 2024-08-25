@@ -13,6 +13,7 @@
 #include <windows.h>
 #include <string>
 #include <list>
+#include <memory>
 
 #include "../2D/Vector2D.h"
 #include "constants.h"
@@ -133,7 +134,7 @@ private:
   Vector2D      m_vWanderTarget; 
 
   //pointer to any current path
-  Path*          m_pPath;
+  std::unique_ptr<Path>          m_pPath =nullptr;
 
   //any offset used for formations or offset pursuit
   Vector2D     m_vOffset;
@@ -239,8 +240,6 @@ void ChangeWanderAttributesByInput();
 public:
 
   explicit SteeringBehavior(Vehicle* agent);
-
-  virtual ~SteeringBehavior();
 
   //calculates and sums the steering forces from any active behaviors
   Vector2D Calculate();
