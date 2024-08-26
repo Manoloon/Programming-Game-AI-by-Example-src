@@ -162,12 +162,12 @@ public:
 
   StateMachine<SoccerTeam>* GetFSM()const{return m_pStateMachine;}
   
-  Goal*const           HomeGoal()const{return m_pHomeGoal;}
-  Goal*const           OpponentsGoal()const{return m_pOpponentsGoal;}
+  Goal*                 HomeGoal()const{return m_pHomeGoal;}
+  Goal*                 OpponentsGoal()const{return m_pOpponentsGoal;}
 
-  SoccerPitch*const    Pitch()const{return m_pPitch;}           
+  SoccerPitch*          Pitch()const{return m_pPitch;}           
 
-  SoccerTeam*const     Opponents()const{return m_pOpponents;}
+  SoccerTeam*           Opponents()const{return m_pOpponents;}
   void                 SetOpponents(SoccerTeam* opps){m_pOpponents = opps;}
 
   team_color           Color()const{return m_Color;}

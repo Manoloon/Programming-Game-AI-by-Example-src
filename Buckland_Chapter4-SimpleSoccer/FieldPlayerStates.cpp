@@ -106,7 +106,7 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
     {  
       
       //get the position of the player requesting the pass 
-      FieldPlayer* receiver = std::get<FieldPlayer*>(telegram.ExtraInfo);
+      auto receiver = std::get<BaseGameEntity*>(telegram.ExtraInfo);
 
       #ifdef PLAYER_STATE_INFO_ON
       debug_con << "Player " << player->ID() << " received request from " <<
@@ -431,10 +431,7 @@ void Wait::Execute(FieldPlayer* player)
   } 
 }
 
-void Wait::Exit(FieldPlayer* player){}
-
-
-
+void Wait::Exit([[maybe_unused]] FieldPlayer* player){};
 
 //************************************************************************ KICK BALL
 

@@ -458,7 +458,7 @@ bool SoccerTeam::CanShoot(Vector2D  BallPos,
 void SoccerTeam::ReturnAllFieldPlayersToHome()const
 {
   std::vector<PlayerBase*>::const_iterator it = m_Players.begin();
-
+  Vector2D fakeInfo {0.0,0.0};
   for (it; it != m_Players.end(); ++it)
   {
     if ((*it)->Role() != PlayerBase::goal_keeper)
@@ -467,7 +467,7 @@ void SoccerTeam::ReturnAllFieldPlayersToHome()const
                             1,
                             (*it)->ID(),
                             Msg_GoHome,
-                            0);
+                            &fakeInfo);
     }
   }
 }
@@ -805,7 +805,7 @@ void SoccerTeam::RequestPass(FieldPlayer* requester)const
                           requester->ID(),
                           ControllingPlayer()->ID(),
                           Msg_PassToMe,
-                          requester); 
+                          requester);
 
   }
 }

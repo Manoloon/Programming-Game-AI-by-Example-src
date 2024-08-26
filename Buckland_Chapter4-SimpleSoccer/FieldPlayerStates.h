@@ -34,13 +34,13 @@ public:
   //this is a singleton
   static GlobalPlayerState* Instance();
 
-  void Enter(FieldPlayer* player){}
+  void Enter([[maybe_unused]] FieldPlayer* player) override {}
 
-  void Execute(FieldPlayer* player);
+  void Execute(FieldPlayer* player) override;
 
-  void Exit(FieldPlayer* player){}
+  void Exit([[maybe_unused]] FieldPlayer* player) override {}
 
-  bool OnMessage(FieldPlayer*, const Telegram&);
+  bool OnMessage(FieldPlayer*, const Telegram&) override;
 };
 
 //------------------------------------------------------------------------
@@ -76,13 +76,13 @@ public:
   //this is a singleton
   static Dribble* Instance();
 
-  void Enter(FieldPlayer* player);
+  void Enter(FieldPlayer* player) override;
 
-  void Execute(FieldPlayer* player);
+  void Execute(FieldPlayer* player) override;
 
-  void Exit(FieldPlayer* player){}
+  void Exit([[maybe_unused]] FieldPlayer* player) override {}
 
-  bool OnMessage(FieldPlayer*, const Telegram&){return false;}
+  bool OnMessage(FieldPlayer*, const Telegram&) override {return false;}
 };
 
 
@@ -98,13 +98,13 @@ public:
   //this is a singleton
   static ReturnToHomeRegion* Instance();
 
-  void Enter(FieldPlayer* player);
+  void Enter(FieldPlayer* player) override;
 
-  void Execute(FieldPlayer* player);
+  void Execute(FieldPlayer* player) override;
 
-  void Exit(FieldPlayer* player);
+  void Exit(FieldPlayer* player) override;
 
-  bool OnMessage(FieldPlayer*, const Telegram&){return false;}
+  bool OnMessage(FieldPlayer*, const Telegram&) override {return false;}
 };
 
 //------------------------------------------------------------------------
@@ -119,13 +119,13 @@ public:
   //this is a singleton
   static Wait* Instance();
 
-  void Enter(FieldPlayer* player);
+  void Enter(FieldPlayer* player) override;
 
-  void Execute(FieldPlayer* player);
+  void Execute(FieldPlayer* player) override;
 
-  void Exit(FieldPlayer* player);
+  void Exit(FieldPlayer* player) override;
 
-  bool OnMessage(FieldPlayer*, const Telegram&){return false;}
+  bool OnMessage(FieldPlayer*, const Telegram&) override {return false;}
 };
 
 //------------------------------------------------------------------------
@@ -140,13 +140,13 @@ public:
   //this is a singleton
   static KickBall* Instance();
 
-  void Enter(FieldPlayer* player);
+  void Enter(FieldPlayer* player) override;
 
-  void Execute(FieldPlayer* player);
+  void Execute(FieldPlayer* player) override;
 
-  void Exit(FieldPlayer* player){}
+  void Exit([[maybe_unused]] FieldPlayer* player) override {}
 
-  bool OnMessage(FieldPlayer*, const Telegram&){return false;}
+  bool OnMessage(FieldPlayer*, const Telegram&) override {return false;}
 };
 
 //------------------------------------------------------------------------
@@ -161,13 +161,13 @@ public:
   //this is a singleton
   static ReceiveBall* Instance();
 
-  void Enter(FieldPlayer* player);
+  void Enter(FieldPlayer* player) override;
 
-  void Execute(FieldPlayer* player);
+  void Execute(FieldPlayer* player) override;
 
-  void Exit(FieldPlayer* player);
+  void Exit(FieldPlayer* player) override;
 
-  bool OnMessage(FieldPlayer*, const Telegram&){return false;}
+  bool OnMessage(FieldPlayer*, const Telegram&) override {return false;}
 };
 
 
@@ -183,17 +183,13 @@ public:
   //this is a singleton
   static SupportAttacker* Instance();
 
-  void Enter(FieldPlayer* player);
+  void Enter(FieldPlayer* player) override;
 
-  void Execute(FieldPlayer* player);
+  void Execute(FieldPlayer* player) override;
 
-  void Exit(FieldPlayer* player);
+  void Exit(FieldPlayer* player) override;
 
-  bool OnMessage(FieldPlayer*, const Telegram&){return false;}
+  bool OnMessage(FieldPlayer*, const Telegram&) override {return false;}
 };
 
-
-
-
-  
 #endif

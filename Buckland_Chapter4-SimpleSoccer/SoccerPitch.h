@@ -62,8 +62,8 @@ public:
   bool                 m_bPaused;
 
   //local copy of client window dimensions
-  int                  m_cxClient,
-                       m_cyClient;  
+  int                  m_cxClient;
+  int                  m_cyClient;  
   
   //this instantiates the regions the players utilize to  position
   //themselves
@@ -89,11 +89,11 @@ public:
   bool  GoalKeeperHasBall()const{return m_bGoalKeeperHasBall;}
   void  SetGoalKeeperHasBall(bool b){m_bGoalKeeperHasBall = b;}
 
-  const Region*const         PlayingArea()const{return m_pPlayingArea;}
-  const std::vector<Wall2D>& Walls(){return m_vecWalls;}                      
-  SoccerBall*const           Ball()const{return m_pBall;}
+  const Region*               PlayingArea()const{return m_pPlayingArea;}
+  const std::vector<Wall2D>&  Walls(){return m_vecWalls;}                      
+  SoccerBall*                 Ball()const{return m_pBall;}
 
-  const Region* const GetRegionFromIndex(int idx)                                
+  const Region*               GetRegionFromIndex(int idx)                                
   {
     assert ( (idx > 0) && (idx < m_Regions.size()) );
 

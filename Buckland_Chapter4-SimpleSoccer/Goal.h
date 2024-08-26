@@ -24,15 +24,12 @@ private:
 
   Vector2D   m_vLeftPost;
   Vector2D   m_vRightPost;
-
-  //a vector representing the facing direction of the goal
-  Vector2D   m_vFacing;
-
   //the position of the center of the goal line
   Vector2D   m_vCenter;
-
   //each time Scored() detects a goal this is incremented
   int        m_iNumGoalsScored;
+  //a vector representing the facing direction of the goal
+  Vector2D   m_vFacing;
 
 public:
 

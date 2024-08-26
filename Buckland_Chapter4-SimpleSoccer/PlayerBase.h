@@ -38,14 +38,14 @@ public:
 
 protected:
 
-  //this player's role in the team
-  player_role             m_PlayerRole;
+
 
   //a pointer to this player's team
   SoccerTeam*             m_pTeam;
  
-  //the steering behaviors
-  SteeringBehaviors*      m_pSteering;
+  //the distance to the ball (in squared-space). This value is queried 
+  //a lot so it's calculated once each time-step and stored here.
+  double                   m_dDistSqToBall;
 
   //the region that this player is assigned to.
   int                     m_iHomeRegion;
@@ -53,11 +53,12 @@ protected:
   //the region this player moves to before kickoff
   int                     m_iDefaultRegion;
 
-  //the distance to the ball (in squared-space). This value is queried 
-  //a lot so it's calculated once each time-step and stored here.
-  double                   m_dDistSqToBall;
+  //this player's role in the team
+  player_role             m_PlayerRole;
 
-  
+  //the steering behaviors
+  SteeringBehaviors*      m_pSteering;
+
   //the vertex buffer
   std::vector<Vector2D>   m_vecPlayerVB;
   //the buffer for the transformed vertices

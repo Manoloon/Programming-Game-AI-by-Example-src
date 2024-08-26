@@ -27,8 +27,8 @@ public:
   
 protected:
 
-  double        m_dTop;
   double        m_dLeft;
+  double        m_dTop;
   double        m_dRight;
   double        m_dBottom;
 
@@ -41,19 +41,18 @@ protected:
 
 public:
 
-  Region():m_dTop(0),m_dBottom(0),m_dLeft(0),m_dRight(0)
+  Region():m_dLeft(0),m_dTop(0),m_dRight(0),m_dBottom(0)
   {}
-
 
   Region(double left,
          double top,
          double right,
          double bottom,
-         int id = -1):m_dTop(top),
-                        m_dRight(right),
-                        m_dLeft(left),
-                        m_dBottom(bottom),
-                        m_iID(id)
+         int id = -1):m_dLeft(left),
+                      m_dTop(top),
+                      m_dRight(right),
+                      m_dBottom(bottom),
+                      m_iID(id)
   {
     //calculate center of region
     m_vCenter = Vector2D( (left+right)*0.5, (top+bottom)*0.5 );

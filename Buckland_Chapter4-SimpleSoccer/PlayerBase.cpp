@@ -178,6 +178,7 @@ bool PlayerBase::isThreatened()const
 //-----------------------------------------------------------------------------
 void PlayerBase::FindSupport()const
 {    
+  Vector2D fakeInfo {0.0,0.0};
   //if there is no support we need to find a suitable player.
   if (Team()->SupportingPlayer() == NULL)
   {
@@ -189,7 +190,7 @@ void PlayerBase::FindSupport()const
                             ID(),
                             Team()->SupportingPlayer()->ID(),
                             Msg_SupportAttacker,
-                            0);
+                            &fakeInfo);
   }
     
   PlayerBase* BestSupportPly = Team()->DetermineBestSupportingAttacker();
@@ -202,14 +203,13 @@ void PlayerBase::FindSupport()const
     
     if (Team()->SupportingPlayer())
     {
+      
       Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
                               ID(),
                               Team()->SupportingPlayer()->ID(),
                               Msg_GoHome,
-                              0);
+                              &fakeInfo);
     }
-    
-    
     
     Team()->SetSupportingPlayer(BestSupportPly);
 
@@ -217,7 +217,7 @@ void PlayerBase::FindSupport()const
                             ID(),
                             Team()->SupportingPlayer()->ID(),
                             Msg_SupportAttacker,
-                            0);
+                            &fakeInfo);
   }
 }
 
