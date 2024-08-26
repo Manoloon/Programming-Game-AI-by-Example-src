@@ -13,6 +13,7 @@
 #include <set>
 #include <string>
 #include <variant>
+#include "../Game/BaseGameEntity.h"
 #include "../Misc/WindowUtils.h"
 
 #include "Telegram.h"
@@ -59,7 +60,7 @@ public:
                    int         sender,
                    int         receiver,
                    int         msg,
-                   std::variant<int,float,double,Vector2D*>        ExtraInfo);
+                   std::variant<BaseGameEntity*,Vector2D*> ExtraInfo);
 
   //send out any delayed messages. This method is called each time through   
   //the main game loop.

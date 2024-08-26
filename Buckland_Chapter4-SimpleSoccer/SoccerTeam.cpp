@@ -81,7 +81,7 @@ SoccerTeam::~SoccerTeam()
 //  iterates through each player's update function and calculates 
 //  frequently accessed info
 //------------------------------------------------------------------------
-void SoccerTeam::Update()
+void SoccerTeam::Update(double time_elapsed)
 {
   //this information is used frequently so it's more efficient to 
   //calculate it just once each frame
@@ -90,14 +90,14 @@ void SoccerTeam::Update()
   //the team state machine switches between attack/defense behavior. It
   //also handles the 'kick off' state where a team must return to their
   //kick off positions before the whistle is blown
-  m_pStateMachine->Update();
+  m_pStateMachine->Update(time_elapsed);
   
   //now update each player
   std::vector<PlayerBase*>::iterator it = m_Players.begin();
 
   for (it; it != m_Players.end(); ++it)
   {
-    (*it)->Update();
+    (*it)->Update(time_elapsed);
   }
 
 }
@@ -467,7 +467,7 @@ void SoccerTeam::ReturnAllFieldPlayersToHome()const
                             1,
                             (*it)->ID(),
                             Msg_GoHome,
-                            NULL);
+                            0);
     }
   }
 }

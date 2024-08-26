@@ -102,7 +102,7 @@ public:
   
 
 
-  Vector2D     Pos()const{return m_vPosition;}
+  Vector2D    Pos() const {return m_vPosition;}
   void         SetPos(Vector2D new_pos){m_vPosition = new_pos;}
 
   double       BRadius()const{return m_dBoundingRadius;}

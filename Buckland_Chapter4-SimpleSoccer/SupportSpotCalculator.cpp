@@ -95,10 +95,10 @@ Vector2D SupportSpotCalculator::DetermineBestSupportingPosition()
       curSpot->m_dScore += Prm.Spot_PassSafeScore;
     }
       
-   
+    Vector2D falseTarget ={0.0,0.0};
     //Test 2. Determine if a goal can be scored from this position.  
     if( m_pTeam->CanShoot(curSpot->m_vPos,            
-                          Prm.MaxShootingForce))
+                          Prm.MaxShootingForce, falseTarget))
     {
       curSpot->m_dScore += Prm.Spot_CanScoreFromPositionScore;
     }   

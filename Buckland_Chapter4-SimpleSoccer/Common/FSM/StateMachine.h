@@ -51,7 +51,7 @@ public:
   void SetPreviousState(State<entity_type>* s){m_pPreviousState = s;}
   
   //call this to update the FSM
-  void  Update()const
+  void  Update([[maybe_unused]] double time_elapsed) const
   {
     //if a global state exists, call its execute method, else do nothing
     if(m_pGlobalState)   m_pGlobalState->Execute(m_pOwner);

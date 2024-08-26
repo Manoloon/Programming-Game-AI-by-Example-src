@@ -1,2 +1,2 @@
-C:\Coding\common\mingw64\bin\ar.exe qc lib2D.a CMakeFiles/2D.dir/Vector2d.cpp.obj
-C:\Coding\common\mingw64\bin\ranlib.exe lib2D.a
+E:\Coding\msys64\mingw64\bin\ar.exe qc lib2D.a CMakeFiles/2D.dir/Vector2d.cpp.obj
+E:\Coding\msys64\mingw64\bin\ranlib.exe lib2D.a

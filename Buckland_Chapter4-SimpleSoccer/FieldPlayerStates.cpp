@@ -134,13 +134,13 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
      #ifdef PLAYER_STATE_INFO_ON
      debug_con << "Player " << player->ID() << " Passed ball to requesting player" << "";
      #endif
-        
+      Vector2D pos = receiver->Pos();
       //let the receiver know a pass is coming 
       Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
                               player->ID(),
                               receiver->ID(),
                               Msg_ReceiveBall,
-                              &receiver->Pos());
+                              &pos);
 
    
 
@@ -253,8 +253,9 @@ void SupportAttacker::Execute(FieldPlayer* player)
 
   //if this player has a shot at the goal AND the attacker can pass
   //the ball to him the attacker should pass the ball to this player
+  Vector2D target = Vector2D{0.0f,0.0f};
   if( player->Team()->CanShoot(player->Pos(),
-                               Prm.MaxShootingForce))
+                               Prm.MaxShootingForce,target))
   {
     player->Team()->RequestPass(player);
   }

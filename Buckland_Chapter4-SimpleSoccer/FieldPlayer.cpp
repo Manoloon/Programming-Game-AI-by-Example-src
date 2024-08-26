@@ -71,10 +71,10 @@ FieldPlayer::FieldPlayer(SoccerTeam* home_team,
 //
 //  
 //------------------------------------------------------------------------
-void FieldPlayer::Update()
+void FieldPlayer::Update(double time_elapsed)
 { 
   //run the logic for the current state
-  m_pStateMachine->Update();
+  m_pStateMachine->Update(time_elapsed);
 
   //calculate the combined steering force
   m_pSteering->Calculate();

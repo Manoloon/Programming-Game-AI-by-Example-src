@@ -1,4 +1,4 @@
-# Install script for directory: C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer
+# Install script for directory: E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,37 +34,37 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Coding/common/mingw64/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "E:/Coding/msys64/mingw64/bin/objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Messaging/cmake_install.cmake")
+  include("E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Messaging/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Time/cmake_install.cmake")
+  include("E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Time/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Game/cmake_install.cmake")
+  include("E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Game/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Misc/cmake_install.cmake")
+  include("E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Misc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/2D/cmake_install.cmake")
+  include("E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/2D/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Debug/cmake_install.cmake")
+  include("E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/Common/Debug/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -75,5 +75,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

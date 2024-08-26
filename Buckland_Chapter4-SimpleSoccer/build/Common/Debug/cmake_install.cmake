@@ -1,4 +1,4 @@
-# Install script for directory: C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Debug
+# Install script for directory: E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Debug
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,6 +34,6 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Coding/common/mingw64/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "E:/Coding/msys64/mingw64/bin/objdump.exe")
 endif()
 

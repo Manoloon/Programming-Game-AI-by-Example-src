@@ -59,13 +59,13 @@ public:
   {}
   
   //implement base class Update
-  void      Update();
+  void      Update(double time_elapsed) override;
 
   //implement base class Render
-  void      Render();
+  void      Render() override;
 
   //a soccer ball doesn't need to handle messages
-  bool      HandleMessage(const Telegram& msg){return false;}
+  bool      HandleMessage([[maybe_unused]] const Telegram& msg) override {return false;}
 
   //this method applies a directional force to the ball (kicks it!)
   void      Kick(Vector2D direction, double force);

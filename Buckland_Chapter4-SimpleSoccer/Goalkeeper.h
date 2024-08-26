@@ -46,9 +46,9 @@ public:
    ~GoalKeeper(){delete m_pStateMachine;}
 
    //these must be implemented
-   void        Update();
-   void        Render();
-   bool        HandleMessage(const Telegram& msg);
+   void        Update(double time_elapsed) override;
+   void        Render() override;
+   bool        HandleMessage(const Telegram& msg) override;
 
 
    //returns true if the ball comes close enough for the keeper to 

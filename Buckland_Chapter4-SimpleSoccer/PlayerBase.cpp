@@ -189,7 +189,7 @@ void PlayerBase::FindSupport()const
                             ID(),
                             Team()->SupportingPlayer()->ID(),
                             Msg_SupportAttacker,
-                            NULL);
+                            0);
   }
     
   PlayerBase* BestSupportPly = Team()->DetermineBestSupportingAttacker();
@@ -206,7 +206,7 @@ void PlayerBase::FindSupport()const
                               ID(),
                               Team()->SupportingPlayer()->ID(),
                               Msg_GoHome,
-                              NULL);
+                              0);
     }
     
     
@@ -217,7 +217,7 @@ void PlayerBase::FindSupport()const
                             ID(),
                             Team()->SupportingPlayer()->ID(),
                             Msg_SupportAttacker,
-                            NULL);
+                            0);
   }
 }
 
@@ -292,17 +292,17 @@ bool PlayerBase::isAheadOfAttacker()const
          fabs(Team()->ControllingPlayer()->Pos().x - Team()->OpponentsGoal()->Center().x);
 }
 
-SoccerBall* const PlayerBase::Ball()const
+SoccerBall* PlayerBase::Ball()const
 {
   return Team()->Pitch()->Ball();
 }
 
-SoccerPitch* const PlayerBase::Pitch()const
+SoccerPitch* PlayerBase::Pitch()const
 {
   return Team()->Pitch();
 }
 
-const Region* const PlayerBase::HomeRegion()const
+const Region* PlayerBase::HomeRegion()const
 {
   return Pitch()->GetRegionFromIndex(m_iHomeRegion);
 }

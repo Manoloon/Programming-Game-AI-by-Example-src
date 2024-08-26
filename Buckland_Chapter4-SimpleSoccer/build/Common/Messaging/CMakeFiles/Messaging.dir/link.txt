@@ -1,2 +1,2 @@
-C:\Coding\common\mingw64\bin\ar.exe qc libMessaging.a CMakeFiles/Messaging.dir/MessageDispatcher.cpp.obj
-C:\Coding\common\mingw64\bin\ranlib.exe libMessaging.a
+E:\Coding\msys64\mingw64\bin\ar.exe qc libMessaging.a CMakeFiles/Messaging.dir/MessageDispatcher.cpp.obj
+E:\Coding\msys64\mingw64\bin\ranlib.exe libMessaging.a

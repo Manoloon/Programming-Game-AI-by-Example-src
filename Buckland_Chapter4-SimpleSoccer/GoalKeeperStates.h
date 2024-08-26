@@ -31,11 +31,11 @@ public:
   //this is a singleton
   static GlobalKeeperState* Instance();
 
-  void Enter(GoalKeeper* keeper){}
+  void Enter([[maybe_unused]] GoalKeeper* keeper){}
 
-  void Execute(GoalKeeper* keeper){}
+  void Execute([[maybe_unused]] GoalKeeper* keeper){}
 
-  void Exit(GoalKeeper* keeper){}
+  void Exit([[maybe_unused]] GoalKeeper* keeper){}
 
   bool OnMessage(GoalKeeper*, const Telegram&);
 };
@@ -120,7 +120,7 @@ public:
 
   void Execute(GoalKeeper* keeper);
 
-  void Exit(GoalKeeper* keeper){}
+  void Exit([[maybe_unused]] GoalKeeper* keeper){}
 
   bool OnMessage(GoalKeeper*, const Telegram&){return false;}
 };

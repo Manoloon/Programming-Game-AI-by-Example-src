@@ -82,27 +82,27 @@
 			[
 				{
 					"backtrace" : 4,
-					"path" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Misc"
+					"path" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Misc"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/FSM"
+					"path" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/FSM"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Messaging"
+					"path" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Messaging"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Time"
+					"path" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Time"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/2D"
+					"path" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/2D"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Debug"
+					"path" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/Debug"
 				}
 			],
 			"language" : "CXX",

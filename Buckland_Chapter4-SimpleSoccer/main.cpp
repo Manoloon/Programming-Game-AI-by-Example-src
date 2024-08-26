@@ -380,7 +380,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
     if (timer.ReadyForNextFrame() && msg.message != WM_QUIT)
     {
       //update game states
-      g_SoccerPitch->Update(); 
+      g_SoccerPitch->Update(timer.TimeElapsed()); 
       
       //render 
       RedrawWindow(hWnd, true);

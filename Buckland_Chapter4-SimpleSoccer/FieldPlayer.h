@@ -59,11 +59,11 @@ public:
   ~FieldPlayer();
 
   //call this to update the player's position and orientation
-  void        Update();   
+  void        Update(double time_elapsed) override;   
 
-  void        Render();
+  void        Render() override;
 
-  bool        HandleMessage(const Telegram& msg);
+  bool        HandleMessage(const Telegram& msg) override;
 
   StateMachine<FieldPlayer>* GetFSM()const{return m_pStateMachine;}
 

@@ -49,10 +49,10 @@ GoalKeeper::GoalKeeper(SoccerTeam*        home_team,
 
 //-------------------------- Update --------------------------------------
 
-void GoalKeeper::Update()
+void GoalKeeper::Update(double time_elapsed)
 { 
   //run the logic for the current state
-  m_pStateMachine->Update();
+  m_pStateMachine->Update(time_elapsed);
 
   //calculate the combined force from each steering behavior 
   Vector2D SteeringForce = m_pSteering->Calculate();
@@ -69,7 +69,7 @@ void GoalKeeper::Update()
   m_vVelocity.Truncate(m_dMaxSpeed);
 
   //update the position
-  m_vPosition += m_vVelocity;
+  m_vPosition += m_vVelocity * time_elapsed;
 
 
   //enforce a non-penetration constraint if desired

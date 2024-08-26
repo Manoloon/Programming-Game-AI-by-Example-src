@@ -76,7 +76,7 @@ public:
 
   ~SoccerPitch();
 
-  void  Update();
+  void  Update(double time_elapsed);
 
   bool  Render();
 

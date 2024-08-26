@@ -44,7 +44,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
                                     int          sender,
                                     int          receiver,
                                     int          msg,
-                                    std::variant<int,float,double,Vector2D*>         AdditionalInfo = 0)
+                                    std::variant<BaseGameEntity*,Vector2D*> ExtraInfo)
 {
 
   //get a pointer to the receiver
@@ -61,7 +61,7 @@ void MessageDispatcher::DispatchMsg(double       delay,
   }
   
   //create the telegram
-  Telegram telegram(0, sender, receiver, msg, AdditionalInfo);
+  Telegram telegram(0, sender, receiver, msg, ExtraInfo);
   
   //if there is no delay, route telegram immediately                       
   if (delay <= 0.0)                                                        

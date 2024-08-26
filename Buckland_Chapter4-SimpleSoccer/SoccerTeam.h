@@ -91,7 +91,7 @@ public:
 
   //the usual suspects
   void        Render()const;
-  void        Update();
+  void        Update(double time_elapsed);
 
   //calling this changes the state of all field players to that of 
   //ReturnToHomeRegion. Mainly used when a goal keeper has
@@ -103,7 +103,7 @@ public:
   //made. Else returns false and sets heading to a zero vector
   bool        CanShoot(Vector2D  BallPos,
                        double     power, 
-                       Vector2D& ShotTarget)const;
+                       Vector2D& ShotTarget) const;
 
   //The best pass is considered to be the pass that cannot be intercepted 
   //by an opponent and that is as far forward of the receiver as possible  

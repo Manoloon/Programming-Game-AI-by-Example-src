@@ -48,7 +48,7 @@ void SoccerBall::Kick(Vector2D direction, double force)
 //  updates the ball physics, tests for any collisions and adjusts
 //  the ball's velocity accordingly
 //------------------------------------------------------------------------
-void SoccerBall::Update()
+void SoccerBall::Update(double time_elapsed)
 {
   //keep a record of the old position so the goal::scored method
   //can utilize it for goal testing
@@ -63,9 +63,7 @@ void SoccerBall::Update()
   {
     m_vVelocity += Vec2DNormalize(m_vVelocity) * Prm.Friction;
 
-    m_vPosition += m_vVelocity;
-
-
+    m_vPosition += m_vVelocity * time_elapsed;
 
     //update heading
     m_vHeading = Vec2DNormalize(m_vVelocity);

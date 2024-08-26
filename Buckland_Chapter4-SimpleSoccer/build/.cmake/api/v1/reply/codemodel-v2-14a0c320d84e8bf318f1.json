@@ -185,7 +185,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "SimpleSoccer::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-SimpleSoccer-Debug-f282118b53f319038452.json",
+					"jsonFile" : "target-SimpleSoccer-Debug-8001781e2952f3fc609e.json",
 					"name" : "SimpleSoccer",
 					"projectIndex" : 0
 				},
@@ -202,8 +202,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
-		"source" : "C:/Coding/cpp/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer"
+		"build" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/build",
+		"source" : "E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer"
 	},
 	"version" : 
 	{

@@ -1,4 +1,3 @@
-#pragma warning (disable:4786)
 #ifndef PLAYERBASE_H
 #define PLAYERBASE_H
 //------------------------------------------------------------------------
@@ -145,12 +144,12 @@ public:
 
   void        SetDefaultHomeRegion(){m_iHomeRegion = m_iDefaultRegion;}
 
-  SoccerBall* const        Ball()const;
-  SoccerPitch* const       Pitch()const;
-  SteeringBehaviors*const  Steering()const{return m_pSteering;}
-  const Region* const      HomeRegion()const;
-  void                     SetHomeRegion(int NewRegion){m_iHomeRegion = NewRegion;}
-  SoccerTeam*const         Team()const{return m_pTeam;}
+  SoccerBall*        Ball()const;
+  SoccerPitch*       Pitch()const;
+  SteeringBehaviors* Steering()const{return m_pSteering;}
+  const Region*      HomeRegion()const;
+  void               SetHomeRegion(int NewRegion){m_iHomeRegion = NewRegion;}
+  SoccerTeam*        Team()const{return m_pTeam;}
   
 };
 
