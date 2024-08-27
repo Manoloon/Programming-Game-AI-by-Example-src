@@ -14,6 +14,7 @@
 //
 //------------------------------------------------------------------------
 #include <windows.h>
+#include <memory>
 #include <vector>
 #include <cassert>
 
@@ -35,17 +36,17 @@ public:
 
   SoccerBall*          m_pBall;
 
-  SoccerTeam*          m_pRedTeam;
-  SoccerTeam*          m_pBlueTeam;
+  std::unique_ptr<SoccerTeam>      m_pRedTeam;
+  std::unique_ptr<SoccerTeam>      m_pBlueTeam;
 
-  Goal*                m_pRedGoal;
-  Goal*                m_pBlueGoal;
+  std::unique_ptr<Goal>            m_pRedGoal;
+  std::unique_ptr<Goal>            m_pBlueGoal;
    
   //container for the boundary walls
   std::vector<Wall2D>  m_vecWalls;
 
   //defines the dimensions of the playing area
-  Region*              m_pPlayingArea;
+  std::unique_ptr<Region>          m_pPlayingArea;
 
   //the playing field is broken up into regions that the team
   //can make use of to implement strategies.
@@ -89,9 +90,9 @@ public:
   bool  GoalKeeperHasBall()const{return m_bGoalKeeperHasBall;}
   void  SetGoalKeeperHasBall(bool b){m_bGoalKeeperHasBall = b;}
 
-  const Region*               PlayingArea()const{return m_pPlayingArea;}
-  const std::vector<Wall2D>&  Walls(){return m_vecWalls;}                      
-  SoccerBall*                 Ball()const{return m_pBall;}
+  const Region*               PlayingArea() const {return m_pPlayingArea.get();}
+  const std::vector<Wall2D>&  Walls() {return m_vecWalls;}                      
+  SoccerBall*                 Ball() const {return m_pBall;}
 
   const Region*               GetRegionFromIndex(int idx)                                
   {

@@ -25,20 +25,20 @@ SoccerPitch::SoccerPitch(int cx, int cy):m_cxClient(cx),
                                          m_bGameOn(true)
 {
   //define the playing area
-  m_pPlayingArea = new Region(20, 20, cx-20, cy-20);
+  m_pPlayingArea = std::make_unique<Region>(20, 20, cx-20, cy-20);
 
   //create the regions  
   CreateRegions(PlayingArea()->Width() / (double)NumRegionsHorizontal,
                 PlayingArea()->Height() / (double)NumRegionsVertical);
 
   //create the goals
-   m_pRedGoal  = new Goal(Vector2D( m_pPlayingArea->Left(), (cy-Prm.GoalWidth)/2),
+   m_pRedGoal  = std::make_unique<Goal>(Vector2D( m_pPlayingArea->Left(), (cy-Prm.GoalWidth)/2),
                           Vector2D(m_pPlayingArea->Left(), cy - (cy-Prm.GoalWidth)/2),
                           Vector2D(1,0));
    
 
 
-  m_pBlueGoal = new Goal( Vector2D( m_pPlayingArea->Right(), (cy-Prm.GoalWidth)/2),
+  m_pBlueGoal = std::make_unique<Goal>( Vector2D( m_pPlayingArea->Right(), (cy-Prm.GoalWidth)/2),
                           Vector2D(m_pPlayingArea->Right(), cy - (cy-Prm.GoalWidth)/2),
                           Vector2D(-1,0));
 
@@ -51,12 +51,12 @@ SoccerPitch::SoccerPitch(int cx, int cy):m_cxClient(cx),
 
   
   //create the teams 
-  m_pRedTeam  = new SoccerTeam(m_pRedGoal, m_pBlueGoal, this, SoccerTeam::red);
-  m_pBlueTeam = new SoccerTeam(m_pBlueGoal, m_pRedGoal, this, SoccerTeam::blue);
+  m_pRedTeam  = std::make_unique<SoccerTeam>(m_pRedGoal.get(), m_pBlueGoal.get(), this, SoccerTeam::red);
+  m_pBlueTeam = std::make_unique<SoccerTeam>(m_pBlueGoal.get(), m_pRedGoal.get(), this, SoccerTeam::blue);
 
   //make sure each team knows who their opponents are
-  m_pRedTeam->SetOpponents(m_pBlueTeam);
-  m_pBlueTeam->SetOpponents(m_pRedTeam); 
+  m_pRedTeam->SetOpponents(m_pBlueTeam.get());
+  m_pBlueTeam->SetOpponents(m_pRedTeam.get()); 
 
   //create the walls
   Vector2D TopLeft(m_pPlayingArea->Left(), m_pPlayingArea->Top());                                        
@@ -79,14 +79,6 @@ SoccerPitch::SoccerPitch(int cx, int cy):m_cxClient(cx),
 SoccerPitch::~SoccerPitch()
 {
   delete m_pBall;
-
-  delete m_pRedTeam;
-  delete m_pBlueTeam;
-
-  delete m_pRedGoal;
-  delete m_pBlueGoal;
-
-  delete m_pPlayingArea;
 
   for (unsigned int i=0; i<m_Regions.size(); ++i)
   {

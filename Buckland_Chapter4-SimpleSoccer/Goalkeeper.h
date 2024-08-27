@@ -74,6 +74,4 @@ public:
    void        SetLookAt(Vector2D v){m_vLookAt=v;}
 };
 
-
-
 #endif

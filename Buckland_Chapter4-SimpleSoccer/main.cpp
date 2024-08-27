@@ -1,6 +1,7 @@
 
 #include <windows.h>
 #include <time.h>
+#include <memory>
 
 #include "constants.h"
 #include "../Misc/utils.h"
@@ -19,9 +20,9 @@
 //------------------------------------------------------------------------
 
 wchar_t* g_szApplicationName = L"Simple Soccer";
-wchar_t*	g_szWindowClassName = L"MyWindowClass";
+wchar_t* g_szWindowClassName = L"MyWindowClass";
 
-SoccerPitch* g_SoccerPitch;
+std::unique_ptr<SoccerPitch> g_SoccerPitch;
 
 //create a timer
 PrecisionTimer timer(Prm.FrameRate);
@@ -100,7 +101,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          //don't forget to release the DC
          ReleaseDC(hwnd, hdc); 
          
-         g_SoccerPitch = new SoccerPitch(cxClient, cyClient); 
+         g_SoccerPitch = std::make_unique<SoccerPitch>(cxClient, cyClient); 
          
          CheckAllMenuItemsAppropriately(hwnd);
 
@@ -192,9 +193,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
           case 'R':
             {
-               delete g_SoccerPitch;
-           
-               g_SoccerPitch = new SoccerPitch(cxClient, cyClient);
+               g_SoccerPitch = std::make_unique<SoccerPitch>(cxClient, cyClient);
             }
 
             break;
@@ -389,8 +388,6 @@ int WINAPI WinMain (HINSTANCE hInstance,
     }
    					
   }//end while
-
-  delete g_SoccerPitch;
 
   UnregisterClassW( g_szWindowClassName, winclass.hInstance );
 
