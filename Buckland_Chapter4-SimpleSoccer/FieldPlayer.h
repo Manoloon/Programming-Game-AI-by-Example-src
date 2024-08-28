@@ -16,6 +16,7 @@
 #include <string>
 #include <algorithm>
 #include <cassert>
+#include <memory>
 
 #include "FieldPlayerStates.h"
 #include "../2D/Vector2D.h"
@@ -36,27 +37,24 @@ class FieldPlayer : public PlayerBase
 private:
 
    //an instance of the state machine class
-  StateMachine<FieldPlayer>*  m_pStateMachine;
+  std::unique_ptr<StateMachine<FieldPlayer>> m_pStateMachine;
   
   //limits the number of kicks a player may take per second
-  Regulator*                  m_pKickLimiter;
+  std::unique_ptr<Regulator>   m_pKickLimiter;
 
-  
 public:
 
   FieldPlayer(SoccerTeam*    home_team,
-             int        home_region,
+             int             home_region,
              State<FieldPlayer>* start_state,
-             Vector2D  heading,
-             Vector2D      velocity,
+             Vector2D       heading,
+             Vector2D       velocity,
              double         mass,
              double         max_force,
              double         max_speed,
              double         max_turn_rate,
              double         scale,
              player_role    role);   
-  
-  ~FieldPlayer();
 
   //call this to update the player's position and orientation
   void        Update(double time_elapsed) override;   
@@ -65,14 +63,11 @@ public:
 
   bool        HandleMessage(const Telegram& msg) override;
 
-  StateMachine<FieldPlayer>* GetFSM()const{return m_pStateMachine;}
+  StateMachine<FieldPlayer>* GetFSM() const {return m_pStateMachine.get();}
 
-  bool        isReadyForNextKick()const{return m_pKickLimiter->isReady();}
+  bool        isReadyForNextKick() const {return m_pKickLimiter->isReady();}
 
          
 };
-
-
-
 
 #endif

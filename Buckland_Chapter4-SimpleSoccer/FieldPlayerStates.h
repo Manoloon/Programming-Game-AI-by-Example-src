@@ -27,7 +27,7 @@ class GlobalPlayerState : public State<FieldPlayer>
 {
 private:
   
-  GlobalPlayerState(){}
+  GlobalPlayerState()=default;
 
 public:
 
@@ -48,7 +48,7 @@ class ChaseBall : public State<FieldPlayer>
 {
 private:
   
-  ChaseBall(){}
+  ChaseBall()=default;
 
 public:
 
@@ -69,7 +69,7 @@ class Dribble : public State<FieldPlayer>
 {
 private:
   
-  Dribble(){}
+  Dribble()=default;
 
 public:
 
@@ -91,7 +91,7 @@ class ReturnToHomeRegion: public State<FieldPlayer>
 {
 private:
   
-  ReturnToHomeRegion(){}
+  ReturnToHomeRegion()=default;
 
 public:
 
@@ -112,7 +112,7 @@ class Wait: public State<FieldPlayer>
 {
 private:
   
-  Wait(){}
+  Wait()=default;
 
 public:
 
@@ -133,7 +133,7 @@ class KickBall: public State<FieldPlayer>
 {
 private:
   
-  KickBall(){}
+  KickBall()=default;
 
 public:
 
@@ -154,7 +154,7 @@ class ReceiveBall: public State<FieldPlayer>
 {
 private:
   
-  ReceiveBall(){}
+  ReceiveBall()=default;
 
 public:
 
@@ -176,7 +176,7 @@ class SupportAttacker: public State<FieldPlayer>
 {
 private:
   
-  SupportAttacker(){}
+  SupportAttacker()=default;
 
 public:
 

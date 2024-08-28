@@ -37,12 +37,16 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/include/bcrypt.h \
   E:/Coding/msys64/mingw64/include/bemapiset.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/algorithm \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/backward/auto_ptr.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/backward/binders.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bit \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/algorithmfwd.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/align.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/alloc_traits.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/allocated_ptr.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/allocator.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/atomic_base.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/atomic_lockfree_defines.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/basic_ios.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/basic_ios.tcc \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/basic_string.h \
@@ -89,6 +93,9 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/range_access.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/refwrap.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/requires_hosted.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr_atomic.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr_base.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/specfun.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/sstream.tcc \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/std_abs.h \
@@ -103,6 +110,7 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_iterator_base_types.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_list.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_pair.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_raw_storage_iter.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_tempbuf.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_uninitialized.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_vector.h \
@@ -111,6 +119,7 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/string_view.tcc \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stringfwd.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/uniform_int_dist.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/unique_ptr.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/uses_allocator.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/uses_allocator_args.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/utility.h \
@@ -132,6 +141,7 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/aligned_buffer.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/alloc_traits.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/atomicity.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/concurrence.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/numeric_traits.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/string_conversions.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/type_traits.h \
@@ -146,10 +156,12 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/include/c++/13.2.0/list \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/locale \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/math.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/memory \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/new \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/ostream \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/execution_defs.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/glue_algorithm_defs.h \
+  E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/glue_memory_defs.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/pstl_config.h \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/sstream \
   E:/Coding/msys64/mingw64/include/c++/13.2.0/stdexcept \
@@ -306,6 +318,7 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/include/specstrings.h \
   E:/Coding/msys64/mingw64/include/stdarg.h \
   E:/Coding/msys64/mingw64/include/stddef.h \
+  E:/Coding/msys64/mingw64/include/stdint.h \
   E:/Coding/msys64/mingw64/include/stdio.h \
   E:/Coding/msys64/mingw64/include/stdlib.h \
   E:/Coding/msys64/mingw64/include/stralign.h \
@@ -441,6 +454,7 @@ CMakeFiles/SimpleSoccer.dir/FieldPlayer.cpp.obj: E:/Coding/CppProjects/Programmi
   E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/smmintrin.h \
   E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdarg.h \
   E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stddef.h \
+  E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdint.h \
   E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/syslimits.h \
   E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/tbmintrin.h \
   E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/tmmintrin.h \
@@ -5994,9 +6008,9 @@ E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/uniform_int_dist.h:
 
 E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/2D/Transformations.h:
 
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/hash_bytes.h:
-
 E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/2D/Vector2D.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/atomic_base.h:
 
 E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/Common/FSM/StateMachine.h:
 
@@ -6094,8 +6108,6 @@ E:/Coding/msys64/mingw64/include/_mingw_stat64.h:
 
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/lwpintrin.h:
 
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/istream.tcc:
-
 E:/Coding/msys64/mingw64/include/_mingw_stdarg.h:
 
 E:/Coding/msys64/mingw64/include/rpcasync.h:
@@ -6108,13 +6120,15 @@ E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/pkuintrin.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/alloc_traits.h:
 
-E:/Coding/msys64/mingw64/include/_timeval.h:
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/align.h:
 
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/invoke.h:
+E:/Coding/msys64/mingw64/include/_timeval.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/istream:
 
 E:/Coding/msys64/mingw64/include/apiset.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/backward/auto_ptr.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/map:
 
@@ -6155,6 +6169,12 @@ E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/algorithmfwd.h:
 E:/Coding/msys64/mingw64/include/wtypes.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/char_traits.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/atomic_lockfree_defines.h:
+
+E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/avx512pfintrin.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/tr1/bessel_function.tcc:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/allocated_ptr.h:
 
@@ -6202,7 +6222,13 @@ E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/functexcept.h:
 
 E:/Coding/msys64/mingw64/include/sec_api/stralign_s.h:
 
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/hash_bytes.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/invoke.h:
+
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/ios_base.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/istream.tcc:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/list.tcc:
 
@@ -6302,6 +6328,16 @@ E:/Coding/msys64/mingw64/include/signal.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/requires_hosted.h:
 
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr.h:
+
+E:/Coding/msys64/mingw64/include/processtopologyapi.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr_atomic.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/aligned_buffer.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr_base.h:
+
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/specfun.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/sstream.tcc:
@@ -6344,6 +6380,10 @@ E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_list.h:
 
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/amxbf16intrin.h:
 
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_raw_storage_iter.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
+
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_tempbuf.h:
 
 E:/Coding/msys64/mingw64/include/mmiscapi2.h:
@@ -6363,6 +6403,10 @@ E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/gfniintrin.h:
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/wbnoinvdintrin.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stringfwd.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/unique_ptr.h:
+
+E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/rtmintrin.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/uses_allocator.h:
 
@@ -6402,10 +6446,6 @@ E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-Simpl
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/debug/debug.h:
 
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr_base.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/aligned_buffer.h:
-
 E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/alloc_traits.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/ext/numeric_traits.h:
@@ -6438,11 +6478,17 @@ E:/Coding/msys64/mingw64/include/c++/13.2.0/locale:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/math.h:
 
+E:/Coding/msys64/mingw64/include/c++/13.2.0/memory:
+
 E:/Coding/msys64/mingw64/include/c++/13.2.0/new:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/execution_defs.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/glue_algorithm_defs.h:
+
+E:/Coding/msys64/mingw64/include/objidlbase.h:
+
+E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/glue_memory_defs.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/pstl_config.h:
 
@@ -6459,12 +6505,6 @@ E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/ammintrin.h:
 E:/Coding/msys64/mingw64/include/c++/13.2.0/string_view:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/system_error:
-
-E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/avx512pfintrin.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/atomic_lockfree_defines.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/tr1/bessel_function.tcc:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/tr1/beta_function.tcc:
 
@@ -6521,10 +6561,6 @@ E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/avx512vbmiint
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/mm3dnow.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/c++locale.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_raw_storage_iter.h:
 
 E:/Coding/msys64/mingw64/include/fibersapi.h:
 
@@ -6636,9 +6672,9 @@ E:/Coding/msys64/mingw64/include/malloc.h:
 
 E:/Coding/msys64/mingw64/include/math.h:
 
-E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/avxintrin.h:
-
 E:/Coding/msys64/mingw64/include/stdint.h:
+
+E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/avxintrin.h:
 
 E:/Coding/msys64/mingw64/include/mcx.h:
 
@@ -6672,10 +6708,6 @@ E:/Coding/msys64/mingw64/include/nb30.h:
 
 E:/Coding/msys64/mingw64/include/oaidl.h:
 
-E:/Coding/msys64/mingw64/include/c++/13.2.0/pstl/glue_memory_defs.h:
-
-E:/Coding/msys64/mingw64/include/objidlbase.h:
-
 E:/Coding/msys64/mingw64/include/ole2.h:
 
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/amxfp16intrin.h:
@@ -6695,10 +6727,6 @@ E:/Coding/msys64/mingw64/include/process.h:
 E:/Coding/msys64/mingw64/include/processenv.h:
 
 E:/Coding/msys64/mingw64/include/processthreadsapi.h:
-
-E:/Coding/msys64/mingw64/include/processtopologyapi.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr.h:
 
 E:/Coding/msys64/mingw64/include/propidl.h:
 
@@ -6918,10 +6946,6 @@ E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/pmmintrin.h:
 
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/raointintrin.h:
 
-E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/rtmintrin.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/unique_ptr.h:
-
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/sgxintrin.h:
 
 E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SoccerPitch.h:
@@ -6933,6 +6957,8 @@ E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/smmintrin.h:
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stddef.h:
 
 E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/ParamLoader.cpp:
+
+E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdint.h:
 
 E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/syslimits.h:
 
@@ -6960,25 +6986,13 @@ E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-Simpl
 
 E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SoccerBall.h:
 
-E:/Coding/msys64/mingw64/include/c++/13.2.0/backward/auto_ptr.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/align.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/atomic_base.h:
-
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/erase_if.h:
-
-E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/shared_ptr_atomic.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_multiset.h:
 
 E:/Coding/msys64/mingw64/include/c++/13.2.0/bits/stl_tree.h:
 
-E:/Coding/msys64/mingw64/include/c++/13.2.0/memory:
-
 E:/Coding/msys64/mingw64/include/c++/13.2.0/set:
-
-E:/Coding/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdint.h:
 
 E:/Coding/CppProjects/Programming-Game-AI-by-Example-src/Buckland_Chapter4-SimpleSoccer/SoccerMessages.h:
 

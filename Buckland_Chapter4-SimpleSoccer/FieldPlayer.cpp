@@ -18,14 +18,6 @@
 
 using std::vector;
 
-//------------------------------- dtor ---------------------------------------
-//----------------------------------------------------------------------------
-FieldPlayer::~FieldPlayer()
-{
-  delete m_pKickLimiter;
-  delete m_pStateMachine;
-}
-
 //----------------------------- ctor -------------------------------------
 //------------------------------------------------------------------------
 FieldPlayer::FieldPlayer(SoccerTeam* home_team,
@@ -50,7 +42,7 @@ FieldPlayer::FieldPlayer(SoccerTeam* home_team,
                                                     role)                                    
 {
   //set up the state machine
-  m_pStateMachine =  new StateMachine<FieldPlayer>(this);
+  m_pStateMachine = std::make_unique<StateMachine<FieldPlayer>>(this);
 
   if (start_state)
   {    
@@ -64,7 +56,7 @@ FieldPlayer::FieldPlayer(SoccerTeam* home_team,
   m_pSteering->SeparationOn();
 
   //set up the kick regulator
-  m_pKickLimiter = new Regulator(Prm.PlayerKickFrequency);
+  m_pKickLimiter = std::make_unique<Regulator>(Prm.PlayerKickFrequency);
 }
 
 //------------------------------ Update ----------------------------------
@@ -111,7 +103,7 @@ void FieldPlayer::Update(double time_elapsed)
   //of the player's heading
   Vector2D accel = m_vHeading * m_pSteering->ForwardComponent() / m_dMass;
 
-  m_vVelocity += accel;
+  m_vVelocity += accel;// * time_elapsed;
 
   //make sure player does not exceed maximum velocity
   m_vVelocity.Truncate(m_dMaxSpeed);

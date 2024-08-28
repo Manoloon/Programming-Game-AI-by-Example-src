@@ -45,8 +45,6 @@ GoalKeeper::GoalKeeper(SoccerTeam*        home_team,
   m_pStateMachine->CurrentState()->Enter(this);        
 }
 
-
-
 //-------------------------- Update --------------------------------------
 
 void GoalKeeper::Update(double time_elapsed)
@@ -69,7 +67,7 @@ void GoalKeeper::Update(double time_elapsed)
   m_vVelocity.Truncate(m_dMaxSpeed);
 
   //update the position
-  m_vPosition += m_vVelocity * time_elapsed;
+  m_vPosition += m_vVelocity;
 
 
   //enforce a non-penetration constraint if desired

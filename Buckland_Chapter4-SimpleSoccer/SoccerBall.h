@@ -32,9 +32,6 @@ private:
   //a local reference to the Walls that make up the pitch boundary
   const std::vector<Wall2D>& m_PitchBoundary;                                      
 
-
-  
-
 public:
     //tests to see if the ball has collided with a ball and reflects 
   //the ball's velocity accordingly
@@ -91,11 +88,7 @@ public:
   void      PlaceAtPosition(Vector2D NewPos);
 };
 
-
-
 //this can be used to vary the accuracy of a player's kick.
 Vector2D AddNoiseToKick(Vector2D BallPos, Vector2D BallTarget);
-
-
 
 #endif

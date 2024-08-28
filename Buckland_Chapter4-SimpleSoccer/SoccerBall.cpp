@@ -24,8 +24,6 @@ Vector2D AddNoiseToKick(Vector2D BallPos, Vector2D BallTarget)
   return toTarget + BallPos;
 }
 
-  
-
 //-------------------------- Kick ----------------------------------------
 //                                                                        
 //  applys a force to the ball in the direction of heading. Truncates
@@ -63,7 +61,7 @@ void SoccerBall::Update(double time_elapsed)
   {
     m_vVelocity += Vec2DNormalize(m_vVelocity) * Prm.Friction;
 
-    m_vPosition += m_vVelocity * time_elapsed;
+    m_vPosition += m_vVelocity;// * time_elapsed;
 
     //update heading
     m_vHeading = Vec2DNormalize(m_vVelocity);
@@ -215,7 +213,7 @@ void SoccerBall::TestCollisionWithWalls(const std::vector<Wall2D>& walls)
     }
 
   
-                                                                          //Note, there is no test for collision with the end of a line segment
+    //Note, there is no test for collision with the end of a line segment
     
     //now check to see if the collision point is within range of the
     //velocity vector. [work in distance squared to avoid sqrt] and if it
@@ -232,7 +230,6 @@ void SoccerBall::TestCollisionWithWalls(const std::vector<Wall2D>& walls)
     }     
   }//next wall
 
-    
   //to prevent having to calculate the exact time of collision we
   //can just check if the velocity is opposite to the wall normal
   //before reflecting it. This prevents the case where there is overshoot
@@ -257,4 +254,3 @@ void SoccerBall::PlaceAtPosition(Vector2D NewPos)
   
   m_vVelocity.Zero();
 }
-

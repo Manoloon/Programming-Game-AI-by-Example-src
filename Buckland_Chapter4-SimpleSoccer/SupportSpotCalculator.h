@@ -25,8 +25,6 @@ class SoccerBall;
 class SoccerTeam;
 class Regulator;
 
-
-
 //------------------------------------------------------------------------
 
 class SupportSpotCalculator
@@ -47,7 +45,6 @@ private:
   };
 
 private:
-
 
   SoccerTeam*               m_pTeam;
 
